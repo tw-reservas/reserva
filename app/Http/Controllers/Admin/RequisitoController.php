@@ -15,7 +15,7 @@ class RequisitoController extends Controller
      */
     public function index()
     {
-        $recom = Requisito::all();
+        $recom = Requisito::all()->sortBy('id');
 
         return view('admin.laboratorios.requisitos')->with('requisitosDatos', $recom);
     }

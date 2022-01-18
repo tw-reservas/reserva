@@ -48,6 +48,10 @@ class Paciente extends Persona
     {
         return "P";
     }
+    public function resultados()
+    {
+        return $this->hasMany(Resultado::class);
+    }
 
     public $appends = ["rol"];
 }

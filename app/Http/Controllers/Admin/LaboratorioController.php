@@ -15,7 +15,7 @@ class LaboratorioController extends Controller
      */
     public function index()
     {
-        $lab = Laboratorio::all();
+        $lab = Laboratorio::all()->sortBy('id');
 
         return view('admin.laboratorios.saludos')->with('laboratoriosDatos', $lab);
     }

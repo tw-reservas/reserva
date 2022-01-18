@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::prefix('admin')->group(function () {
     Auth::routes();
 });
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('login.paciente.home');
+Route::post('login/paciente', [LoginController::class, 'loginPaciente'])->name('login.paciente');
+Route::post('logout/paciente', [LoginController::class, 'salir'])->name('logout.paciente');
