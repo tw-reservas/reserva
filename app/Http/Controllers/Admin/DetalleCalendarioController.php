@@ -51,8 +51,9 @@ class DetalleCalendarioController extends Controller
 
             $calendario->estado =   !$calendario->estado;
             $calendario->update();
-            return redirect()->back()->with('success', "Cupos Repartidos con éxitos");
+            
         }
+        return redirect()->back()->with('success', "Cupos Repartidos con éxitos");
     }
 
     public function verDetalles(Calendario $calendario)
