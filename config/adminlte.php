@@ -242,8 +242,9 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+    ],
 
-        ['header' => 'RESERVAS'],
+    /*['header' => 'RESERVAS'],
 
         //RESERVA
         [
@@ -341,7 +342,7 @@ return [
                 ],
             ],
         ],
-    ],
+    ],*/
 
     /*
     |--------------------------------------------------------------------------
