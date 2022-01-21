@@ -6,10 +6,13 @@
     <h1>DETALLE CALENDARIOS</h1>
 @stop
 
-
-
-
 @section('content')
+<?php
+    session_start();
+    if(isset($_SESSION['calendarios'])==0){
+        $_SESSION['calendarios']=0;
+    }
+?>
     <div class="container-fluid">
         <div class="row ">
             <div class="col-md-11 m-auto">
@@ -103,6 +106,17 @@
             </div>
         </div>
     </div>
+
+    <div class="footer">
+        <div class="footer-copyright">
+            <div class="container" style="margin-top:5px ">
+                © 2021 INF513 GRUPO 17 SC
+                <a class="black-text text-lighten-4 right" href="#!">Visitas a la página:
+                    <?php echo $_SESSION['calendarios'] += 1 ; ?></a>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('js')

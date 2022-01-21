@@ -7,7 +7,12 @@
 
 
 @section('content')
-
+<?php
+    session_start();
+    if(isset($_SESSION['laboratoriosDatos'])==0){
+        $_SESSION['laboratoriosDatos']=0;
+    }
+?>
 
 <table class="m-auto table table-striped table-bordered shadow-lg mt-4" style="width:80%">
     <thead class="bg-primary text-white">
@@ -18,7 +23,7 @@
             <th scope="col">ESTADO</th>
             <th scope="col">REQUISITO_ID</th>
             <th scope="col">AREA_COD</th>
-            
+
         </tr>
     </thead>
     <tbody>
@@ -34,11 +39,19 @@
             @endif
             <td>{{ $labs->requisito_id}} </td>
             <td>{{ $labs->area_cod}} </td>
-            
+
 
         </tr>
         @endforeach
     </tbody>
 </table>
-
+<div class="footer">
+    <div class="footer-copyright">
+        <div class="container" style="margin-top:5px ">
+            © 2021 INF513 GRUPO 17 SC
+            <a class="black-text text-lighten-4 right" href="#!">Visitas a la página:
+                <?php echo $_SESSION['laboratoriosDatos'] += 1 ; ?></a>
+        </div>
+    </div>
+</div>
 @stop

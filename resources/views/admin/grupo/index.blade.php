@@ -6,10 +6,13 @@
     <h1>GESTIONAR GRUPOS</h1>
 @stop
 
-
-
-
 @section('content')
+<?php
+    session_start();
+    if(isset($_SESSION['grupos'])==0){
+        $_SESSION['grupos']=0;
+    }
+?>
     <div class="container-fluid">
         <div class="row ">
             <div class="col-md-10 m-auto">
@@ -77,6 +80,15 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-copyright">
+            <div class="container" style="margin-top:5px ">
+                © 2021 INF513 GRUPO 17 SC
+                <a class="black-text text-lighten-4 right" href="#!">Visitas a la página:
+                    <?php echo $_SESSION['grupos'] += 1 ; ?></a>
             </div>
         </div>
     </div>

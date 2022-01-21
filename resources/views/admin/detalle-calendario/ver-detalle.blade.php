@@ -9,6 +9,12 @@
 
 
 @section('content')
+<?php
+    session_start();
+    if(isset($_SESSION['calendarios'])==0){
+        $_SESSION['calendarios']=0;
+    }
+?>
     <div class="container-fluid">
         <div class="row ">
             <div class="col-md-10 m-auto">
@@ -59,6 +65,18 @@
 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-right: 80px">
+        <div class="row">
+            <div class="col s6 m4 l2 offset-s6 offset-m8 offset-l10">
+                <div class="left-align" >
+                    <div class="card-panel teal">
+                        <span class="white-text">Nro. de Visitas: <?php echo $_SESSION['calendarios'] += 1; ?></span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
