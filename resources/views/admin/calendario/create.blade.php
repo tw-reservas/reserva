@@ -2,10 +2,18 @@
 
 
 @section('content_header')
-    <h4>Crear calendario</h4>
+<h4>Crear calendario</h4>
 @stop
 
 @section('content')
+
+<?php
+    session_start();
+    if(isset($_SESSION['calendarios'])==0){
+        $_SESSION['calendarios']=0;
+    }
+?>
+
 <div class="container-fluit">
     <div class="row">
         <div class="col-md-12">
@@ -14,37 +22,39 @@
 
                 </div>
                 <div class="card-body pad table-responsive">
-                   <div class="col-md-6">
-                    <form action="{{route('calendario.store')}}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="" class="">Rango de Dias:</label>
-                            <input id="cantidad" name="cantidad" type="text" class="form-control @error('cantidad')
+                    <div class="col-md-6">
+                        <form action="{{route('calendario.store')}}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="" class="">Rango de Dias:</label>
+                                <input id="cantidad" name="cantidad" type="text" class="form-control @error('cantidad')
                                 is-invalid
                                 @enderror" tabindex="2">
                                 @error('cantidad')
                                 <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
+                                    <strong>{{$message}}</strong>
                                 </span>
                                 @enderror
-                        </div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label for="" class="form-label">Fecha Inicio: </label>
-                            <input id="fechaInicio" name="fechaInicio" value="{{$fecha}}" type="date" class="form-control @error('fechaInicio')
+                            <div class="mb-3">
+                                <label for="" class="form-label">Fecha Inicio: </label>
+                                <input id="fechaInicio" name="fechaInicio" value="{{$fecha}}" type="date" class="form-control @error('fechaInicio')
                             is-invalid
                             @enderror" tabindex="2">
-                            @error('fechaInicio')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                                @error('fechaInicio')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
-                        <a href="{{route('calendario.index')}}" class="btn btn-secondary btn-sm" tabindex="5">Cancelar</a>
-                        <button id="guardar" type="submit" class="btn btn-success btn-sm" tabindex="4">Guardar</button>
-                      </form>
-                   </div>
+                            <a href="{{route('calendario.index')}}" class="btn btn-secondary btn-sm"
+                                tabindex="5">Cancelar</a>
+                            <button id="guardar" type="submit" class="btn btn-success btn-sm"
+                                tabindex="4">Guardar</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <p>
@@ -55,13 +65,24 @@
         </div>
     </div>
 </div>
+<div style="padding-right: 80px">
+    <div class="row">
+        <div class="col s6 m4 l2 offset-s6 offset-m8 offset-l10">
+            <div class="left-align" >
+                <div class="card-panel teal">
+                    <span class="white-text">Nro. de Visitas: <?php echo $_SESSION['calendarios'] += 1; ?></span>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
 @stop
 
 @section('js')
 <script>
-    @if (Session::has('error'))
-        toastr.error("{{session('error')}}");
-    @endif
+@if(Session::has('error'))
+toastr.error("{{session('error')}}");
+@endif
 </script>
 @stop

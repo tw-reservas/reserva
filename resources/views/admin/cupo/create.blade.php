@@ -6,6 +6,13 @@
 @stop
 
 @section('content')
+<?php
+    session_start();
+    if(isset($_SESSION['cupos'])==0){
+        $_SESSION['cupos']=0;
+    }
+?>
+
 <div class="container-fluit">
     <div class="row">
         <div class="col-md-12">
@@ -42,5 +49,15 @@
         </div>
     </div>
 </div>
-
+<div style="padding-right: 80px">
+    <div class="row">
+        <div class="col s6 m4 l2 offset-s6 offset-m8 offset-l10">
+            <div class="left-align" >
+                <div class="card-panel teal">
+                    <span class="white-text">Nro. de Visitas: <?php echo $_SESSION['cupos'] += 1; ?></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
