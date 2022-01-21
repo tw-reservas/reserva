@@ -7,7 +7,18 @@
 @endif
 
 {{-- Default Content Wrapper --}}
-<div class="content-wrapper {{ config('adminlte.classes_content_wrapper', '') }}">
+<div class="content-wrapper
+    @if (Auth::user()->theme == 1)
+        background-nino
+    @endif
+    @if (Auth::user()->theme == 2)
+        background-joven
+    @endif
+
+    @if (Auth::user()->theme == 3)
+        background-adulto
+    @endif
+    {{ config('adminlte.classes_content_wrapper', '') }}">
 
     {{-- Content Header --}}
     @hasSection('content_header')
