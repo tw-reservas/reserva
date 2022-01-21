@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
             CalendarioSeeder::class,
             GrupoSeeder::class,
             //DetalleCalendarioSeeder::class,
+            PaqueteSeeder::class,
+            CasoDeUsoSeeder::class,
+            RolSeeder::class,
+            MenuSeeder::class,
         ]);
     }
 }

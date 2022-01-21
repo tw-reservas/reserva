@@ -53,4 +53,9 @@ class User extends Persona
     {
         return User::where('matricula', $matricula)->first();
     }
+
+    public function rolUser()
+    {
+        return $this->belongsTo(Rol::class, 'rol_id', 'id');
+    }
 }
