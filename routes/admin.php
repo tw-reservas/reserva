@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\LaboratorioController;
 use App\Http\Controllers\Admin\RequisitoController;
 use App\Http\Controllers\Admin\ThemeController;
+use App\Http\Controllers\Admin\UserController;
 
 //theme change
 Route::post('/theme', [ThemeController::class, 'themes'])->name('theme.themes');
@@ -39,3 +40,4 @@ Route::get('areas', [AreaController::class, 'index']);
 //area
 Route::get('requisitos', [RequisitoController::class, 'index']);
 //area end
+Route::resource('user', UserController::class)->only(['index', 'create', 'destroy', 'store', 'update', 'show']);
