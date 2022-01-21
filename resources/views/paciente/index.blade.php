@@ -8,7 +8,7 @@
                 Ingrese el ORDEN del laboratorio
             </div>
             <div class="card-body">
-                <form action="{{route('verificar.orden')}}" method="POST">
+                <form action="{{route('verificar.orden')}}" method="POST" id="form-orden">
                     @csrf
                     <div class="mb-3">
                       <label for="" class="form-label">Orden Laboratorio: </label>
@@ -22,7 +22,7 @@
                       </span>
                   @enderror
                     </div>
-                    <button type="submit" class="btn btn-success btn-sm" tabindex="4">Guardar</button>
+                    <button type="submit" class="btn btn-success btn-sm" tabindex="4" id = "verificar">Guardar</button>
                   </form>
             </div>
         </div>
@@ -32,6 +32,37 @@
 @stop
 
 @section('js')
+
+<script>
+    window.onload= function(){
+        document.getElementById('verificar').onclick = function(){
+            const reg = new RegExp('^[0-9]+$');
+            orden = document.getElementById('orden').value;
+
+            if(orden === '' ){
+                toastr.error("El campo ORDEN DE LABORATORIO es requerido");
+                return false;
+            }
+            if(orden.length > 6 && orden.length < 10){
+                toastr.error("El campo ORDEN DE LABORATORIO es incorrecto");
+            }
+            if(!reg.test(orden) && orden !== ""){
+                toastr.error("El campo ORDEN debe ser un número");
+                return false;
+            }
+            if(reg.test(orden) ){
+                toastr.success('CAMPOS CORRECTOS, !!VERIFICANDO ORDEN!!');
+                document.getElementById('form-orden').submit();
+            }
+            return false;
+        }
+
+    }
+
+
+</script>
+
+
 <script>
     @if (Session::has('error'))
         toastr.error("{{session('error')}}");

@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -127,9 +128,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-success elevation-2',
+    'classes_sidebar' => 'sidebar-light-success elevation-3', //cambiar el color de la barra ederecha
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-expand navbar-white navbar-light',
+    'classes_topnav' => 'navbar-expand navbar-white navbar-light', //change top nav bar first background second textcolor
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -327,6 +328,16 @@ return [
                 [
                     'text' => 'Administrar Privilegios',
                     'url'  => '#',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Temas',
+            'icon'    => ' fa fa-paint-brush',
+            'submenu' => [
+                [
+                    'text' => 'Conf. temas',
+                    'url'  => '/admin/theme',
                 ],
             ],
         ],

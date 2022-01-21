@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body pad table-responsive">
                    <div class="col-md-6">
-                    <form action="{{route ('grupo.store')}}" method="POST">
+                    <form action="{{route ('grupo.store')}}" method="POST" id = "form-grupo">
                         @csrf
                         <div class="mb-3">
                             <label for="" class="">Nombre:</label>
@@ -60,7 +60,7 @@
 
 
                         <a href="{{route('grupo.index')}}" class="btn btn-secondary btn-sm" tabindex="5">Cancelar</a>
-                        <button type="submit" class="btn btn-success btn-sm" tabindex="4">Guardar</button>
+                        <button type="submit" class="btn btn-success btn-sm" id = "guardar" tabindex="4">Guardar</button>
                       </form>
                    </div>
                 </div>
@@ -74,4 +74,50 @@
     </div>
 </div>
 
+@stop
+
+@section('js')
+<script>
+    window.onload= function(){
+        document.getElementById('guardar').onclick = function(){
+            const reg = new RegExp('^[0-9]+$');
+            const regHora = new RegExp('^([01]?[0-9]|2[0-3]):[0-5][0-9]$');
+            nombre = document.getElementById('nombre').value;
+            horaInicio = document.getElementById('horaInicio').value;
+            horaFin = document.getElementById('horaFin').value;
+
+            console.log(horaInicio,horaFin,regHora.test(horaInicio),regHora.test(horaFin));
+            console.log(nombre.length !==2);
+            if(nombre === ''){
+                toastr.error("El campo NOMBRE es requerido");
+            }
+            if(nombre.length !== 2){
+                toastr.error("El campo NOMBRE debe tener dos caracteres ejemplo: SA, SB ,AS ,KP");
+            }
+
+            if(horaInicio === ''){
+                toastr.error("El campo HORA INICIO es requerido");
+            }
+            if(!regHora.test(horaInicio) && horaInicio !== ""){
+                toastr.error("El campo HORA INICIO no tiene formato valido. !! HH:MM !!");
+            }
+
+            if(horaFin === ''){
+                toastr.error("El campo HORA INICIO es requerido");
+            }
+            if(!regHora.test(horaFin) && horaFin !== ""){
+                toastr.error("El campo HORA FIN no tiene formato valido. !! HH:MM !!");
+
+            }
+            if(horaFin > horaInicio ){
+                toastr.error("El campo HORA INICIO DEBE SER MENOR A HORA FIN");
+            }
+            if(regHora.test(horaInicio) && nombre.length == 2 && regHora.test(horaFin)){
+                toastr.success('CAMPOS CORRECTOS, !!GUARDANDO GRUPO!!');
+                document.getElementById('form-grupo').submit();
+            }
+            return false;
+        }
+    }
+</script>
 @stop

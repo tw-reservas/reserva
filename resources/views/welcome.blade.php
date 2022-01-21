@@ -5,7 +5,7 @@
 
 
 @section('auth_body')
-    <form action="{{route('login.paciente')}}" method="post">
+    <form action="{{route('login.paciente')}}" method="post" id="form-paciente">
         @csrf
         @method('POST')
         {{-- Matricula field --}}
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                <button type=submit id="login-paciente" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>
@@ -52,4 +52,36 @@
 @section('auth_footer')
 
 @stop
+
+@section('js')
+
+<script>
+    window.onload= function(){
+        document.getElementById('login_paciente').onclick = function(){
+            const reg = new RegExp('^[0-9]+$');
+            matricula = document.getElementsByName('matricula').value;
+
+            if(matricula === '' ){
+                toastr.error("El campo MATRICULA es requerido");
+                return false;
+            }
+            if(matricula.length > 6 && matricula.length < 10){
+                toastr.error("El campo MATRICULA es incorrecto");
+            }
+            if(!reg.test(matricula) && matricula !== ""){
+                toastr.error("El campo MATRICULA debe ser un número");
+                return false;
+            }
+            if(reg.test(matricula) ){
+                toastr.success('CAMPOS CORRECTOS, !! VALIDANDO DATOS!!');
+                document.getElementById('form-paciente').submit();
+            }
+            return false;
+        }
+
+    }
+
+
+</script>
+@end
 

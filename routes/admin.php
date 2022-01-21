@@ -8,6 +8,11 @@ use App\Http\Controllers\Admin\DetalleCalendarioController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\LaboratorioController;
 use App\Http\Controllers\Admin\RequisitoController;
+use App\Http\Controllers\Admin\ThemeController;
+
+//theme change
+Route::post('/theme', [ThemeController::class, 'themes'])->name('theme.themes');
+Route::get('/theme', [ThemeController::class, 'mostrar'])->name('theme.mostrar');
 
 Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 Route::resource('cupo', CupoController::class);
