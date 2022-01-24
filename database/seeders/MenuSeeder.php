@@ -17,12 +17,12 @@ class MenuSeeder extends Seeder
     {
         $caso = CasoDeUso::all();
 
-        /**foreach ($caso as $key => $value) {
+        foreach ($caso as $key => $value) {
             $menu = new Menu();
             $menu->rol_id = 1;
             $menu->caso_de_uso_id = $value->id;
             $menu->save();
-        }*/
+        }
 
         $casos_id = [1, 2, 3, 4, 5, 11, 12, 14];
 

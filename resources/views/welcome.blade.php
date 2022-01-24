@@ -10,7 +10,7 @@
         @method('POST')
         {{-- Matricula field --}}
         <div class="input-group mb-3">
-            <input type="matricula" name="matricula" autocomplete="off"  class="form-control @error('matricula') is-invalid @enderror"
+            <input type="text" name="matricula"  id="matricula" autocomplete="off"  class="form-control @error('matricula') is-invalid @enderror"
                    value="{{ old('matricula') }}" placeholder="{{ __('adminlte::adminlte.matricula') }}" autofocus>
 
             <div class="input-group-append">
@@ -49,24 +49,21 @@
     </form>
 @stop
 
-@section('auth_footer')
-
-@stop
-
 @section('js')
 
 <script>
     window.onload= function(){
-        document.getElementById('login_paciente').onclick = function(){
-            const reg = new RegExp('^[0-9]+$');
-            matricula = document.getElementsByName('matricula').value;
 
+        document.getElementById('login-paciente').onclick = function(){
+            const reg = new RegExp('^[0-9]+$');
+            matricula = document.getElementById('matricula').value;
             if(matricula === '' ){
                 toastr.error("El campo MATRICULA es requerido");
                 return false;
             }
-            if(matricula.length > 6 && matricula.length < 10){
+            if(matricula.length < 6 && matricula.length > 10){
                 toastr.error("El campo MATRICULA es incorrecto");
+                return false;
             }
             if(!reg.test(matricula) && matricula !== ""){
                 toastr.error("El campo MATRICULA debe ser un número");
@@ -78,10 +75,13 @@
             }
             return false;
         }
-
     }
-
-
 </script>
-@end
+
+<script>
+    @if(session('error'))
+        toastr.error("{{session('error')}}");
+    @endif
+</script>
+@stop
 

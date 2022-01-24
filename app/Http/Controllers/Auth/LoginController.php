@@ -67,7 +67,7 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                $this->username() => 'required|string',
+                $this->username() => 'required|numeric',
             ]
         );
         if (Auth::guard('paciente')->check() && Auth::guard('paciente')->user()->matricula == $request->matricula) {
@@ -79,7 +79,7 @@ class LoginController extends Controller
             Auth::guard('paciente')->login($paciente);
             return redirect($this->redirectToP);
         }
-        return redirect()->back()->withErrors("matricula", "Datos incorrectos");
+        return redirect()->back()->with("error", "Datos incorrectos");
     }
 
 

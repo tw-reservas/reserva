@@ -8,35 +8,50 @@
         $_SESSION['reserva']=0;
     }
 ?>
-<div class="card-header">
-    <h3 class="card-title">Tu Ticket reservado =)</h3>
+<div class="row">
+    <div class="col-md-8 m-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Tu Ticket reservado =)</h3>
+            </div>
+
+            <div class="card-body">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <img  src="{{asset('images/cps-logo.png')}}" alt="" width="90%">
+                        </div>
+                        <div class="col-md-5 d-flex align-items-center justify-content-center">
+                            @if ($reserva != null)
+                                <div class="text-center " >
+                                    <h3>Orden Lab: <strong>{{$reserva->ordenLab->codigo}}</strong></h3>
+                                    <h4>Codigo ticket:  {{$reserva->id}}</h4>
+                                    <h3> <strong>{{$grupo->nombre}}</strong></h3>
+                                    <h1>Fecha: <strong>{{$reserva->detalleCalendario->fecha}}</strong></h1>
+                                    <h3>Hora Reservada: <br>
+                                    <strong>{{$grupo->horaInicio}} am - {{$grupo->horaFin}} am</strong> </h3>
+                                </div>
+                            @else
+                                <div class="m-auto">
+                                    <h3>El orden de laboratorio {{!! Session::get('ordenLab')!!}} no tiene una reserva.</h3>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <a href="" class="btn btn-info btn-sm">imprimir</a>
+                <a href="" class="btn btn-danger btn-sm">Cancelar</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<table id="verReserva" class="m-auto table  shadow-lg mt-4" style="width:60%">
-    <br>
 
-    <tr style="text-align:center">
-        <td scope="col" style="vertical-align:middle; text-align:center">
-            <img class="d-none d-md-block" src="/images/cps-logo.png" alt="" style="width: 75%;" >
-        </td>
-        <td scope="col">
-            @if ($reserva != null)
+@stop
 
-                <div class="col-16" >
-                    <h3>Orden Lab: {{$reserva->ordenLab->codigo}}</h3>
-                    <h4>Codigo ticket {{$reserva->id}}</h4>
-                    <h3>{{$grupo->nombre}}</h3>
-                    <h1>Fecha: {{$reserva->detalleCalendario->fecha}}</h1>
-                    <h3>Hora Reservada: <br>
-                    {{$grupo->horaInicio}} am - {{$grupo->horaFin}} am</h3>
-                </div>
-            @endif
-
-        </td>
-    </tr>
-    <tbody>
-    </tbody>
-</table>
+@section('footer')
 <div class="footer">
     <div class="footer-copyright">
         <div class="container" style="margin-top:5px ">
@@ -46,16 +61,4 @@
         </div>
     </div>
 </div>
-<br>
-    <form action="" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger btn-sm">
-            <i class="fas fa-trash"></i>
-            CANCELAR
-        </button>
-</form>
-
-
-
-@endsection
+@stop

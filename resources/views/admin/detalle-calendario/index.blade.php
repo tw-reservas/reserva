@@ -45,7 +45,7 @@
                                                 <td>{{$calendario->fechaFin}}</td>
                                                 @if ($calendario->estado)
                                                    <td><span class="badge bg-success">Repartido</span></td>
-                                                   <td><a href="/admin/detalle-calendario/ver/{{$calendario->id}}" class="btn btn-info btn-sm">Ver Detalles</a></td>
+                                                   <td><a href="{{route('detalle-calendario.ver',$calendario->id)}}" class="btn btn-info btn-sm">Ver Detalles</a></td>
                                                 @else
                                                     <td><span class="badge bg-info">Pendiente</span></td>
 
@@ -57,7 +57,10 @@
                                                                 <a href="{{route('cupo.index')}}" class="btn btn-info btn-sm"> Activar Cupo</a>
                                                         @endif
                                                         @if (count($grupos) > 0 && $cupo != null)
-                                                            <a href="/admin/detalle-calendario/repartir/{{$calendario->id}}/cupo/{{$cupo->id}}" class="btn btn-warning btn-sm"> Repartir </a>
+                                                            <a href="{{route('detalle-calendario.repartir',[$calendario->id,$cupo->id])}}" class="btn btn-warning btn-sm"> Repartir </a>
+                                                        @endif
+                                                        @if ($cupo != null && $sumaCupo != $cupo->total )
+                                                            <a href="{{route('grupo.conf-porcentaje')}}" class="btn btn-warning btn-sm"> Configurar porcentaje </a>
                                                         @endif
                                                     </td>
                                                 @endif
@@ -121,6 +124,9 @@
 
 @section('js')
 <script>
+    @if ($cupo != null && $sumaCupo != $cupo->total)
+        toastr.error("La suma del stock de los grupos: ".$sumaCupo.", no es igual al cupo total activo: ".$cupo->total);
+    @endif
     @if (Session::has('error'))
         toastr.error("{{session('error')}}");
     @endif

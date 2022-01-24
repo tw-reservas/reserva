@@ -12,7 +12,6 @@ class ResultadoController extends Controller
         //$res = Resultado::all();
         $user = auth()->guard('paciente')->user();
         $res = $user->resultados;
-        //dd($resultados);
 
         return view('resultado.index')->with('resultadosc', $res);
     }

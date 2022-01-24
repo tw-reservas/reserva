@@ -9,6 +9,7 @@ use App\Models\Ordenlab;
 use App\Models\Reserva;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ReservaController extends Controller
@@ -22,6 +23,7 @@ class ReservaController extends Controller
     public function verificarCodLab(CodigoLabRequest $request)
     {
         Session::put('reserva', null);
+        Session::put('ordenLab', null);
         $orden = Ordenlab::where("codigo", $request->orden)
             ->with('paciente:id,matricula,nombre')->first();
         if ($orden == null) {
@@ -36,7 +38,7 @@ class ReservaController extends Controller
             Session::put('reserva', $reserva->id);
             return redirect('/paciente/reserva/ver');
         }
-
+        Session::put('ordenLab', $request->orden);
         return $this->calendarioView($orden);
     }
 
@@ -70,20 +72,27 @@ class ReservaController extends Controller
         }
         $fecha = Carbon::now()->format('Y-m-d');
         $user = Auth::guard('paciente')->user();
-        $reserva = new Reserva();
 
-        $reserva->fecha = $fecha;
-        $reserva->estado = true; //vigente
-        $reserva->ordenlab_id = $orden->id;
-        $reserva->detallecalendario_id = $detalleId;
-        $reserva->paciente_id = $user->id;
-        $reserva->save();
+        DB::beginTransaction();
+        try {
+            $reserva = new Reserva();
+            $reserva->fecha = $fecha;
+            $reserva->estado = true; //vigente
+            $reserva->ordenlab_id = $orden->id;
+            $reserva->detallecalendario_id = $detalleId;
+            $reserva->paciente_id = $user->id;
+            $reserva->save();
 
-        $detalle = DetalleCalendario::find($detalleId);
-        $detalle->cupoOcupado = $detalle->cupoOcupado + 1;
-        $detalle->update();
-        Session::put('reserva', $reserva->id);
-        return redirect('paciente/reserva/ver');
+            $detalle = DetalleCalendario::find($detalleId);
+            $detalle->cupoOcupado = $detalle->cupoOcupado + 1;
+            $detalle->update();
+            Session::put('reserva', $reserva->id);
+            DB::commit();
+            return redirect('paciente/reserva/ver');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with("error", "Ocurrio un error, intente de nuevo ");
+        }
     }
 
 

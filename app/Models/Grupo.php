@@ -30,6 +30,11 @@ class Grupo extends Model
         $this->save();
     }
 
+    public function getNombreAttribute($nombre)
+    {
+        return strtoupper($nombre);
+    }
+
     public function detalleCalendario()
     {
         return $this->hasMany(DetalleCalendario::class);
