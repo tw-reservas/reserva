@@ -112,6 +112,7 @@ class ReservaController extends Controller
         }
         $grupo = $re->detalleCalendario->grupo;
         return view('paciente.content.verReserva')->with("reserva", $re)->with('grupo', $grupo);
+        //return view('paciente.pdf.pdf-reserva')->with("reserva", $re)->with('grupo', $grupo);
     }
 
     public function cancelarReserva($orden)

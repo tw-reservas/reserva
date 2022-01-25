@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Paciente\PDFController;
 use App\Http\Controllers\Paciente\ReservaController;
 use App\Http\Controllers\ResultadoController;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +19,5 @@ Route::get("reserva/{orden}/date/{date}", [ReservaController::class, 'grupos'])-
 Route::get("reserva/{ordenlab}/detalle/{detalle_id}", [ReservaController::class, 'reservar'])->name('reservar');
 
 Route::get("reserva/resultado", [ResultadoController::class, 'index'])->name('ver-resultado');
+
+Route::get("reserva/pdf", [PDFController::class, 'createPDFReserva'])->name('download-pdf');
