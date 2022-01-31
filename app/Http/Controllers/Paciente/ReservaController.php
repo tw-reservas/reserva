@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers\Paciente;
 
+use App\Contracts\CpsServices;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CodigoLabRequest;
 use App\Models\DetalleCalendario;
+use App\Models\Laboratorio;
 use App\Models\Ordenlab;
 use App\Models\Reserva;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Throwable;
 
 class ReservaController extends Controller
 {
     protected $orden;
+    private $cpsAdapter;
+
+    public function __construct(CpsServices $cpsService)
+    {
+        $this->cpsAdapter = $cpsService;
+    }
 
     public function index()
     {
@@ -24,8 +33,7 @@ class ReservaController extends Controller
     {
         Session::put('reserva', null);
         Session::put('ordenLab', null);
-        $orden = Ordenlab::where("codigo", $request->orden)
-            ->with('paciente:id,matricula,nombre')->first();
+        $orden = $this->verificarOrden($request->orden);
         if ($orden == null) {
             return redirect()->back()->with('error', "Código de laboratorio incorrecto");
         }
@@ -40,6 +48,28 @@ class ReservaController extends Controller
         }
         Session::put('ordenLab', $request->orden);
         return $this->calendarioView($orden);
+    }
+
+    private function verificarOrdenLocal($orden)
+    {
+        return Ordenlab::where("codigo", $orden)
+            ->with('paciente:id,matricula,nombre')->first();
+    }
+
+    private function verificarOrdenCps($orden)
+    {
+        $user = Auth::guard('paciente')->user();
+        return $this->cpsAdapter->getOrdenLaboratorio($orden, $user->matricula);
+    }
+
+    private function verificarOrden($orden)
+    {
+        $ordenLab = $this->verificarOrdenLocal($orden);
+        if (!is_null($ordenLab)) {
+            return $ordenLab;
+        }
+        $ordenLab = $this->verificarOrdenCps($orden);
+        return $ordenLab;
     }
 
     public function calendarioView($orden)

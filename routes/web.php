@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthPaciente\LoginPacienteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('admin')->group(function () {
+/*Route::prefix('admin')->group(function () {
     Auth::routes();
-});
+});*/
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('login.paciente.home');
-Route::post('login/paciente', [LoginController::class, 'loginPaciente'])->name('login.paciente');
-Route::post('logout/paciente', [LoginController::class, 'salir'])->name('logout.paciente');
+})->name('login.paciente.home');*/
+
+Route::get('/', [LoginPacienteController::class, 'showLoginForm'])->name('paciente.login');
+Route::post('login', [LoginPacienteController::class, 'login'])->name('paciente.post');
+
+Route::post('logout', [LoginPacienteController::class, 'salir'])->name('logout.paciente')->middleware('auth:paciente');
+
+Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('admin/login', [LoginController::class, 'login'])->name('admin.post');
+Route::post('admin/logout', [LoginController::class, 'logout'])->name('admin.logout')->middleware('auth:admin');

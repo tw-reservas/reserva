@@ -62,43 +62,4 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect('admin/login');
     }
-
-    public function loginPaciente(Request $request)
-    {
-        $request->validate(
-            [
-                $this->username() => 'required|numeric',
-            ]
-        );
-        if (Auth::guard('paciente')->check() && Auth::guard('paciente')->user()->matricula == $request->matricula) {
-            return redirect($this->redirectToP);
-        }
-
-        $paciente = $this->verificarMatricula($request->matricula);
-        if ($paciente != null) {
-            Auth::guard('paciente')->login($paciente);
-            return redirect($this->redirectToP);
-        }
-        return redirect()->back()->with("error", "Datos incorrectos");
-    }
-
-
-    private function verificarMatricula($matricula)
-    {
-        $paciente = Paciente::findMatricula($matricula);
-        if ($paciente != null) {
-            return $paciente;
-        }
-        //conectar a la api
-        //
-        return null;
-    }
-
-    public function salir(Request $request)
-    {
-        if (Auth::guard('paciente')->check()) {
-            Auth::guard()->logout();
-        }
-        return redirect('/');
-    }
 }

@@ -30,7 +30,13 @@ class Laboratorio extends Model
         return $this->belongsTo(Requisito::class);
     }
 
-    public function ordenlab(){
-        return $this->belongsToMany(Ordenlab::class)->using(DetalleOrdenLab::class);
+    public function ordenlab()
+    {
+        return $this->belongsToMany(Ordenlab::class, 'detalle_orden_labs', 'laboratorio_id', 'ordenlab_id')->using(DetalleOrdenLab::class)->withTimestamps();
+    }
+
+    public static function getWithAreaCodigo($cod_area, $cod_lab)
+    {
+        return Laboratorio::where("cod_arancel", $cod_lab)->where("area_cod", $cod_area)->first();
     }
 }

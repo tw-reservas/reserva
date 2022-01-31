@@ -27,7 +27,7 @@
         {{-- Matricula field --}}
         <div class="input-group mb-3">
             <input type="matricula" name="matricula" autocomplete="off"  class="form-control @error('matricula') is-invalid @enderror"
-                   value="{{ old('matricula') }}" placeholder="{{ __('adminlte::adminlte.matricula') }}" autofocus>
+                   value="{{ old('matricula') }}" placeholder="Matricula" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
