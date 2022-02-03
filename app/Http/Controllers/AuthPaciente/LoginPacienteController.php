@@ -87,6 +87,12 @@ class LoginPacienteController extends Controller
         }
         $paciente = $this->verificarMatriculaCps($matricula);
         return $paciente;
+
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     public function salir(Request $request)
