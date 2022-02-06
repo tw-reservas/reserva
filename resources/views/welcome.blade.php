@@ -5,7 +5,7 @@
 
 
 @section('auth_body')
-    <form action="{{route('login.paciente')}}" method="post" id="form-paciente">
+    <form action="{{route('paciente.post')}}" method="POST" id="form-paciente">
         @csrf
         @method('POST')
         {{-- Matricula field --}}

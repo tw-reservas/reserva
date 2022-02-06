@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Adapters\RestCpsAdapter;
+use App\Contracts\CpsServices;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,6 +13,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    public $bindings  = [
+        CpsServices::class => RestCpsAdapter::class,
+    ];
+
     public function register()
     {
         //

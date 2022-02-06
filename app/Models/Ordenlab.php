@@ -28,7 +28,7 @@ class Ordenlab extends Model
     }
     public function laboratorios()
     {
-        return $this->belongsToMany(Laboratorio::class)->using(DetalleOrdenLab::class);
+        return $this->belongsToMany(Laboratorio::class, 'detalle_orden_labs', 'ordenlab_id', 'laboratorio_id')->using(DetalleOrdenLab::class)->withTimestamps();
     }
 
     public function usuario()

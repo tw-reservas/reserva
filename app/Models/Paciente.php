@@ -46,7 +46,7 @@ class Paciente extends Persona
 
     public function getRolAttribute()
     {
-        return "P";
+        return strtolower("P");
     }
     public function resultados()
     {

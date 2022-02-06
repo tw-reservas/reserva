@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
 
@@ -43,6 +43,10 @@ return [
         'paciente' => [
             'driver' => 'session',
             'provider' => 'pacientes',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
         ],
     ],
 
