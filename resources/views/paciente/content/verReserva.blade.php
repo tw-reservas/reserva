@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{route('download-pdf')}}" class="btn btn-info btn-sm">imprimir</a>                
+                <a href="{{route('download-pdf')}}" class="btn btn-info btn-sm">imprimir</a>
             </div>
         </div>
     </div>
