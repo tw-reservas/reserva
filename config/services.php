@@ -31,7 +31,7 @@ return [
     ],
 
     'restcps' => [
-        'endpoint' => "faker-cps.bo/api/",
+        'endpoint' => "https://apifaker.000webhostapp.com/api/",
     ],
 
 ];

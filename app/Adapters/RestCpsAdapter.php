@@ -22,8 +22,8 @@ class RestCpsAdapter implements CpsServices
 
     public function getUser($matricula)
     {
-        $response = Http::post("{$this->endPoint}paciente", [
-            'matricula' => $matricula
+        $response = Http::acceptJson()->post("{$this->endPoint}paciente", [
+            "matricula" => $matricula
         ]);
         $response = $response->json();
         $data = $response["data"];

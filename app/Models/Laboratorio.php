@@ -10,7 +10,7 @@ class Laboratorio extends Model
     use HasFactory;
 
     protected $table = 'laboratorios';
-    protected $primaryKey = 'cod_arancel';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'nombre', 'estado', 'area_cod', 'requisito_id',
