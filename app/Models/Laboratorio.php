@@ -12,7 +12,7 @@ class Laboratorio extends Model
 
 
     protected $table = 'laboratorios';
-    protected $primaryKey = 'cod_arancel';
+    protected $primaryKey = 'id';
 
 
     protected $fillable = [

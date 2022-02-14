@@ -86,7 +86,7 @@ class ReservaController extends Controller
 
     public function grupos($orden, $date)
     {
-        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->with("grupo:id,nombre")->get();
+        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->with("grupo:id,nombre")->orderBy('id', 'asc')->get();
         return response()->json(["detalle" => $detalleCalendario]);
     }
 
@@ -112,16 +112,15 @@ class ReservaController extends Controller
             $reserva->detallecalendario_id = $detalleId;
             $reserva->paciente_id = $user->id;
             $reserva->save();
-
-            $detalle = DetalleCalendario::find($detalleId);
-            $detalle->cupoOcupado = $detalle->cupoOcupado + 1;
-            $detalle->update();
             Session::put('reserva', $reserva->id);
             DB::commit();
             return redirect('paciente/reserva/ver');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with("error", "Ocurrio un error, intente de nuevo ");
+            if ($th->getCode() == "20808") {
+                return back()->with("error", "Este grupo no tiene cupo, intente con otro grupo.");
+            }
+            return redirect()->back()->with("error", "No se pudo programar la orden de laboratorio");
         }
     }
 
@@ -145,7 +144,12 @@ class ReservaController extends Controller
         //return view('paciente.pdf.pdf-reserva')->with("reserva", $re)->with('grupo', $grupo);
     }
 
-    public function cancelarReserva($orden)
+    public function cancelarReserva()
     {
+        $reserva_id = Session::get("reserva");
+        $reserva = Reserva::find($reserva_id);
+        $reserva->delete();
+        Session::put("reserva", null);
+        return redirect('paciente/');
     }
 }
