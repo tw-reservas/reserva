@@ -17,7 +17,7 @@ class RequisitoController extends Controller
     {
         $recom = Requisito::all()->sortBy('id');
 
-        return view('admin.laboratorios.requisitos')->with('requisitosDatos', $recom);
+        return view('admin.requisitos.requisitos')->with('requisitosDatos', $recom);
     }
 
     /**
@@ -27,7 +27,7 @@ class RequisitoController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.requisitos.create");
     }
 
     /**
@@ -38,7 +38,18 @@ class RequisitoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $id = $request->id;
+            $descripcion = $request->descripcion;
+            $req = new Requisito();
+            $req->descripcion = $descripcion;
+            $req->id = $id;
+            $req->save();
+            return redirect("admin/requisitos");
+        }
+        catch(\Throwable $th){
+            return redirect()->back();
+        }
     }
 
     /**
@@ -60,7 +71,7 @@ class RequisitoController extends Controller
      */
     public function edit(Requisito $requisito)
     {
-        //
+        return view("admin.requisitos.edit")->with("requisitos",$requisito);
     }
 
     /**
@@ -72,7 +83,17 @@ class RequisitoController extends Controller
      */
     public function update(Request $request, Requisito $requisito)
     {
-        //
+        try{
+            $id = $request->id;
+            $descripcion = $request->descripcion;
+            $requisito->descripcion = $descripcion;
+            $requisito->id = $id;
+            $requisito->update();
+            return redirect("admin/requisitos");
+        }
+        catch(\Throwable $th){
+            return redirect()->back();
+        }
     }
 
     /**
@@ -83,6 +104,7 @@ class RequisitoController extends Controller
      */
     public function destroy(Requisito $requisito)
     {
-        //
+        $requisito->delete();
+        return redirect()->back();
     }
 }

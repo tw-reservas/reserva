@@ -34,14 +34,32 @@ Route::get('detalle-calendario/ver/{calendario}', [DetalleCalendarioController::
 
 //Brenda Casos de uso
 //laboratorios
-Route::get('laboratorios', [LaboratorioController::class, 'index']);
+Route::get('laboratorios', [LaboratorioController::class, 'index'])->name('laboratorios.index');
+Route::get('laboratorios/create', [LaboratorioController::class, 'create'])->name('laboratorios.create');
+Route::post('laboratorios', [LaboratorioController::class, 'store'])->name('laboratorios.store');
+Route::get('laboratorios/{laboratorio}', [LaboratorioController::class, 'edit'])->name('laboratorios.edit');
+Route::put('laboratorios/{laboratorio}', [LaboratorioController::class, 'update'])->name('laboratorios.update');
+Route::delete('laboratorios/{laboratorio}', [LaboratorioController::class, 'destroy'])->name('laboratorios.delete');
+
 //laboratorios end
+
 //area
-Route::get('areas', [AreaController::class, 'index']);
+Route::get('areas', [AreaController::class, 'index'])->name('area.index');
+Route::get('areas/create', [AreaController::class, 'create'])->name('area.create');
+Route::post('areas', [AreaController::class, 'store'])->name('area.store');
+Route::get('areas/{area}', [AreaController::class, 'edit'])->name('area.edit');
+Route::put('areas/{area}', [AreaController::class, 'update'])->name('area.update');
+Route::delete('areas/{area}', [AreaController::class, 'destroy'])->name('area.delete');
 //area end
-//area
-Route::get('requisitos', [RequisitoController::class, 'index']);
-//area end
+//requisito
+Route::get('requisitos', [RequisitoController::class, 'index'])->name('requisitos.index');
+Route::get('requisitos/create', [RequisitoController::class, 'create'])->name('requisitos.create');
+Route::post('requisitos', [RequisitoController::class, 'store'])->name('requisitos.store');
+Route::get('requisitos/{requisito}', [RequisitoController::class, 'edit'])->name('requisitos.edit');
+Route::put('requisitos/{requisito}', [RequisitoController::class, 'update'])->name('requisitos.update');
+Route::delete('requisitos/{requisito}', [RequisitoController::class, 'destroy'])->name('requisitos.delete');
+//requisito end
+
 Route::resource('user', UserController::class);
 
 //* reserva rutas *//

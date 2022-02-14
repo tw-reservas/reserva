@@ -23,6 +23,7 @@
             <th scope="col">ESTADO</th>
             <th scope="col">REQUISITO_ID</th>
             <th scope="col">AREA_COD</th>
+            <th > Opciones</th>
 
         </tr>
     </thead>
@@ -40,18 +41,25 @@
             <td>{{ $labs->requisito_id}} </td>
             <td>{{ $labs->area_cod}} </td>
 
+            <td>
+                <form action="{{route("laboratorios.delete",$labs->id)}}" method="POST">
+                    <a href= "{{route("laboratorios.edit",$labs->id)}}" class="btn btn-success btn-sm">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i> Borrar
+                    </button>
+                 </form>
+            </td>
 
         </tr>
         @endforeach
     </tbody>
+    <a href= "{{route("laboratorios.create")}}" class="btn btn-success btn-sm">
+        <i class="fas fa-edit"></i> Crear Laboratorio
+</a>
 </table>
-<div class="footer">
-    <div class="footer-copyright">
-        <div class="container" style="margin-top:5px ">
-            © 2021 INF513 GRUPO 17 SC
-            <a class="black-text text-lighten-4 right" href="#!">Visitas a la página:
-                <?php echo $_SESSION['laboratoriosDatos'] += 1 ; ?></a>
-        </div>
-    </div>
-</div>
+
 @stop
