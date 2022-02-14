@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\DetalleCalendarioController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\LaboratorioController;
 use App\Http\Controllers\Admin\RequisitoController;
+use App\Http\Controllers\Admin\ReservaController;
+use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\UserController;
 
@@ -40,4 +42,11 @@ Route::get('areas', [AreaController::class, 'index']);
 //area
 Route::get('requisitos', [RequisitoController::class, 'index']);
 //area end
-Route::resource('user', UserController::class)->only(['index', 'create', 'destroy', 'store', 'update', 'show']);
+Route::resource('user', UserController::class);
+
+//* reserva rutas *//
+Route::post('reserva', [ReservaController::class, 'verificarUserAndOrden'])->name('reserva.verificar-matricula-orden');
+Route::get('reserva', [ReservaController::class, 'index'])->name('reserva.index');
+
+/* Route Rol */
+Route::resource('rol', RolController::class);

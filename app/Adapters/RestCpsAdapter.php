@@ -2,7 +2,7 @@
 
 namespace App\Adapters;
 
-use App\Contracts\CpsServices;
+use App\Services\CpsServices;
 use App\Models\Laboratorio;
 use App\Models\Ordenlab;
 use App\Models\Paciente;

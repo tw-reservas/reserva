@@ -25,7 +25,7 @@ class CreateTriggerReserva extends Migration
       BEGIN
           stock = (SELECT dc."cupoMaximo" FROM detalles_calendarios dc where dc.id = NEW."detallecalendario_id");
           ocupado = (SELECT dc."cupoOcupado" FROM detalles_calendarios dc where dc.id = NEW."detallecalendario_id");
-          IF stock <= ocupado  THEN
+          IF stock <= ocupado AND TG_OP=' . "'INSERT'" . ' THEN
               RAISE EXCEPTION ' . "'¡ESTE GRUPO YA NO TIENE CUPO,INTENTE CON OTRO GRUPO!.'" . ' using ERRCODE = ' . "'20808'" . ';
           END IF;
           IF NEW."deleted_at" is not null THEN
