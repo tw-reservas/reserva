@@ -108,7 +108,7 @@ return [
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => ' btn-success',
+    'classes_auth_btn' => 'btn-success',
 
     /*
     |--------------------------------------------------------------------------
@@ -128,9 +128,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-success elevation-3', //cambiar el color de la barra ederecha
+    'classes_sidebar' => 'sidebar-dark-success elevation-3', //cambiar el color de la barra ederecha
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-expand navbar-white navbar-light', //change top nav bar first background second textcolor
+    'classes_topnav' => 'navbar-expand navbar-dark navbar-dark', //change top nav bar first background second textcolor
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 

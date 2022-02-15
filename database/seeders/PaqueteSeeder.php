@@ -22,7 +22,7 @@ class PaqueteSeeder extends Seeder
             "Temas",
         ];
 
-        $icon = ["fas fa-fw fa fa-calendar", "fas fa-fw fa fa-book", " fas fa-fw fa fa-cog", "fa-fw fas fa-users-cog", "fas fa-fw fa fa-paint-brush"];
+        $icon = ["fas fa-fw fa fa-calendar", "fas fa-fw fa fa-flask", " fas fa-fw fa fa-cog", "fa-fw fas fa-users-cog", "fas fa-fw fa fa-paint-brush"];
 
         for ($i = 0; $i < count($paquete); $i++) {
             $pa = new Paquete();

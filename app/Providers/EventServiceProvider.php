@@ -35,7 +35,7 @@ class EventServiceProvider extends ServiceProvider
     {
         Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
             // Add some items to the menu...
-            $event->menu->add('MAIN NAVIGATION');
+            $event->menu->add('MENU DE NAVEGACION');
             $rol = Auth::user()->rolUser;
             $response = DB::select("select pa.id,pa.nombre,pa.icon,cu.id as caso_id,cu.nombre as caso_nombre,cu.url
             from paquetes pa, caso_de_usos cu, menus me, rols r
