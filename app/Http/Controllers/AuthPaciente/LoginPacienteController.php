@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers\AuthPaciente;
 
-use App\Contracts\CpsServices;
 use App\Http\Controllers\Controller;
 use App\Models\Paciente;
 use App\Providers\RouteServiceProvider;
+use App\Services\CpsServices;
+use App\Traits\CpsUser;
+use App\Traits\CpsUserAndOrden;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginPacienteController extends Controller
 {
-    private $restCpsAdapter;
+    //private $restCpsAdapter;
+    use  CpsUserAndOrden;
 
     public function __construct(CpsServices $cpsService)
     {
-        $this->restCpsAdapter = $cpsService;
+        $this->setCpsAdapter($cpsService);
     }
 
     use AuthenticatesUsers;
@@ -66,33 +69,6 @@ class LoginPacienteController extends Controller
     {
         $this->guard()->login($paciente);
         return redirect($this->redirectTo);
-    }
-
-    private function verificarMatriculaCps($matricula)
-    {
-        return $this->restCpsAdapter->getUser($matricula);
-    }
-
-    private function verificarMatriculaLocal($matricula)
-    {
-        return Paciente::findMatricula($matricula);
-    }
-
-
-    private function verificarMatricula($matricula)
-    {
-        $paciente = $this->verificarMatriculaLocal($matricula);
-        if (!is_null($paciente)) {
-            return $paciente;
-        }
-        $paciente = $this->verificarMatriculaCps($matricula);
-        return $paciente;
-
-        try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
     }
 
     public function salir(Request $request)

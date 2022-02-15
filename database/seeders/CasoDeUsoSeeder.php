@@ -41,8 +41,8 @@ class CasoDeUsoSeeder extends Seeder
             "/admin/cupo",
             "/admin/calendario",
             "/admin/detalle-calendario",
-            "#",
-            "#",
+            "/admin/user",
+            "/admin/rol",
             "#",
             "#",
             "/admin/theme"

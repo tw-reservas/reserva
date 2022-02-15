@@ -2,7 +2,7 @@
 
 namespace App\Adapters;
 
-use App\Contracts\CpsServices;
+use App\Services\CpsServices;
 use App\Models\Laboratorio;
 use App\Models\Ordenlab;
 use App\Models\Paciente;
@@ -22,8 +22,8 @@ class RestCpsAdapter implements CpsServices
 
     public function getUser($matricula)
     {
-        $response = Http::post("{$this->endPoint}paciente", [
-            'matricula' => $matricula
+        $response = Http::acceptJson()->post("{$this->endPoint}paciente", [
+            "matricula" => $matricula
         ]);
         $response = $response->json();
         $data = $response["data"];

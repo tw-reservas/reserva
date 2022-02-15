@@ -12,12 +12,11 @@ class Area extends Model
     use SoftDeletes;
 
     protected $table = 'areas';
-
     protected $primaryKey = 'cod_serv';
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'nombre'
+        'nombre','cod_serv'
     ];
 
     public function laboratorios()

@@ -4,16 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Laboratorio extends Model
 {
     use HasFactory;
 
+
     protected $table = 'laboratorios';
-    protected $primaryKey = 'cod_arancel';
+    protected $primaryKey = 'id';
+
 
     protected $fillable = [
-        'nombre', 'estado', 'area_cod', 'requisito_id',
+        'id','cod_arancel','nombre', 'estado', 'area_cod', 'requisito_id',
     ];
 
     protected $casts  = [

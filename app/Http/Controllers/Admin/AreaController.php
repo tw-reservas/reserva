@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Area;
 use Illuminate\Http\Request;
 
+
 class AreaController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class AreaController extends Controller
     {
         $area = Area::all();
 
-        return view('admin.laboratorios.areas')->with('areasDatos', $area);
+        return view('admin.area.index')->with('areasDatos', $area);
     }
 
     /**
@@ -27,7 +28,7 @@ class AreaController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.area.create");
     }
 
     /**
@@ -38,7 +39,19 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $codigo = $request->cod_serv;
+            $nombre = $request->nombre;
+            $area = new Area();
+            $area->nombre = $nombre;
+            $area->cod_serv = $codigo;
+            $area->save();
+            return redirect("admin/areas");
+        }
+        catch(\Throwable $th){
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -60,7 +73,7 @@ class AreaController extends Controller
      */
     public function edit(Area $area)
     {
-        //
+        return view("admin.area.edit")->with("area",$area);
     }
 
     /**
@@ -72,7 +85,17 @@ class AreaController extends Controller
      */
     public function update(Request $request, Area $area)
     {
-        //
+        try{
+            $codigo = $request->cod_serv;
+            $nombre = $request->nombre;
+            $area->nombre = $nombre;
+            $area->cod_serv = $codigo;
+            $area->update();
+            return redirect("admin/areas");
+        }
+        catch(\Throwable $th){
+            return redirect()->back();
+        }
     }
 
     /**
@@ -83,6 +106,7 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
-        //
+        $area->delete();
+        return redirect()->back();
     }
 }
