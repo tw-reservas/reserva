@@ -69,7 +69,7 @@ class ReservaController extends Controller
 
     public function grupos($orden, $date)
     {
-        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->with("grupo:id,nombre")->orderBy('id', 'asc')->get();
+        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
         return response()->json(["detalle" => $detalleCalendario]);
     }
 
