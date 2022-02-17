@@ -1,6 +1,6 @@
 <nav class="main-header navbar
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
-    {{ Auth::user()->light ? 'navbar-white navbar-light' :'navbar-dark navbar-dark' }}
+    {{ Auth::user()->light ? 'navbar-dark navbar-dark' :'navbar-dark navbar-dark' }}
 
     ">
 

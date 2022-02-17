@@ -1,6 +1,6 @@
 <aside class="main-sidebar {{
-    //config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4')
-    Auth::user()->light ?"sidebar-light-success elevation-3":"sidebar-dark-success elevation-3";
+    config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4');
+    
 }}">
 
     {{-- Sidebar brand logo --}}

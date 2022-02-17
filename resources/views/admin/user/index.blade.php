@@ -5,28 +5,25 @@
 @section('content_header')
     <h1>GESTIONAR USUARIOS</h1>
 @stop
-
-
-
-
 @section('content')
     <div class="container-fluid">
         <div class="row ">
             <div class="col-md-12 m-auto">
                 <div class="card">
-                    <div class="card-header">
+                    <!--<div class="card-header">
                         Lista de Usuarios
-                    </div>
+                    </div>-->
                     <div class="card-body">
                         <div class="row text-align-center">
-                            <h5>Crear Usuario </h5>
-                            <a href="{{ route('user.create') }}" class="btn btn-success btn-sm mb-4">CREAR</a>
+                            <!--<h5>Crear Usuario </h5>-->
+                            <a href="{{ route('user.create') }}" class="btn btn-success btn-sm mb-4">
+                                <i class="fas fa-user-plus p-1"></i></a>
                         </div>
                         <br>
 
                         <table class="table table-bordered col-md-11 m-auto">
                             <thead>
-                                <tr class="bg-primary">
+                                <tr class="bg-info">
                                     <th style="width: 10px">#</th>
                                     <th>Matricula</th>
                                     <th>Nombre</th>
@@ -52,9 +49,10 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <a href="{{ route('user.show', $user->id) }}"
-                                                    class="btn btn-info">editar</a>
+                                                    class="btn btn-info">
+                                                    <i class="fas fa-edit"></i></a>
                                                 <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Borrar
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         </td>
@@ -72,6 +70,17 @@
             </div>
         </div>
     </div>
+    <style>
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -7.5px;
+            margin-left: -7.5px;
+            justify-content: flex-end;
+        }
+        </style>
 @stop
 
 @section('js')

@@ -1,8 +1,10 @@
 @extends('adminlte::master')
 
 @section('adminlte_css')
+    
     <link rel="stylesheet" href="{{ asset('css/bs-stepper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+    
 @stop
 <style>
 .navbar-brand.abs
@@ -42,7 +44,7 @@
                         <form action="{{ route('logout.paciente') }}" method="post">
                             @csrf
                             @method('POST')
-                            <button class="nav-link btn btn-ligth" type="submit">Salir</button>
+                            <button class="nav-link btn btn-ligth float-right" type="submit">Salir</button>
                         </form>
 
                     </li>
@@ -51,8 +53,9 @@
         </div>
     </nav>
 
-    <section class="content " style="background: #f4f6f9;">
+    <section class="content " style="background-color: #f4f6f9; ">
         <div class="container-fluid">
+            
             @yield('contenido')
         </div>
     </section>

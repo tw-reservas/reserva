@@ -3,7 +3,7 @@
 @section('contenido')
 
     <div class="tab-content">
-        <div class="tab-empty" style="height: 562px;">
+        <div class="tab-empty" style="height: 100%;">
             <br>
             <div class="col-md-6  m-auto p-3">
                 <div class="card card-outline">
@@ -35,8 +35,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-body">
-                            <button type="submit" class="btn bg-olive color-palette btn-sm" tabindex="4" id="verificar">Verificar</button>
-                            <button type="submit" class="btn btn-default float-right btn-sm">Cancelar</button>
+                            <button type="submit" class="btn bg-olive color-palette btn-sm" tabindex="4"
+                                id="verificar">Verificar</button>
                         </div>
                         <!-- /.card-footer -->
                     </form>
@@ -44,6 +44,14 @@
             </div>
         </div>
     </div>
+    <style>
+        .label {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+        }
+
+    </style>
 
 @stop
 
