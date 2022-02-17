@@ -41,7 +41,7 @@
 
             <div class="col-5">
                 <button type=submit id="login-paciente"
-                    class="btn btn-block bg-olive{{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                    class="btn btn-block bg-olive {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>

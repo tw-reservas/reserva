@@ -11,19 +11,17 @@
         <div class="row ">
             <div class="col-md-10 m-auto">
                 <div class="card">
-                    <div class="card-header">
-                        Lista de grupos
-                    </div>
                     <div class="card-body">
                         <div class="row text-align-center">
-                            <h5>Crear grupo   </h5>
-                            <a href="{{route ('grupo.create')}}" class="btn btn-success btn-sm mb-4">CREAR</a>
+                            <!--<h5>Crear grupo   </h5>-->
+                            <a href="{{route ('grupo.create')}}" class="btn btn-success btn-sm">
+                                <i class="fas fa-plus align-items-center  p-1 "></i>Crear Grupo</a>
                         </div>
                         <br>
 
                         <table class="table table-bordered col-md-10 m-auto">
                             <thead>
-                                <tr class="bg-primary">
+                                <tr class="btn-info">
                                     <th style="width: 10px">#</th>
                                     <th>Nombre</th>
                                     <th>Hora Inicio</th>
@@ -56,7 +54,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i> Borrar
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -65,7 +63,7 @@
                             </tbody>
                         </table>
                         <div class="col-md-10 m-auto pt-3 text-right">
-                            <a href="{{route('grupo.conf-porcentaje')}}" role="button" class="btn btn-primary btn-sm"><i class="fas fa-sliders-h pr-2"></i>Config. % Grupos</a>
+                            <a href="{{route('grupo.conf-porcentaje')}}" role="button" class="btn btn-secondary btn-sm"><i class="fas fa-sliders-h pr-2"></i>Config. % Grupos</a>
                         </div>
                     </div>
                     <div class="card-footer clearfix">
@@ -77,6 +75,17 @@
             </div>
         </div>
     </div>
+    <style>
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -7.5px;
+        margin-left: -7.5px;
+        justify-content: flex-end;
+    }
+    </style>
 @stop
 
 @section('js')

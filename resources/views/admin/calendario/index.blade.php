@@ -11,19 +11,20 @@
     <div class="row ">
         <div class="col-md-10 m-auto">
             <div class="card">
-                <div class="card-header">
+                <!--<div class="card-header">
                     Lista de calendarios
-                </div>
+                </div>-->
                 <div class="card-body">
                     <div class="row text-align-center">
-                        <h5>Crear calendario </h5>
-                        <a href="{{route ('calendario.create')}}" class="btn btn-success btn-sm mb-4">CREAR</a>
+                        <!--<h5>Crear calendario </h5>-->
+                        <a href="{{route ('calendario.create')}}" class="btn btn-success btn-sm mb-4">
+                            <i class="fas fa-plus align-items-center  p-1 "></i>Crear Calendario</a>
                     </div>
                     <br>
 
                     <table class="table table-bordered col-md-10 m-auto">
                         <thead>
-                            <tr class="bg-primary">
+                            <tr class="btn-info">
                                 <th style="width: 10px">#</th>
                                 <th scope="col">RANGO DE DIAS</th>
                                 <th scope="col">FECHA INICIO</th>
@@ -51,7 +52,7 @@
                                         @method('DELETE')
                                         @if (!$calendario->estado)
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i> Borrar
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                         @else
                                         <a href="/admin/detalle-calendario/ver/{{$calendario->id}}"
@@ -74,7 +75,17 @@
         </div>
     </div>
 </div>
-
+<style>
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -7.5px;
+        margin-left: -7.5px;
+        justify-content: flex-end;
+    }
+    </style>
 @stop
 
 @section('js')

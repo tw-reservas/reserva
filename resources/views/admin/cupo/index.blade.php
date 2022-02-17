@@ -6,31 +6,24 @@
     <h1>GESTIONAR CUPOS</h1>
 @stop
 
-
-
 @section('content')
-<?php
-    session_start();
-    if(isset($_SESSION['cupos'])==0){
-        $_SESSION['cupos']=0;
-    }
-?>
     <div class="container-fluid">
         <div class="row ">
             <div class="col-md-10 m-auto">
                 <div class="card">
-                    <div class="card-header">
+                    <!--<div class="card-header">
                         CUPOS
-                    </div>
+                    </div>-->
                     <div class="card-body">
                         <div class="row text-align-center">
-                            <h5>Crear Cupo   </h5>
-                            <a href="{{route ('cupo.create')}}" class="btn btn-success btn-sm mb-4">CREAR</a>
+                            <!--<h5>Crear Cupo   </h5>-->
+                            <a href="{{route ('cupo.create')}}" class="btn btn-success btn-sm">
+                                <i class="fas fa-plus align-items-center  p-1 "></i>Crear Cupo</a>
                         </div>
                         <br>
                         <table class="table table-bordered col-md-10 m-auto">
                             <thead>
-                                <tr class="bg-primary">
+                                <tr class="btn-info">
                                     <th style="width: 10px">#</th>
                                     <th>Total</th>
                                     <th >Estado</th>
@@ -57,8 +50,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                                Borrar
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                             </form>
                                         @else
@@ -80,13 +72,15 @@
             </div>
         </div>
     </div>
-    <div class="footer">
-        <div class="footer-copyright">
-            <div class="container" style="margin-top:5px ">
-                © 2021 INF513 GRUPO 17 SC
-                <a class="black-text text-lighten-4 right" href="#!">Visitas a la página:
-                    <?php echo $_SESSION['cupos'] += 1 ; ?></a>
-            </div>
-        </div>
-    </div>
+    <style>
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -7.5px;
+            margin-left: -7.5px;
+            justify-content: flex-end;
+        }
+        </style>
 @stop

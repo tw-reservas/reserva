@@ -10,8 +10,11 @@
                         <div class="card-header">
                             <h3 class="card-title">Programar Laboratorio</h3>
                         </div>
+                        <br>
                         @if (count($detalles) <= 0)
-                            <h2>No hay reservas activas<h2>
+                        <div class="admonition caution">
+                            <p><strong class="title">Se comunica </strong> que por el momento no hay reservas activas</p>
+                        </div>
                                 @else
                                     <div class="card-body p-0">
                                         <div class="bs-stepper">
