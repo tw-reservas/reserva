@@ -12,8 +12,10 @@ class Reserva extends Model
     use HasFactory, SoftDeletes;
     protected $table = "reservas";
     protected $fillable = [
-        'fecha', 'estado', "ordenlab_id", "paciente_id", "detallecalendario_id",
+        'fecha', 'estado',
     ];
+
+    protected $hidden = ["ordenlab_id", "paciente_id", "detallecalendario_id", "created_at", "updated_at", "deleted_at"];
 
     protected $casts = [
         "estado" => "boolean",

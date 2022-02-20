@@ -29,10 +29,9 @@ class OrdenLabController extends Controller
         }
         $reserva = $ordenLab->reserva;
         if (!is_null($reserva)) {
-            return response()->json(["message" => "Orden de laboratorio incorrectos", "data" => [
-                "reserva" => $reserva,
+            return response()->json(["message" => "Orden de laboratorio correcto con reserva ", "data" => [
                 "orden" => $ordenLab,
-            ]], Response::HTTP_BAD_REQUEST);
+            ]]);
         }
         return response()->json(
             [

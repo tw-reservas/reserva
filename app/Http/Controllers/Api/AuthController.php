@@ -31,7 +31,7 @@ class AuthController extends Controller
         $token = $paciente->createToken($deviceName)->plainTextToken;
         return response()->json(
             [
-                "message" => "Matricula y Orden correctos",
+                "message" => "Matricula correcta",
                 "data" => [
                     "user" => $paciente,
                     "token" => $token,

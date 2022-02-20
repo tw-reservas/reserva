@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Paciente;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reserva;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class PDFController extends Controller
             }
             $grupo = $reserva->detalleCalendario->grupo;
 
-            $pdf = PDF::loadView('paciente.pdf.pdf-reserva', ["reserva" => $reserva, "grupo" => $grupo])->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+            $pdf = DomPDFPDF::loadView('paciente.pdf.pdf-reserva', ["reserva" => $reserva, "grupo" => $grupo])->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
             return $pdf->download($reserva_id . '_' . $grupo->nombre . '.pdf');
         } catch (\Throwable $th) {
             //throw $th;

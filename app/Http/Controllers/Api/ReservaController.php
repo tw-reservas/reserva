@@ -21,8 +21,14 @@ class ReservaController extends Controller
         $detalleId = $request->detalle_id;
         $orden = Ordenlab::where("codigo", $orden)->with('reserva')->first();
         $user = auth('sanctum')->user();
-
         $fecha = Carbon::now()->format('Y-m-d');
+        if (!is_null($orden->reserva)) {
+            return response()->json([
+                "mensaje" => "Este orden ya tiene una reserva",
+                "data" => [],
+
+            ], Response::HTTP_CONFLICT);
+        }
         DB::beginTransaction();
         try {
             $reserva = new Reserva();
@@ -54,17 +60,17 @@ class ReservaController extends Controller
         }
     }
 
-    public function verReserva(Reserva $reserva)
+    public function verReserva(Reserva $reserva, Request $request)
     {
-        $detalle = $reserva->detalleCalendario;
-        $grupos = $detalle->grupo;
+
         $user = auth('sanctum')->user();
         return response()->json([
             "data" => [
+
+                "grupo" => $reserva->detalleCalendario->grupo,
+                "detalle" => $reserva->detalleCalendario()->first(),
                 "reserva" => $reserva,
-                "grupo" => $grupos,
                 "user" => $user,
-                "detalle" => $detalle,
             ]
         ]);
     }

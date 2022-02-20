@@ -25,7 +25,7 @@ class OrdenDetalleRequest extends FormRequest
     {
         return [
             'orden_lab' => 'required|numeric|digits_between:6,12|exists:ordenlabs,codigo',
-            'detalle_id' => 'required|numeric|digits_between:6,12|exists:detalles_calendarios,id'
+            'detalle_id' => 'required|numeric|exists:detalles_calendarios,id'
         ];
     }
 }

@@ -25,21 +25,24 @@ class RestCpsAdapter implements CpsServices
         $response = Http::acceptJson()->post("{$this->endPoint}paciente", [
             "matricula" => $matricula
         ]);
-        $response = $response->json();
-        $data = $response["data"];
-        if (!is_null($data)) {
-            $paciente = new Paciente();
-            $paciente->matricula = $data["matricula"];
-            $paciente->nombre = $data["nombre"];
-            $paciente->apellidoPaterno = $data["apellidoPaterno"];
-            $paciente->apellidoMaterno = $data["apellidoMaterno"] ?? "";
-            $paciente->telefono = $data["telefono"] ?? "";
-            $paciente->correo = $data["correo"] ?? "";
-            $paciente->estado = true;
-            $paciente->save();
-            return $paciente;
+        if ($response->successful()) {
+            $response = $response->json();
+            $data = $response["data"];
+            if (!is_null($data)) {
+                $paciente = new Paciente();
+                $paciente->matricula = $data["matricula"];
+                $paciente->nombre = $data["nombre"];
+                $paciente->apellidoPaterno = $data["apellidoPaterno"];
+                $paciente->apellidoMaterno = $data["apellidoMaterno"] ?? "";
+                $paciente->telefono = $data["telefono"] ?? "";
+                $paciente->correo = $data["correo"] ?? "";
+                $paciente->estado = true;
+                $paciente->save();
+                return $paciente;
+            }
         }
-        return $data;
+
+        return null;
     }
 
     public function getOrdenLaboratorio($ordenLaboratorio, $matricula)
@@ -48,29 +51,35 @@ class RestCpsAdapter implements CpsServices
             'orden_lab' => $ordenLaboratorio,
             'matricula' => $matricula
         ]);
-        $response = $response->json();
-        $data = $response["data"];
-        if (!is_null($data)) {
-            DB::beginTransaction();
-            try {
-                $user = Paciente::where("matricula", $matricula)->first();
-                $ordenLab = new Ordenlab();
-                $ordenLab->fecha = $data["fecha"];
-                $ordenLab->codigo = $data["codigo"];
-                $ordenLab->paciente_id = $user->id;
-                $ordenLab->save();
-                $idLaboratorios = [];
-                foreach ($data["laboratorios"] as $laboratorio) {
-                    $lab = Laboratorio::getWithAreaCodigo($laboratorio["area_cod"], $laboratorio["cod_arancel"]);
-                    $idLaboratorios[] = $lab->id;
+
+        if ($response->successful()) {
+            $response = $response->json();
+            $data = $response["data"];
+            if (!is_null($data)) {
+                DB::beginTransaction();
+                try {
+                    $user = Paciente::where("matricula", $matricula)->first();
+                    $ordenLab = new Ordenlab();
+                    $ordenLab->fecha = $data["fecha"];
+                    $ordenLab->codigo = $data["codigo"];
+                    $ordenLab->paciente_id = $user->id;
+                    $ordenLab->save();
+                    $idLaboratorios = [];
+                    foreach ($data["laboratorios"] as $laboratorio) {
+                        $lab = Laboratorio::getWithAreaCodigo($laboratorio["area_cod"], $laboratorio["cod_arancel"]);
+                        $idLaboratorios[] = $lab->id;
+                    }
+                    $ordenLab->laboratorios()->attach($idLaboratorios);
+                    DB::commit();
+                    return $ordenLab;
+                } catch (Throwable  $e) {
+                    DB::rollBack();
                 }
-                $ordenLab->laboratorios()->attach($idLaboratorios);
-                DB::commit();
-                return $ordenLab;
-            } catch (Throwable  $e) {
-                DB::rollBack();
+            } else {
+                return $data;
             }
+        } else {
+            return null;
         }
-        return $data;
     }
 }

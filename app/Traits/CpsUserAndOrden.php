@@ -66,6 +66,7 @@ trait CpsUserAndOrden
             return $ordenLab;
         }
         $ordenLab = $this->verificarOrdenWithMatriculaCps($orden, $matricula);
+        return $ordenLab;
     }
 
     private function verificarOrden($orden)

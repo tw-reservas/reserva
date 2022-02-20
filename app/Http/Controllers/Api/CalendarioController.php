@@ -16,7 +16,7 @@ class CalendarioController extends Controller
             ->selectRaw("fecha")
             ->selectRaw("(fecha <= '$now') as estado")
             ->selectRaw('(SUM("cupoMaximo") - SUM("cupoOcupado")) as cupoRestante')
-            ->groupBy("fecha")->get();
+            ->groupBy("fecha")->orderBy("fecha")->get();
         return response()->json(["data" => $detalle]);
     }
 }

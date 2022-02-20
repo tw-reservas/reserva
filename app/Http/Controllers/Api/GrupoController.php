@@ -11,7 +11,7 @@ class GrupoController extends Controller
     public function getGrupos($fecha)
     {
         //$detalle = DetalleCalendario::where("fecha", $fecha)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
-        $cupos = DetalleCalendario::where("fecha", $fecha)->select('detalles_calendarios.*', 'grupos.nombre', 'grupos.horaInicio', 'grupos.horaFin')->join('grupos', "detalles_calendarios.grupo_id", 'grupos.id')->get();
+        $cupos = DetalleCalendario::where("fecha", $fecha)->select('detalles_calendarios.*', 'grupos.nombre', 'grupos.horaInicio', 'grupos.horaFin')->join('grupos', "detalles_calendarios.grupo_id", 'grupos.id')->orderBy("id")->get();
         return response()->json(["data" => $cupos, "fecha" => $fecha]);
     }
 }
