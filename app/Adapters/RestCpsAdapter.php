@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
+use function PHPUnit\Framework\throwException;
+
 class RestCpsAdapter implements CpsServices
 {
     private $endPoint;
@@ -81,5 +83,19 @@ class RestCpsAdapter implements CpsServices
         } else {
             return null;
         }
+    }
+
+    public function checkMatricula($matricula)
+    {
+        $response = Http::post("{$this->endPoint}paciente/checkMatricula", [
+            'matricula' => $matricula
+        ]);
+        if ($response->successful()) {
+            return true;
+        }
+        if ($response->status() == 422) {
+            return false;
+        }
+        throwException(new Throwable("No se pudo conectar con el servidor"));
     }
 }

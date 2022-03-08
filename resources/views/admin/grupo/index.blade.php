@@ -63,7 +63,7 @@
                             </tbody>
                         </table>
                         <div class="col-md-10 m-auto pt-3 text-right">
-                            <a href="{{route('grupo.conf-porcentaje')}}" role="button" class="btn btn-secondary btn-sm"><i class="fas fa-sliders-h pr-2"></i>Config. % Grupos</a>
+                            <a href="{{route('grupo.conf-porcentaje.get')}}" role="button" class="btn btn-secondary btn-sm"><i class="fas fa-sliders-h pr-2"></i>Config. % Grupos</a>
                         </div>
                     </div>
                     <div class="card-footer clearfix">

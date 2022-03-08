@@ -28,9 +28,17 @@ trait CpsUserAndOrden
         return Paciente::findMatricula($matricula);
     }
 
+    public function checkMatricula($matricula)
+    {
+        return $this->restCpsAdapter->checkMatricula($matricula);
+    }
+
 
     public function verificarMatricula($matricula)
     {
+        if (!$this->checkMatricula($matricula)) {
+            return null;
+        }
         $paciente = $this->verificarMatriculaLocal($matricula);
         if (!is_null($paciente)) {
             return $paciente;

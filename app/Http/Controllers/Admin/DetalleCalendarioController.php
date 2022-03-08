@@ -29,15 +29,10 @@ class DetalleCalendarioController extends Controller
             ->with('cupo', $cupo)->with('sumaCupo', $sumaDeCupo);
     }
 
-    public function repartir(Calendario $calendario, Cupo $cupo)
+    private function getListDates($fechaInicio, $fechaFin, $grupos, $cupo_id, $calendario_id)
     {
-        if ($calendario->detalleCalendario()->first() != null || $calendario->estado) {
-            return redirect()->back()->with('error', "Calendario activado");
-        }
-
-        $grupos = Grupo::select(['id', 'porcentaje'])->where("estado", true)->orderBy('id')->get();
-        $start = Carbon::createFromFormat('Y-m-d', $calendario->fechaInicio);
-        $end = Carbon::createFromFormat('Y-m-d', $calendario->fechaFin);
+        $start = Carbon::createFromFormat('Y-m-d', $fechaInicio);
+        $end = Carbon::createFromFormat('Y-m-d', $fechaFin);
         $diaGrupo = [];
         for ($i = $start; $i <= $end; $i->addDay()) {
             if ($i->dayOfWeek == Carbon::SUNDAY || $i->dayOfWeek == Carbon::SATURDAY) {
@@ -48,27 +43,30 @@ class DetalleCalendarioController extends Controller
                         "cupoOcupado" => 0,
                         "fecha" => $i->format('Y-m-d'),
                         "estado" => true,
-                        "cupo_id" => $cupo->id,
+                        "cupo_id" => $cupo_id,
                         "grupo_id" => $value->id,
-                        "calendario_id" => $calendario->id,
+                        "calendario_id" => $calendario_id,
                         "created_at" => Carbon::now(),
                         "updated_at" => Carbon::now(),
                     ];
-                    /*$detalle = new DetalleCalendario();
-                    $detalle->cupoMaximo = $value->porcentaje;
-                    $detalle->cupoOcupado = 0;
-                    $detalle->fecha = $i->format('Y-m-d');
-                    $detalle->estado = true;
-                    $detalle->cupo_id = $cupo->id;
-                    $detalle->grupo_id = $value->id;
-                    $detalle->calendario_id = $calendario->id;*/
                 }
             }
         }
+        return $diaGrupo;
+    }
+
+    public function repartir(Calendario $calendario, Cupo $cupo)
+    {
+        if ($calendario->detalleCalendario()->first() != null || $calendario->estado) {
+            return redirect()->back()->with('error', "Calendario activado");
+        }
+        $grupos = Grupo::select(['id', 'porcentaje'])->where("estado", true)->orderBy('id')->get();
+        $diaGrupo = $this->getListDates($calendario->fechaInicio, $calendario->fechaFin, $grupos, $cupo->id, $calendario->id);
         DB::beginTransaction();
         try {
 
             $calendario->estado =   !$calendario->estado;
+            $calendario->activado = true;
             $calendario->update();
             DetalleCalendario::insert($diaGrupo);
             DB::commit();

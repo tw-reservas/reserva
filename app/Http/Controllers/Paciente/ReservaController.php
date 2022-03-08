@@ -21,6 +21,7 @@ use Throwable;
 class ReservaController extends Controller
 {
     protected $orden;
+    protected $days = 30;
     //private $cpsAdapter;
 
     use CpsUserAndOrden;
@@ -34,6 +35,14 @@ class ReservaController extends Controller
     {
         return view("paciente.index");
     }
+
+    private function diffDateOrdenLab($date)
+    {
+        $dateTime1 = strtotime($date);
+        $dateTime2 = strtotime(Carbon::now());
+        $days = (int)(($dateTime2 - $dateTime1) / 86400);
+        return $days;
+    }
     public function verificarCodLab(CodigoLabRequest $request)
     {
         Session::put('reserva', null);
@@ -42,6 +51,11 @@ class ReservaController extends Controller
         if ($orden == null) {
             return redirect()->back()->with('error', "Código de laboratorio incorrecto");
         }
+
+        if ($this->diffDateOrdenLab($orden->fecha) > $this->days) {
+            return redirect()->back()->with('error', nl2br("Orden de laboratorio caducado Fecha: " . $orden->fecha));
+        }
+
         $OrdenLabUser = $orden->paciente;
         if ($OrdenLabUser->matricula != Auth::guard('paciente')->user()->matricula) {
             return redirect()->back()->with('error', "Ingrese el Código de laboratorio del paciente: " . $OrdenLabUser->nombre . " matricula: " . $OrdenLabUser->matricula);

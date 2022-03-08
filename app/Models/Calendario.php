@@ -11,7 +11,7 @@ class Calendario extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'calendarios';
-    protected $fillable = ['cantidad', 'fechaInicio', 'fechaFin', 'estado'];
+    protected $fillable = ['cantidad', 'fechaInicio', 'fechaFin', 'estado', 'activado'];
 
     protected $casts = [
         'estado' => 'boolean',

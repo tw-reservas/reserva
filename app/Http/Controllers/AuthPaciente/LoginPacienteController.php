@@ -62,7 +62,7 @@ class LoginPacienteController extends Controller
             return $this->loginSuccessFull($paciente);
         }
 
-        return redirect()->back()->with("error", "Datos incorrectos");
+        return redirect()->back()->with("error", "!Matricula incorrecta ó inactiva!");
     }
 
     private function loginSuccessFull($paciente)

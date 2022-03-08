@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class OrdenLabController extends Controller
 {
     use CpsUserAndOrden;
+    protected $days = 30;
 
     public function __construct(CpsServices $cpsService)
     {
@@ -26,6 +27,9 @@ class OrdenLabController extends Controller
         $ordenLab = $this->verificarOrdenWithMatricula($ordenLab, $matricula);
         if (is_null($ordenLab)) {
             return response()->json(["message" => "Orden de laboratorio incorrectos", "data" => []], Response::HTTP_BAD_REQUEST);
+        }
+        if ($this->diffDateOrdenLab($ordenLab->fecha) > $this->days) {
+            return redirect()->back()->with('error', nl2br("Orden de laboratorio caducado Fecha: " . $ordenLab->fecha));
         }
         $reserva = $ordenLab->reserva;
         if (!is_null($reserva)) {

@@ -14,7 +14,7 @@ class PacienteFactory extends Factory
     public function definition()
     {
         return [
-            'matricula' => $this->faker->unique()->numberBetween(105452, 999999),
+            'matricula' => $this->faker->unique()->numberBetween(111111, 99999999999),
             'nombre' => $this->faker->name,
             'apellidoPaterno' => $this->faker->lastName,
             'apellidoMaterno' => $this->faker->lastName,

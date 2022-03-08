@@ -22,8 +22,8 @@ Route::resource('cupo', CupoController::class);
 Route::get('cupo/activar/{cupo}', [CupoController::class, 'activar'])->name('activar.cupo');
 Route::resource('grupo', GrupoController::class)->only(['index', 'create', 'store', 'destroy']);
 Route::get('grupo/activar/{grupo}', [GrupoController::class, 'activar'])->name('grupo.activar');
-Route::get('grupo/config-porcentaje', [GrupoController::class, 'porcentajeView'])->name('grupo.conf-porcentaje');
-Route::post('grupo/config-porcentaje', [GrupoController::class, 'storePorcentaje'])->name('grupo.conf-porcentaje');
+Route::get('grupo/config-porcentaje', [GrupoController::class, 'porcentajeView'])->name('grupo.conf-porcentaje.get');
+Route::post('grupo/config-porcentaje', [GrupoController::class, 'storePorcentaje'])->name('grupo.conf-porcentaje.post');
 
 
 Route::resource('calendario', CalendarioController::class)->only(['index', 'create', 'store', 'destroy']);

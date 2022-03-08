@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MatriculaAndOrdenRequest;
 use App\Services\CpsServices;
 use App\Traits\CpsUserAndOrden;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -25,7 +24,7 @@ class AuthController extends Controller
 
         $paciente = $this->verificarMatricula($matricula);
         if (is_null($paciente)) {
-            return response()->json(["message" => "Matricula incorrecto", "data" => []], Response::HTTP_BAD_REQUEST);
+            return response()->json(["message" => "Matricula incorrecto o inactiva", "data" => []], Response::HTTP_BAD_REQUEST);
         }
 
         $token = $paciente->createToken($deviceName)->plainTextToken;
