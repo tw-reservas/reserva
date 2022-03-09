@@ -18,7 +18,7 @@ class Calendario extends Model
     ];
 
     protected $hidden = [
-        'deleted_at', 'created_at', 'updated_at', 'cupo_id'
+        'deleted_at', 'created_at', 'updated_at'
     ];
 
     public function detalleCalendario()

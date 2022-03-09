@@ -14,6 +14,6 @@ class CupoSeeder extends Seeder
      */
     public function run()
     {
-        Cupo::factory()->count(3)->create();
+        Cupo::factory()->count(1)->create();
     }
 }

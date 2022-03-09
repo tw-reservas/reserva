@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MatriculaAndOrdenRequest;
 use App\Services\CpsServices;
 use App\Traits\CpsUserAndOrden;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,6 +20,14 @@ class OrdenLabController extends Controller
         $this->setCpsAdapter($cpsService);
     }
 
+    private function diffDateOrdenLab($date)
+    {
+        $dateTime1 = strtotime($date);
+        $dateTime2 = strtotime(Carbon::now());
+        $days = (int)(($dateTime2 - $dateTime1) / 86400);
+        return $days;
+    }
+
     public function validateOrdenLab(MatriculaAndOrdenRequest $request)
     {
         $matricula = $request->matricula;
@@ -29,7 +38,7 @@ class OrdenLabController extends Controller
             return response()->json(["message" => "Orden de laboratorio incorrectos", "data" => []], Response::HTTP_BAD_REQUEST);
         }
         if ($this->diffDateOrdenLab($ordenLab->fecha) > $this->days) {
-            return redirect()->back()->with('error', nl2br("Orden de laboratorio caducado Fecha: " . $ordenLab->fecha));
+            return response()->json(["message" => "Orden de Laboratorio obsoleto '\n' fecha: " . $ordenLab->fecha], Response::HTTP_BAD_REQUEST);
         }
         $reserva = $ordenLab->reserva;
         if (!is_null($reserva)) {

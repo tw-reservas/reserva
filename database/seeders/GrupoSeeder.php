@@ -20,7 +20,7 @@ class GrupoSeeder extends Seeder
             'grupo A', 'grupo B', 'grupo C'
         ];
         $porcentaje = [
-            50, 20, 30
+            50, 40, 30
         ];
 
         $rangoInicio = ['06:00', '07:00', '08:00'];

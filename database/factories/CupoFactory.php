@@ -14,8 +14,10 @@ class CupoFactory extends Factory
     public function definition()
     {
         return [
-            'total' => $this->faker->numberBetween(50, 200),
-            'estado' => false,
+            /*'total' => $this->faker->numberBetween(50, 200),
+            'estado' => false,*/
+            'total' => 120,
+            'estado' => true,
         ];
     }
 }

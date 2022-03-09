@@ -21,23 +21,25 @@ class AuthController extends Controller
     {
         $matricula = $request->matricula;
         $deviceName = $request->device_name;
-
-        $paciente = $this->verificarMatricula($matricula);
-        if (is_null($paciente)) {
-            return response()->json(["message" => "Matricula incorrecto o inactiva", "data" => []], Response::HTTP_BAD_REQUEST);
-        }
-
-        $token = $paciente->createToken($deviceName)->plainTextToken;
-        return response()->json(
-            [
-                "message" => "Matricula correcta",
-                "data" => [
-                    "user" => $paciente,
-                    "token" => $token,
+        try {
+            $paciente = $this->verificarMatricula($matricula);
+            if (is_null($paciente)) {
+                return response()->json(["message" => "Matricula incorrecto", "data" => []], Response::HTTP_BAD_REQUEST);
+            }
+            $token = $paciente->createToken($deviceName)->plainTextToken;
+            return response()->json(
+                [
+                    "message" => "Matricula correcta",
+                    "data" => [
+                        "user" => $paciente,
+                        "token" => $token,
+                    ],
                 ],
-            ],
-            Response::HTTP_OK
-        );
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage(), "matricula" => $matricula], Response::HTTP_BAD_REQUEST);
+        }
     }
 
     public function logout()

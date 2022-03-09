@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\Ordenlab;
 use App\Models\Paciente;
 use App\Services\CpsServices;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 trait CpsUserAndOrden
@@ -37,7 +38,7 @@ trait CpsUserAndOrden
     public function verificarMatricula($matricula)
     {
         if (!$this->checkMatricula($matricula)) {
-            return null;
+            throw new Exception("¡Matricula inactiva! ", 1);
         }
         $paciente = $this->verificarMatriculaLocal($matricula);
         if (!is_null($paciente)) {

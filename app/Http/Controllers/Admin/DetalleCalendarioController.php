@@ -80,7 +80,7 @@ class DetalleCalendarioController extends Controller
 
     public function verDetalles(Calendario $calendario)
     {
-        $detalle = $calendario->detalleCalendario()->with('grupo:id,nombre')->get();
+        $detalle = $calendario->detalleCalendario()->with('grupo:id,nombre')->orderBy("id")->get();
         //dd($detalle);
         return view('admin.detalle-calendario.ver-detalle')->with('detalles', $detalle)->with('calendario', $calendario);
     }
