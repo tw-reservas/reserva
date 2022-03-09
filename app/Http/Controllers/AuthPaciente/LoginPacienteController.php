@@ -57,12 +57,16 @@ class LoginPacienteController extends Controller
             return redirect($this->redirectTo);
         }
 
-        $paciente = $this->verificarMatricula($request->matricula);
-        if (!is_null($paciente)) {
-            return $this->loginSuccessFull($paciente);
-        }
+        try {
+            $paciente = $this->verificarMatricula($request->matricula);
+            if (!is_null($paciente)) {
+                return $this->loginSuccessFull($paciente);
+            }
 
-        return redirect()->back()->with("error", "!Matricula incorrecta ó inactiva!");
+            return redirect()->back()->with("error", "!Matricula incorrecta ó inactiva!");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("error", "!Matricula inactiva!");
+        }
     }
 
     private function loginSuccessFull($paciente)
