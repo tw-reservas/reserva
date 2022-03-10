@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Adapters\RestCpsAdapter;
 use App\Services\CpsServices;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Schema;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function register()
     {
+        if (env('APP_ENV') !== 'local') {
+            $this->app['request']->server->set('HTTPS', true);
+        }
+
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -28,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(UrlGenerator $url)
+    public function boot()
     {
     }
 }
