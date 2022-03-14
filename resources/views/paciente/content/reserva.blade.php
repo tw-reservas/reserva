@@ -12,73 +12,74 @@
                         </div>
                         <br>
                         @if (count($detalles) <= 0)
-                        <div class="admonition caution">
-                            <p><strong class="title">Se comunica </strong> que por el momento no hay reservas activas</p>
-                        </div>
-                                @else
-                                    <div class="card-body p-0">
-                                        <div class="bs-stepper">
-                                            <div class="bs-stepper-header col-md-6 m-auto" role="tablist">
-                                                <!-- your steps here -->
-                                                <div class="step" data-target="#calendarios-part">
-                                                    <button type="button" class="step-trigger" role="tab"
-                                                        aria-controls="calendarios-part" id="calendarios-part-trigger">
-                                                        <span class="bs-stepper-circle">1</span>
-                                                        <!--<span class="bs-stepper-label">Logins</span>-->
-                                                    </button>
-                                                </div>
-                                                <div class="line"></div>
-                                                <div class="step" data-target="#grupos-part">
-                                                    <button type="button" class="step-trigger" role="tab"
-                                                        aria-controls="grupos-part" id="grupos-part-trigger">
-                                                        <span class="bs-stepper-circle">2</span>
-                                                        <!--<span class="bs-stepper-label">Logins</span>-->
-                                                    </button>
-                                                </div>
-                                                <!--<div class="line"></div>
-                                                                                                                                <div class="step" data-target="#ticket-part">
-                                                                                                                                    <button type="button" class="step-trigger" role="tab"
-                                                                                                                                        aria-controls="ticket-part" id="ticket-part-trigger">
-                                                                                                                                        <span class="bs-stepper-circle">3</span>
-                                                                                                                                        <span class="bs-stepper-label">Various information</span>
-                                                                                                                                    </button>
-                                                                                                                                </div>-->
-                                            </div>
-                                            <div class="loadingMask" id="loadingMask" style="visibility: hidden;"></div>
-                                            <div class="bs-stepper-content">
-                                                <div id="calendarios-part" class="content" role="tabpanel"
-                                                    aria-labelledby="calendarios-part-trigger">
-                                                    <div class="form-group">
-                                                        <div id="calendar" style="width: 70%;" class="m-auto"></div>
-                                                    </div>
-                                                </div>
-                                                <!-- your steps content here -->
-                                                <div id="grupos-part" class="content" role="tabpanel"
-                                                    aria-labelledby="grupos-part-trigger">
-                                                    <div id="date-select" class="m-auto text-center" style="width: 80%">
-                                                    </div>
-                                                    <table id="grupos"
-                                                        class="m-auto table table-striped table-bordered shadow-lg mt-4">
-                                                        <thead class="bg-primary text-white">
-                                                            <tr>
-                                                                <th scope="col">Id</th>
-                                                                <th scope="col">Grupo</th>
-                                                                <th scope="col">Cupo</th>
-                                                                <th scope="col">Opciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                    <br>
-                                                    <button class="btn bg-olive color-palette btn-sm btnPrevius"
-                                                        onclick="">Anterior</button>
-                                                </div>
-
-                                            </div>
-
+                            <div class="admonition caution">
+                                <p><strong class="title">Se comunica </strong> que por el momento no hay reservas
+                                    activas</p>
+                            </div>
+                        @else
+                            <div class="card-body p-0">
+                                <div class="bs-stepper">
+                                    <div class="bs-stepper-header col-md-6 m-auto" role="tablist">
+                                        <!-- your steps here -->
+                                        <div class="step" data-target="#calendarios-part">
+                                            <button type="button" class="step-trigger" role="tab"
+                                                aria-controls="calendarios-part" id="calendarios-part-trigger">
+                                                <span class="bs-stepper-circle">1</span>
+                                                <!--<span class="bs-stepper-label">Logins</span>-->
+                                            </button>
                                         </div>
+                                        <div class="line"></div>
+                                        <div class="step" data-target="#grupos-part">
+                                            <button type="button" class="step-trigger" role="tab"
+                                                aria-controls="grupos-part" id="grupos-part-trigger">
+                                                <span class="bs-stepper-circle">2</span>
+                                                <!--<span class="bs-stepper-label">Logins</span>-->
+                                            </button>
+                                        </div>
+                                        <!--<div class="line"></div>
+                                            <div class="step" data-target="#ticket-part">
+                                            <button type="button" class="step-trigger" role="tab"
+                                            aria-controls="ticket-part" id="ticket-part-trigger">
+                                            <span class="bs-stepper-circle">3</span>
+                                            <span class="bs-stepper-label">Various information</span>
+                                            </button>
+                                            </div>-->
                                     </div>
+                                    <div class="loadingMask" id="loadingMask" style="visibility: hidden;"></div>
+                                    <div class="bs-stepper-content">
+                                        <div id="calendarios-part" class="content" role="tabpanel"
+                                            aria-labelledby="calendarios-part-trigger">
+                                            <div class="form-group">
+                                                <div id="calendar" style="width: 70%;" class="m-auto"></div>
+                                            </div>
+                                        </div>
+                                        <!-- your steps content here -->
+                                        <div id="grupos-part" class="content" role="tabpanel"
+                                            aria-labelledby="grupos-part-trigger">
+                                            <div id="date-select" class="m-auto text-center" style="width: 80%">
+                                            </div>
+                                            <table id="grupos"
+                                                class="m-auto table table-striped table-bordered shadow-lg mt-4">
+                                                <thead class="bg-primary text-white">
+                                                    <tr>
+                                                        <th scope="col">Id</th>
+                                                        <th scope="col">Grupo</th>
+                                                        <th scope="col">Cupo</th>
+                                                        <th scope="col">Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                            <button class="btn bg-olive color-palette btn-sm btnPrevius"
+                                                onclick="">Anterior</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
                         @endif
                         <!-- /.card-body -->
                     </div>

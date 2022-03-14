@@ -10,11 +10,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card2">
                     <div class="card-header">
 
                     </div>
-                    <div class="card-body">
+                    <div class="card-body2">
 
                     </div>
                     <div class="card-footer clearfix"></div>

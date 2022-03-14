@@ -7,13 +7,13 @@
 
 @section('content')
     <div class="container-fluit">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-success card-outline">
-                    <div class="card-header">
+        <div class="row" style="justify-content: center;">
+            <div class="col-md-10">
+                <div class="card2 card-outline">
+                    <!--<div class="card-header">
 
-                    </div>
-                    <div class="card-body pad table-responsive">
+                                </div>-->
+                    <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('user.store') }}" method="POST" id="form-grupo">
                                 @csrf
@@ -110,17 +110,17 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div>
-                                        <select name="roles" id="rol" required>
+                                <div class="col-md-12">
+                                    <div class="object-group">
+                                        <label for="" class="">Seleccione un rol:</label>
+                                        <select name="roles" id="rol" required style="margin-left: 5px;">
                                             @foreach ($rols as $rol)
                                                 <option value="{{ $rol->id }}"> {{ $rol->nombre }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="" class="">Seleccione un rol:</label>
                                     </div>
                                 </div>
-
+                                <br>
                                 <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm"
                                     tabindex="5">Cancelar</a>
                                 <button type="submit" class="btn btn-success btn-sm" id="guardar"
@@ -129,16 +129,12 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <p>
 
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 @stop
 
 @section('js')
@@ -181,7 +177,6 @@
                 }
                 if (email === '') {
                     toastr.error("El campo CORREO es requerido");
-
                 }
 
                 if (email !== '' && matricula !== '' && password == password1 && nombre !== '' && paterno !== '' &&
@@ -190,10 +185,8 @@
                     toastr.success('CAMPOS CORRECTOS, !!GUARDANDO CALENDARIO!!');
                     document.getElementById('form-create-calendario').submit();
                 }
-
                 return false;
             }
-
         }
     </script>
 @stop

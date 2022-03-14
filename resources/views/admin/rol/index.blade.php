@@ -8,44 +8,46 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-10 col-sm-12">
-            <div class="card card-default">
-                <div class="card-header">
-                    Listado de roles
-                </div>
-                <div class="card-body">
-                    <div class="row text-align-center">
-                        <h5>Crear rol </h5>
-                        <a href="{{ route('rol.create') }}" class="btn btn-success btn-sm mb-4">CREAR</a>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10 col-sm-10">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 m-auto">
+                <div class="card2">
+                    <!--<div class="card-header">
+                                    Listado de roles
+                                </div>-->
+                    <div class="card-body2">
+                        <div class="row text-align-center">
+                            <a href="{{ route('rol.create') }}" class="btn btn-newcolor btn-sm">
+                                <i class="fas fa-plus align-items-center mr-1 p-1"></i>Crear Rol</a>
+                        </div>
+                        <br>
+                        <div class="table-responsive">
                             <table class="table table-bordered col-md-10 m-auto">
-                                <thead>
-                                    <tr class="bg-success">
-                                        <th style="width: 10px">#</th>
+                                <thead class="table-newcolor">
+                                    <tr>
+                                        <th>#</th>
                                         <th>Nombre</th>
                                         <th>Abreviatura</th>
                                         <th> Opciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="tbody2">
                                     @foreach ($roles as $rol)
                                         <tr>
-
                                             <td>{{ $rol->id }}</td>
                                             <td>{{ $rol->nombre }}</td>
                                             <td>{{ $rol->abreviado }}</td>
                                             <td>
                                                 <form action="{{ route('rol.destroy', $rol->id) }}" method="POST">
-                                                    @csrf
-                                                    <a href="{{ route('rol.show', $rol->id) }}"
-                                                        class="btn btn-info btn-sm"><i class="fas fa-pen"></i>Editar</a>
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i> Borrar
-                                                    </button>
+                                                    <div class="btn-group btn-group-sm">
+                                                        @csrf
+                                                        <a href="{{ route('rol.show', $rol->id) }}"
+                                                            class="btn btn-editar btn-sm"><i class="fas fa-pen p-0"></i></a>
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-eliminar btn-sm">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </div>
                                                 </form>
                                             </td>
                                         </tr>
@@ -55,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer"></div>
+                <!--<div class="card-footer"></div>-->
             </div>
         </div>
     </div>

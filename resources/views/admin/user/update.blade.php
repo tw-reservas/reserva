@@ -9,11 +9,11 @@
     <div class="container-fluit">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-success card-outline">
+                <div class="card2 card-outline">
                     <div class="card-header">
 
                     </div>
-                    <div class="card-body pad table-responsive">
+                    <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('user.update', $user->id) }}" method="POST" id="form-grupo">
                                 @csrf
@@ -95,9 +95,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <p>
 
-                        </p>
                     </div>
                 </div>
             </div>
@@ -127,7 +125,6 @@
 
                 return false;
             }
-
         }
     </script>
 @stop
