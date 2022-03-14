@@ -16,7 +16,7 @@ class CreateDetalleOrdenLabsTable extends Migration
         Schema::create('detalle_orden_labs', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('laboratorio_id')->unsigned();
+            $table->bigInteger('laboratorio_id')->unsigned();
             $table->bigInteger('ordenlab_id')->unsigned();
 
             $table->foreign('laboratorio_id')->references('id')->on('laboratorios');

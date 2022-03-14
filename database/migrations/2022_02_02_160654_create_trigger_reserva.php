@@ -41,7 +41,9 @@ class CreateTriggerReserva extends Migration
       END;
       $$
         ');
-        DB::unprepared(' CREATE OR REPLACE TRIGGER RESERVATRIGGER
+        DB::unprepared('
+        DROP TRIGGER IF EXISTS RESERVATRIGGER ON reservas;
+        CREATE TRIGGER RESERVATRIGGER
         BEFORE INSERT OR UPDATE
         ON reservas
         FOR EACH ROW
