@@ -7,11 +7,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-sm-12">
-            <div class="card card-succes">
+            <div class="card2">
                 <div class="card header">
 
                 </div>
-                <div class="card-body">
+                <div class="card-body2">
                     <form action="{{ route('rol.store') }}" method="POST">
                         @csrf
                         <div class="form-group row">

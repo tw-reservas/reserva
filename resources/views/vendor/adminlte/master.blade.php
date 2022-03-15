@@ -36,6 +36,8 @@
     @else
         <link rel="stylesheet" href="{{ asset(mix(config('adminlte.laravel_mix_css_path', 'css/app.css'))) }}">
         <link rel="stylesheet" href="{{ asset('css/css-themes/nino.css') }}">
+        <link href="{{ asset('css/misestilos.css') }}" rel="stylesheet">
+        <!--<link href="{{ asset('css/estiloadm.css') }}" rel="stylesheet">-->
     @endif
 
     {{-- Livewire Styles --}}

@@ -1,0 +1,236 @@
+/*content header*/
+
+.content-header {
+    padding: 15px 0.5rem;
+    background-color: #6c757d47;
+}
+
+.content-wrapper>.content {
+    padding: 0 0.5rem;
+    background-color: #6c757d45;
+    min-height: calc(100vh - calc(3.5rem + 1px) - calc(3.5rem + 1px));
+}
+
+.card2 {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    margin-bottom: 1rem;
+    background-color: #e9e9e9;
+}
+
+.card2-footer:last-child {
+    border-radius: 0 0 calc(0.25rem - 0) calc(0.25rem - 0);
+    background-color: #e9e9e9;
+}
+
+.card-body2 {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    background-color: #e2e2e2;
+}
+
+
+/*--     tabla   ---*/
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: #f8f9fa;
+}
+
+.tbody2 {
+    background-color: #f1f1f1;
+}
+
+
+/* --------------------*/
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -7.5px;
+    margin-left: -7.5px;
+    justify-content: flex-end;
+}
+
+.btn-newcolor {
+    color: rgb(7, 7, 7);
+    background-color: #f1f1f1;
+    border-color: #303030;
+    box-shadow: none;
+}
+
+.btn-newcolor:hover,
+.btn-newcolor:active,
+.btn-newcolor:focus {
+    color: #ffffff !important;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.table-newcolor {
+    background-color: #007b6d;
+    color: #ffffff;
+}
+
+
+/* -----   btn agrupa btn-editar y btn-eliminar  ----- */
+
+.btn-group,
+.btn-group-vertical {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+
+/* btn-guardar */
+
+.btn-guardar {
+    color: #fff;
+    background-color: #007b6d;
+    border-color: #f8f9fa;
+    box-shadow: none;
+}
+
+.btn-guardar:hover {
+    color: #fff;
+    background-color: #007b6d;
+    border-color: #007b6d;
+}
+
+.btn-guardar:not(:disabled):not(.disabled):active,
+.btn-guardar:not(:disabled):not(.disabled).active,
+.show>.btn-guardar.dropdown-toggle {
+    color: #fff;
+    background-color: #007b6d;
+    border-color: #070707;
+}
+
+
+/* btn-cancelar */
+
+.btn-cancelar {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #f8f9fa;
+    box-shadow: none;
+}
+
+.btn-cancelar:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-cancelar:not(:disabled):not(.disabled):active,
+.btn-cancelar:not(:disabled):not(.disabled).active,
+.show>.btn-cancelar.dropdown-toggle {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+
+/* btn-editar */
+
+.btn-editar {
+    color: #fff;
+    background-color: #0b93a3;
+    border-color: #f8f9fa;
+    box-shadow: none;
+}
+
+.btn-editar:hover {
+    color: #fff;
+    background-color: #0d7480;
+    border-color: #0d7480;
+}
+
+.btn-editar:not(:disabled):not(.disabled):active,
+.btn-editar:not(:disabled):not(.disabled).active,
+.show>.btn-editar.dropdown-toggle {
+    color: #fff;
+    background-color: #0d7480;
+    border-color: #0d7480;
+}
+
+
+/* btn-eliminar */
+
+.btn-eliminar {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #f8f9fa;
+    box-shadow: none;
+}
+
+.btn-eliminar:hover {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-eliminar:not(:disabled):not(.disabled):active,
+.btn-eliminar:not(:disabled):not(.disabled).active,
+.show>.btn-eliminar.dropdown-toggle {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+/* btn-activar */
+
+.btn-activar {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #f8f9fa;
+    box-shadow: none;
+}
+
+.btn-activar:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-activar:not(:disabled):not(.disabled):active,
+.btn-activar:not(:disabled):not(.disabled).active,
+.show>.btn-activar.dropdown-toggle {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+
+/* btn-verdetalle */
+
+.btn-verdetalle {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #f8f9fa;
+    box-shadow: none;
+}
+
+.btn-verdetalle:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-verdetalle:not(:disabled):not(.disabled):active,
+.btn-verdetalle:not(:disabled):not(.disabled).active,
+.show>.btn-verdetalle.dropdown-toggle {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+
+/*------------------------------------------------------------*/

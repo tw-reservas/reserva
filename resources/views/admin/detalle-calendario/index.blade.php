@@ -7,101 +7,101 @@
 @stop
 
 @section('content')
-    <?php
-    session_start();
-    if (isset($_SESSION['calendarios']) == 0) {
-        $_SESSION['calendarios'] = 0;
-    }
-    ?>
     <div class="container-fluid">
-        <div class="row ">
+        <div class="row">
             <div class="col-md-11 m-auto">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card2">
+                    <div class="card-body2">
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="card">
+                                <div class="card2">
                                     <div class="card-header">
-                                        Lista de calendarios
+                                        <strong>Lista de calendarios</strong>
                                     </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered table-md col-md-11 m-auto">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 10px">#</th>
-                                                    <th>DIAS</th>
-                                                    <th>FECHA INICIO</th>
-                                                    <th>FECHA FIN</th>
-                                                    <th>ESTADO</th>
-                                                    <th>OPCIÓN</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($calendarios as $calendario)
+                                    <div class="card-body2">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-md col-md-12 m-auto">
+                                                <thead class="table-newcolor">
                                                     <tr>
-                                                        <td>{{ $calendario->id }}</td>
-                                                        <td>{{ $calendario->cantidad }}</td>
-                                                        <td>{{ $calendario->fechaInicio }}</td>
-                                                        <td>{{ $calendario->fechaFin }}</td>
-                                                        @if ($calendario->estado)
-                                                            <td><span class="badge bg-success">Repartido</span></td>
-                                                            <td><a href="{{ route('detalle-calendario.ver', $calendario->id) }}"
-                                                                    class="btn btn-info btn-sm">Ver Detalles</a></td>
-                                                        @else
-                                                            <td><span class="badge bg-info">Pendiente</span></td>
-
-                                                            <td>
-                                                                @if (count($grupos) == 0)
-                                                                    <a href="{{ route('grupo.index') }}"
-                                                                        class="btn btn-info btn-sm"> Activar Grupos</a>
-                                                                @endif
-                                                                @if ($cupo == null)
-                                                                    <a href="{{ route('cupo.index') }}"
-                                                                        class="btn btn-info btn-sm"> Activar Cupo</a>
-                                                                @endif
-                                                                @if (count($grupos) > 0 && $cupo != null && $sumaCupo == $cupo->total)
-                                                                    <a href="{{ route('detalle-calendario.repartir', [$calendario->id, $cupo->id]) }}"
-                                                                        class="btn btn-warning btn-sm"> Repartir </a>
-                                                                @endif
-                                                                @if ($cupo != null && $sumaCupo != $cupo->total)
-                                                                    <a href="{{ route('grupo.conf-porcentaje.get') }}"
-                                                                        class="btn btn-warning btn-sm"> Configurar
-                                                                        porcentaje </a>
-                                                                @endif
-                                                            </td>
-                                                        @endif
+                                                        <th>#</th>
+                                                        <th>DIAS</th>
+                                                        <th>FECHA INICIO</th>
+                                                        <th>FECHA FIN</th>
+                                                        <th>ESTADO</th>
+                                                        <th>OPCIÓN</th>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody  class="tbody2">
+                                                    @foreach ($calendarios as $calendario)
+                                                        <tr>
+                                                            <td>{{ $calendario->id }}</td>
+                                                            <td>{{ $calendario->cantidad }}</td>
+                                                            <td>{{ $calendario->fechaInicio }}</td>
+                                                            <td>{{ $calendario->fechaFin }}</td>
+                                                            @if ($calendario->estado)
+                                                                <td><span class="badge bg-success">Repartido</span></td>
+                                                                <td><a href="{{ route('detalle-calendario.ver', $calendario->id) }}"
+                                                                        class="btn btn-verdetalle btn-sm">Ver Detalles</a>
+                                                                </td>
+                                                            @else
+                                                                <td><span class="badge bg-info">Pendiente</span></td>
+
+                                                                <td>
+                                                                    @if (count($grupos) == 0)
+                                                                        <a href="{{ route('grupo.index') }}"
+                                                                            class="btn btn-info btn-sm"> Activar Grupos</a>
+                                                                    @endif
+                                                                    @if ($cupo == null)
+                                                                        <a href="{{ route('cupo.index') }}"
+                                                                            class="btn btn-info btn-sm"> Activar Cupo</a>
+                                                                    @endif
+                                                                    @if (count($grupos) > 0 && $cupo != null)
+                                                                        <a href="{{ route('detalle-calendario.repartir', [$calendario->id, $cupo->id]) }}"
+                                                                            class="btn btn-warning btn-sm"> Repartir </a>
+                                                                    @endif
+                                                                    @if ($cupo != null && $sumaCupo != $cupo->total)
+                                                                        <a href="{{ route('grupo.conf-porcentaje') }}"
+                                                                            class="btn btn-warning btn-sm"> Configurar
+                                                                            porcentaje </a>
+                                                                    @endif
+                                                                </td>
+                                                            @endif
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="card">
+                                <div class="card2">
                                     <div class="card-header">
-                                        Grupos Activos
+                                        <strong>Grupos Activos</strong>
                                     </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered table-md col-md-11 m-auto">
-                                            <thead>
-                                                <tr class="tr-sm">
-                                                    <th style="width: 10px">#</th>
-                                                    <th>NOMBRE</th>
-                                                    <th>HORA INICIO</th>
-                                                    <th>HORA FIN</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($grupos as $grupo)
-                                                    <tr>
-                                                        <td>{{ $grupo->id }}</td>
-                                                        <td>{{ $grupo->nombre }}</td>
-                                                        <td>{{ $grupo->horaInicio }}</td>
-                                                        <td>{{ $grupo->horaFin }}</td>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                    <div class="card-body2">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-md col-md-11 m-auto">
+                                                <thead class="table-newcolor">
+                                                    <tr class="tr-sm">
+                                                        <th>#</th>
+                                                        <th>NOMBRE</th>
+                                                        <th>HORA INICIO</th>
+                                                        <th>HORA FIN</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($grupos as $grupo)
+                                                        <tr>
+                                                            <td>{{ $grupo->id }}</td>
+                                                            <td>{{ $grupo->nombre }}</td>
+                                                            <td>{{ $grupo->horaInicio }}</td>
+                                                            <td>{{ $grupo->horaFin }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -115,17 +115,6 @@
             </div>
         </div>
     </div>
-
-    <div class="footer">
-        <div class="footer-copyright">
-            <div class="container" style="margin-top:5px ">
-                © 2021 INF513 GRUPO 17 SC
-                <a class="black-text text-lighten-4 right" href="#!">Visitas a la página:
-                    <?php echo $_SESSION['calendarios'] += 1; ?></a>
-            </div>
-        </div>
-    </div>
-
 @stop
 
 @section('js')

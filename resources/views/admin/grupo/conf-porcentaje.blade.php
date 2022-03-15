@@ -3,35 +3,31 @@
 
 @section('content_header')
     <h4>Configuracion Porcentaje</h4>
-    <h3>Cupo Total: {{ $cupo->total }}</h3>
+
 @stop
 
 @section('content')
-    <?php
-    session_start();
-    if (isset($_SESSION['grupos']) == 0) {
-        $_SESSION['grupos'] = 0;
-    }
-    ?>
     <div class="container-fluit">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-success card-outline">
+        <div class="row" style="justify-content: center;">
+            <div class="col-md-10">
+                <div class="card2 card-outline">
                     <div class="card-header">
-
+                        <h4 style="text-align: center;">Cupo Total: <strong>{{ $cupo->total }}</strong></h4>
                     </div>
-                    <div class="card-body pad table-responsive">
+                    <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
+                            @if (count($grupos) == 0)
+                            @endif
 
                             @if (count($grupos) == 0)
                                 <div class="text-center">
                                     <h4>!!! Usted No tiene GRUPOS activos.!!!</h4>
                                     <h4>Por favor active primero los grupos que va necesitar.</h4>
-                                    <a href="{{ route('grupo.index') }}" class="btn btn-secondary btn-sm" tabindex="5">Ir a
+                                    <a href="{{ route('grupo.index') }}" class="btn btn-activar btn-sm" tabindex="5">Ir a
                                         Activar</a>
                                 </div>
                             @else
-                                <form id="form-porc" action="{{ route('grupo.conf-porcentaje.post') }}" method="POST">
+                                <form id="form-porc" action="{{ route('grupo.conf-porcentaje') }}" method="POST">
                                     @csrf
                                     <input type="hidden" id="cupo" name="cupo" value="{{ $cupo->total }}">
                                     @foreach ($grupos as $grupo)
@@ -47,12 +43,14 @@
                                             @enderror
                                         </div>
                                     @endforeach
-                                    <a href="{{ route('grupo.index') }}" class="btn btn-info btn-sm" tabindex="5">Ir a
+                                    <a href="{{ route('grupo.index') }}" class="btn btn-activar btn-sm" tabindex="5">Ir a
                                         Activar</a>
-                                    <a href="{{ route('grupo.index') }}" class="btn btn-secondary btn-sm"
-                                        tabindex="5">Cancelar</a>
-                                    <button id="guardar" type="submit" class="btn btn-success btn-sm"
+
+                                    <button id="guardar" type="submit" class="btn btn-guardar btn-sm"
                                         tabindex="4">Guardar</button>
+
+                                    <a href="{{ route('grupo.index') }}" class="btn btn-cancelar btn-sm"
+                                        tabindex="5">Cancelar</a>
                                 </form>
                             @endif
 
@@ -68,18 +66,6 @@
                         </p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div style="padding-right: 80px">
-        <div class="row">
-            <div class="col s6 m4 l2 offset-s6 offset-m8 offset-l10">
-                <div class="left-align">
-                    <div class="card-panel teal">
-                        <span class="white-text">Nro. de Visitas: <?php echo $_SESSION['grupos'] += 1; ?></span>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
