@@ -78,12 +78,13 @@ class DistributeCalendario extends Command
             Log::info("Calendario insertado con éxito. calendario:id " . $calendario->id);
 
             $listDate = $this->getListDates($calendario->fechaInicio, $calendario->fechaFin, $calendario->id);
+            
+            DetalleCalendario::insert($listDate);
 
             $calendario->estado =   !$calendario->estado;
             $calendario->activado = true;
             $calendario->update();
 
-            DetalleCalendario::insert($listDate);
             DB::commit();
             Log::info("calendario repartido con éxito. calendario:id " . $calendario->id);
         } catch (\Throwable $th) {
