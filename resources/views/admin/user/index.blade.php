@@ -8,7 +8,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-10 m-auto">
+            <div class="col-md-11 col-sm-12 m-auto">
                 <div class="card2">
                     <!--<div class="card-header">
                                     Lista de Usuarios
@@ -21,7 +21,7 @@
                         </div>
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered col-md-10 m-auto">
+                            <table class="table table-bordered col-md-12 m-auto">
                                 <thead class="table-newcolor">
                                     <tr>
                                         <th>#</th>
