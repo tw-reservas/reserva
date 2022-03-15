@@ -18,7 +18,6 @@ class UserController extends Controller
     public function index()
     {
         $user = User::with('rolUser:id,nombre')->orderBy('id')->get();
-        dd($user);
         return view('admin.user.index')->with('users', $user);
     }
 
