@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ReservaController;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AdministrarContrasena;
 
 //theme change
 Route::post('/theme', [ThemeController::class, 'themes'])->name('theme.themes');
@@ -68,3 +69,6 @@ Route::get('reserva', [ReservaController::class, 'index'])->name('reserva.index'
 
 /* Route Rol */
 Route::resource('rol', RolController::class);
+
+Route::post('restablecer-contra', [AdministrarContrasena::class, "restorePassword"])->name("restore.password");
+Route::get('restablecer-contra', [AdministrarContrasena::class, "showRestorePassword"])->name("show.restore.password");

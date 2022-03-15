@@ -41,6 +41,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         if ($request->password != $request->password1) {
+            return back()->withErrors("error", "Contraseña Diferentes");
         }
         $user = new User();
         $user->matricula = $request->matricula;
@@ -48,7 +49,6 @@ class UserController extends Controller
         $user->apellidoPaterno = $request->paterno;
         $user->apellidoMaterno = $request->materno;
         $user->password = Hash::make($request->password);
-        $user->email = $request->email;
         $user->rol = "X";
         $user->telefono = $request->telefono;
         $user->rol_id = $request->input('roles');
@@ -78,7 +78,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->telefono = $request->telefono;
-        $user->email = $request->email;
         $user->rol_id = $request->input('roles');
         $user->update();
         return redirect('/admin/user');

@@ -12,7 +12,7 @@
                 <div class="card2 card-outline">
                     <!--<div class="card-header">
 
-                                </div>-->
+                                    </div>-->
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('user.store') }}" method="POST" id="form-grupo">
@@ -99,16 +99,16 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <label for="" class="">Correo electronico:</label>
-                                    <input id="email" placeholder="email" name="email" autocomplete="off" type="text"
-                                        class="form-control @error('email') is-invalid @enderror" tabindex="2">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                <!--<div class="mb-3">
+                                        <label for="" class="">Correo electronico:</label>
+                                        <input id="email" placeholder="email" name="email" autocomplete="off" type="text"
+                                            class="form-control @error('email') is-invalid @enderror" tabindex="2">
+                                        @error('email')
+        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+    @enderror
+                                    </div>-->
 
                                 <div class="col-md-12">
                                     <div class="object-group">

@@ -20,15 +20,15 @@ class CasoDeUsoSeeder extends Seeder
             "Administrar laboratorio",
             "Administrar Area",
             "Administrar requisitos",
+            "Asignar Requisitos",
             "Administrar Grupo",
             "Administrar Cupo",
             "Adm. Calendario",
             "Detalle Calendario",
-            "Registrar usuario",
+            "Gestionar Administrador",
             "Administrar rol",
-            "Recuperar contraseña",
+            "Restablecer contraseña",
             "Adm. privilegios",
-            "Conf. temas"
         ];
 
         $url = [
@@ -37,19 +37,19 @@ class CasoDeUsoSeeder extends Seeder
             "/admin/laboratorios",
             "/admin/areas",
             "/admin/requisitos",
+            "#",
             "/admin/grupo",
             "/admin/cupo",
             "/admin/calendario",
             "/admin/detalle-calendario",
             "/admin/user",
             "/admin/rol",
-            "#",
-            "#",
-            "/admin/theme"
+            "/admin/restablecer-contra",
+            "/admin/adm-privilegios",
         ];
 
         $paquete_id = [
-            1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
+            1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
         ];
 
         for ($i = 0; $i < count($nombre); $i++) {

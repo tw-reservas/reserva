@@ -24,6 +24,6 @@ class UserSeeder extends Seeder
 
 
         DB::insert('insert into users (matricula,name,"apellidoPaterno","apellidoMaterno", telefono, email, password,rol) values (?, ?,?,?,?,?,?,?)', ['14725836', 'brenda', 'ali', 'cuchallo', '87845545', 'brenda@gmail.com', $password, 'A']);
-        User::factory()->count(5)->create();
+        User::factory()->count(1)->create();
     }
 }

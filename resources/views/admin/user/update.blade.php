@@ -62,17 +62,17 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <label for="" class="">Correo electronico:</label>
-                                    <input id="email" placeholder="email" name="email" autocomplete="off"
-                                        value="{{ $user->email }}" type="text"
-                                        class="form-control @error('email') is-invalid @enderror" tabindex="2">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                <!--<div class="mb-3">
+                                        <label for="" class="">Correo electronico:</label>
+                                        <input id="email" placeholder="email" name="email" autocomplete="off"
+                                            value="{{ $user->email }}" type="text"
+                                            class="form-control @error('email') is-invalid @enderror" tabindex="2">
+                                        @error('email')
+        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+    @enderror
+                                    </div>-->
 
                                 <div class="col-md-6">
                                     <div>

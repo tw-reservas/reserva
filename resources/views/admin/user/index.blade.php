@@ -11,8 +11,8 @@
             <div class="col-md-11 col-sm-12 m-auto">
                 <div class="card2">
                     <!--<div class="card-header">
-                                    Lista de Usuarios
-                                </div>-->
+                                            Lista de Usuarios
+                                        </div>-->
                     <div class="card-body2">
                         <div class="row text-align-center">
                             <!--<h5>Crear Usuario </h5>-->
@@ -21,7 +21,7 @@
                         </div>
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered col-md-12 m-auto">
+                            <table class="table table-bordered col-md-11 m-auto">
                                 <thead class="table-newcolor">
                                     <tr>
                                         <th>#</th>
@@ -29,7 +29,7 @@
                                         <th>Nombre</th>
                                         <th>Apellidos</th>
                                         <th>Teléfono</th>
-                                        <th>Email</th>
+
                                         <th>Rol</th>
                                         <th> Opciones</th>
                                     </tr>
@@ -42,7 +42,7 @@
                                             <th> {{ $user->name }} </th>
                                             <td> {{ $user->apellidoPaterno }} {{ $user->apellidoMaterno }} </td>
                                             <td> {{ $user->telefono }} </td>
-                                            <td> {{ $user->email }} </td>
+
                                             <td> {{ $user->rolUser->nombre }} </td>
                                             <td>
                                                 <form action="{{ route('user.destroy', $user->id) }}" method="POST">
