@@ -76,14 +76,14 @@ class ReservaController extends Controller
             ->selectRaw("fecha")
             ->selectRaw("(fecha <= '$now') as estado")
             ->selectRaw('(SUM("cupoMaximo") - SUM("cupoOcupado")) as cupoRestante')
-            ->groupBy("fecha")->get();
+            ->groupBy("fecha")->orderBy("fecha")->get();
         return view('paciente.content.reserva')->with("detalles", $detalle)->with("orden", $orden);
     }
 
 
     public function grupos($orden, $date)
     {
-        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
+        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->where("estado", true)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
         return response()->json(["detalle" => $detalleCalendario]);
     }
 
