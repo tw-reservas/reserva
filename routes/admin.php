@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CupoController;
 use App\Http\Controllers\Admin\DetalleCalendarioController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\LaboratorioController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\RequisitoController;
 use App\Http\Controllers\Admin\ReservaController;
 use App\Http\Controllers\Admin\RolController;
@@ -64,11 +65,22 @@ Route::delete('requisitos/{requisito}', [RequisitoController::class, 'destroy'])
 Route::resource('user', UserController::class);
 
 //* reserva rutas *//
-Route::post('reserva', [ReservaController::class, 'verificarUserAndOrden'])->name('reserva.verificar-matricula-orden');
+Route::post('reserva', [ReservaController::class, 'verificarUserAndOrden'])->name('reserva.verif-matricula-orden.programar');
 Route::get('reserva', [ReservaController::class, 'index'])->name('reserva.index');
+/* show page reservas */
+Route::get('ver', [ReservaController::class, 'showPageVerReserva'])->name('reserva.show-page');
+Route::post('ver', [ReservaController::class, 'verifyUserAndOrdenVer'])->name('reserva.verif-matricula-orden.ver');
+Route::get("reserva/{reserva}/cancelar", [ReservaController::class, "cancelarReserva"])->name("reserva.cancelar-admin");
+//show reserva
+Route::get('reserva/{reserva}/ver', [ReservaController::class, 'showReserva'])->name('reserva.show');
+Route::get("reserva/{orden}/date/{date}", [ReservaController::class, 'getGrupos'])->name('get-grupos-admin');
+Route::get("reserva/{ordenlab}/detalle/{detalle_id}", [ReservaController::class, 'reservar'])->name('reservar-admin');
+
 
 /* Route Rol */
 Route::resource('rol', RolController::class);
 
 Route::post('restablecer-contra', [AdministrarContrasena::class, "restorePassword"])->name("restore.password");
 Route::get('restablecer-contra', [AdministrarContrasena::class, "showRestorePassword"])->name("show.restore.password");
+
+Route::get('adm-privilegios', [MenuController::class, "showAssignPrivileges"])->name("show.assign.privileges");

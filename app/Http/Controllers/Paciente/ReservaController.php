@@ -21,7 +21,7 @@ use Throwable;
 class ReservaController extends Controller
 {
     protected $orden;
-    /*cantidad de dias validas de orden laboratorio  */    
+    /*cantidad de dias validas de orden laboratorio  */
     protected $days = 30;
     //private $cpsAdapter;
 

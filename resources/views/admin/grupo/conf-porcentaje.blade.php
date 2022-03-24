@@ -27,7 +27,7 @@
                                         Activar</a>
                                 </div>
                             @else
-                                <form id="form-porc" action="{{ route('grupo.conf-porcentaje') }}" method="POST">
+                                <form id="form-porc" action="{{ route('grupo.conf-porcentaje.post') }}" method="POST">
                                     @csrf
                                     <input type="hidden" id="cupo" name="cupo" value="{{ $cupo->total }}">
                                     @foreach ($grupos as $grupo)
