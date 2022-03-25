@@ -28,9 +28,9 @@ class Laboratorio extends Model
         return $this->belongsTo(Area::class);
     }
 
-    public function requisito()
+    public function requisitos()
     {
-        return $this->belongsTo(Requisito::class);
+        return $this->belongsToMany(Requisito::class, "laboratorio_requisitos", 'laboratorio_id', 'requisito_id')->using(LaboratorioRequisitos::class)->withTimestamps();
     }
 
     public function ordenlab()
