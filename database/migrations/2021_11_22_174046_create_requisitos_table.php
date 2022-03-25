@@ -16,6 +16,7 @@ class CreateRequisitosTable extends Migration
         Schema::create('requisitos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

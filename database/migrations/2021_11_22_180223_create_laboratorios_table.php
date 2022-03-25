@@ -19,16 +19,15 @@ class CreateLaboratoriosTable extends Migration
 
             $table->string('nombre', 100);
             $table->boolean('estado')->default(true);
-            $table->unsignedBigInteger('requisito_id')->default(1);
             $table->integer('area_cod');
 
 
 
             $table->timestamps();
 
-            $table->foreign('requisito_id')->references('id')->on('requisitos');
+            //$table->foreign('requisito_id')->references('id')->on('requisitos');
             $table->foreign('area_cod')->references('cod_serv')->on('areas')->cascadeOnDelete()->cascadeOnUpdate();
-
+            $table->softDeletes();
             //$table->primary(array('id', 'cod_arancel', 'area_cod'));
         });
     }

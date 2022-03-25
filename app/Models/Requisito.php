@@ -14,6 +14,6 @@ class Requisito extends Model
 
     public function laboratorios()
     {
-        return $this->hasMany(Laboratorio::class);
+        return $this->belongsToMany(Laboratorio::class, "laboratorio_requisitos")->using(LaboratorioRequisitos::class)->withTimestamps();
     }
 }
