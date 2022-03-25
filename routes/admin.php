@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdministrarContrasena;
 use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\AsignarRequisito;
 use App\Http\Controllers\Admin\CalendarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CupoController;
@@ -13,7 +15,6 @@ use App\Http\Controllers\Admin\ReservaController;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdministrarContrasena;
 
 //theme change
 Route::post('/theme', [ThemeController::class, 'themes'])->name('theme.themes');
@@ -88,3 +89,6 @@ Route::post('change-password', [AdministrarContrasena::class, 'changePassword'])
 
 
 Route::get('adm-privilegios', [MenuController::class, "showAssignPrivileges"])->name("show.assign.privileges");
+
+/*asignar requisitos a laboratorio*/
+Route::get('asignar-requisitos', [AsignarRequisito::class, 'index'])->name('asignar.requisitos.index');

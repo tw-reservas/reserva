@@ -38,7 +38,7 @@ class CasoDeUsoSeeder extends Seeder
             "/admin/laboratorios",
             "/admin/areas",
             "/admin/requisitos",
-            "#",
+            "/admin/asignar-requisitos",
             "/admin/grupo",
             "/admin/cupo",
             "/admin/calendario",

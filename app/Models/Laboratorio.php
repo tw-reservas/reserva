@@ -16,7 +16,7 @@ class Laboratorio extends Model
 
 
     protected $fillable = [
-        'id','cod_arancel','nombre', 'estado', 'area_cod', 'requisito_id',
+        'id', 'cod_arancel', 'nombre', 'estado', 'area_cod',
     ];
 
     protected $casts  = [
