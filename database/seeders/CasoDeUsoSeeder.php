@@ -29,6 +29,7 @@ class CasoDeUsoSeeder extends Seeder
             "Administrar rol",
             "Restablecer contraseña",
             "Adm. privilegios",
+            "Cambiar contraseña"
         ];
 
         $url = [
@@ -46,10 +47,11 @@ class CasoDeUsoSeeder extends Seeder
             "/admin/rol",
             "/admin/restablecer-contra",
             "/admin/adm-privilegios",
+            "/admin/change-password"
         ];
 
         $paquete_id = [
-            1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
+            1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
         ];
 
         for ($i = 0; $i < count($nombre); $i++) {

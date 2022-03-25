@@ -24,10 +24,10 @@
                 </div>
                 @isset($ver)
                     <form action="{{ route('reserva.verif-matricula-orden.ver') }}" id="form-mat-orden" method="POST"
-                        class="form-horizontal">
+                        class="form-horizontal" autocomplete="off">
                     @else
                         <form action="{{ route('reserva.verif-matricula-orden.programar') }}" id="form-mat-orden"
-                            method="POST" class="form-horizontal">
+                            method="POST" class="form-horizontal" autocomplete="off">
                         @endisset
 
                         @csrf
@@ -49,9 +49,7 @@
                                 <div class="form-group row">
                                     <label for="label-orden-lab" class="col-sm-4 col-form-label"> Nro. de Orden: </label>
                                     <div class="col-sm-8">
-                                        <input type="text"
-                                            class="form-control
-                                    @error('orden_lab') is-invalid @enderror"
+                                        <input type="text" class="form-control @error('orden_lab') is-invalid @enderror"
                                             id="orden_lab" name="orden_lab" placeholder="Ingrese el orden de laboratorio">
                                         @error('orden_lab')
                                             <span class="invalid-feedback" role="alert">

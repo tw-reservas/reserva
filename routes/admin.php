@@ -83,4 +83,8 @@ Route::resource('rol', RolController::class);
 Route::post('restablecer-contra', [AdministrarContrasena::class, "restorePassword"])->name("restore.password");
 Route::get('restablecer-contra', [AdministrarContrasena::class, "showRestorePassword"])->name("show.restore.password");
 
+Route::get('change-password', [AdministrarContrasena::class, 'changePasswordPage'])->name('show.change-password.show');
+Route::post('change-password', [AdministrarContrasena::class, 'changePassword'])->name('show.change-password.post');
+
+
 Route::get('adm-privilegios', [MenuController::class, "showAssignPrivileges"])->name("show.assign.privileges");
