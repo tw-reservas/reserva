@@ -11,11 +11,7 @@
             <div class="col-md-10 m-auto">
                 <div class="card2">
                     <div class="card-body2">
-                        <div class="row text-align-center">
-                            <!--<h5>Crear grupo   </h5>-->
-                            <a href="{{ route('laboratorios.create') }}" class="btn btn-newcolor btn-sm">
-                                <i class="fas fa-plus align-items-center mr-1 p-1"></i>Crear Laboratorio</a>
-                        </div>
+
                         <br>
                         <div class="table-responsive">
                             <table class="table table-bordered col-md-10 m-auto">
@@ -30,7 +26,8 @@
                                     </tr>
                                 </thead>
                                 <tbody class="tbody2">
-                                    @foreach ($laboratorios as $labs)
+
+                                    @forelse ($laboratorios as $labs)
                                         <tr>
                                             <td>{{ $labs->id }}</td>
                                             <td>{{ $labs->area->nombre }}</td>
@@ -41,26 +38,28 @@
                                             @else
                                                 <td>Desactivado</td>
                                             @endif
-                                            <td>
+                                            <td class="col-md-2">
 
-                                                <form action="{{ route('laboratorios.delete', $labs->id) }}"
-                                                    method="POST">
-                                                    <div class="btn-group btn-group-sm">
-                                                        <a href="{{ route('laboratorios.edit', $labs->id) }}"
-                                                            class="btn btn-editar btn-sm">
-                                                            <i class="fas fa-pen p-0"></i>
-                                                        </a>
-
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-eliminar btn-sm">
-                                                            <i class="fas fa-trash-alt"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-sm"
+                                                        onchange="location=this.value">
+                                                        <option>Opciones</option>
+                                                        <option
+                                                            value="{{ route('show.page.add.requisitos', $labs->id) }}">
+                                                            Agregar
+                                                            requisitos</option>
+                                                        <option
+                                                            value="{{ route('show.page.delete.requisitos', $labs->id) }}">
+                                                            eliminar requisitos</option>
+                                                    </select>
+                                                </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="6"> No existen Laboratorios</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -69,4 +68,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    @include('global.script-toast')
 @endsection

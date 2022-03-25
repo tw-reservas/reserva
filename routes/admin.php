@@ -92,3 +92,9 @@ Route::get('adm-privilegios', [MenuController::class, "showAssignPrivileges"])->
 
 /*asignar requisitos a laboratorio*/
 Route::get('asignar-requisitos', [AsignarRequisito::class, 'index'])->name('asignar.requisitos.index');
+
+Route::get('asignar-requisitos/{laboratorio}', [AsignarRequisito::class, 'addRequisitoShowPage'])->name('show.page.add.requisitos');
+Route::post('asignar-requisitos/{laboratorio}/save', [AsignarRequisito::class, 'addRequisito'])->name('add.requisitos');
+
+Route::get('asignar-requisitos/{laboratorio}/page', [AsignarRequisito::class, 'deleteRequisitoShowPage'])->name('show.page.delete.requisitos');
+Route::delete('asignar-requisitos/{laboratorio}/requisito/delete', [AsignarRequisito::class, 'deleteRequisito'])->name('delete.requisitos');
