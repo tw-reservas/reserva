@@ -38,7 +38,6 @@ class ReservaController extends Controller
             $reserva->detallecalendario_id = $detalleId;
             $reserva->paciente_id = $user->id;
             $reserva->save();
-            $reserva_id = $reserva->id;
             DB::commit();
             return response()->json(["data" => [
                 "reserva" => $reserva,
@@ -62,7 +61,6 @@ class ReservaController extends Controller
 
     public function verReserva(Reserva $reserva, Request $request)
     {
-
         $user = auth('sanctum')->user();
         return response()->json([
             "data" => [

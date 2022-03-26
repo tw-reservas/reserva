@@ -19,10 +19,18 @@ class PaqueteSeeder extends Seeder
             "Laboratorios",
             "Configuración",
             "Usuarios",
-            "Temas",
+            //"Temas",
+            "Contraseña"
         ];
 
-        $icon = ["fas fa-calendar-alt", "fas fa-flask", " fas fa-fw fa fa-cog", "fa-fw fas fa-users-cog", "fas fa-fw fa fa-paint-brush"];
+        $icon = [
+            "fas fa-calendar-alt",
+            "fas fa-flask",
+            " fas fa-fw fa fa-cog",
+            "fa-fw fas fa-users-cog",
+            /*"fas fa-fw fa fa-paint-brush",*/
+            "fas fa-user-lock"
+        ];
 
         for ($i = 0; $i < count($paquete); $i++) {
             $pa = new Paquete();

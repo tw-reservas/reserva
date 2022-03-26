@@ -1,18 +1,20 @@
 <?php
 
+use App\Http\Controllers\Admin\AdministrarContrasena;
 use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\AsignarRequisito;
 use App\Http\Controllers\Admin\CalendarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CupoController;
 use App\Http\Controllers\Admin\DetalleCalendarioController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\LaboratorioController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\RequisitoController;
 use App\Http\Controllers\Admin\ReservaController;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdministrarContrasena;
 
 //theme change
 Route::post('/theme', [ThemeController::class, 'themes'])->name('theme.themes');
@@ -64,11 +66,35 @@ Route::delete('requisitos/{requisito}', [RequisitoController::class, 'destroy'])
 Route::resource('user', UserController::class);
 
 //* reserva rutas *//
-Route::post('reserva', [ReservaController::class, 'verificarUserAndOrden'])->name('reserva.verificar-matricula-orden');
+Route::post('reserva', [ReservaController::class, 'verificarUserAndOrden'])->name('reserva.verif-matricula-orden.programar');
 Route::get('reserva', [ReservaController::class, 'index'])->name('reserva.index');
+/* show page reservas */
+Route::get('ver', [ReservaController::class, 'showPageVerReserva'])->name('reserva.show-page');
+Route::post('ver', [ReservaController::class, 'verifyUserAndOrdenVer'])->name('reserva.verif-matricula-orden.ver');
+Route::get("reserva/{reserva}/cancelar", [ReservaController::class, "cancelarReserva"])->name("reserva.cancelar-admin");
+//show reserva
+Route::get('reserva/{reserva}/ver', [ReservaController::class, 'showReserva'])->name('reserva.show');
+Route::get("reserva/{orden}/date/{date}", [ReservaController::class, 'getGrupos'])->name('get-grupos-admin');
+Route::get("reserva/{ordenlab}/detalle/{detalle_id}", [ReservaController::class, 'reservar'])->name('reservar-admin');
+
 
 /* Route Rol */
 Route::resource('rol', RolController::class);
 
 Route::post('restablecer-contra', [AdministrarContrasena::class, "restorePassword"])->name("restore.password");
 Route::get('restablecer-contra', [AdministrarContrasena::class, "showRestorePassword"])->name("show.restore.password");
+
+Route::get('change-password', [AdministrarContrasena::class, 'changePasswordPage'])->name('show.change-password.show');
+Route::post('change-password', [AdministrarContrasena::class, 'changePassword'])->name('show.change-password.post');
+
+
+Route::get('adm-privilegios', [MenuController::class, "showAssignPrivileges"])->name("show.assign.privileges");
+
+/*asignar requisitos a laboratorio*/
+Route::get('asignar-requisitos', [AsignarRequisito::class, 'index'])->name('asignar.requisitos.index');
+
+Route::get('asignar-requisitos/{laboratorio}', [AsignarRequisito::class, 'addRequisitoShowPage'])->name('show.page.add.requisitos');
+Route::post('asignar-requisitos/{laboratorio}/save', [AsignarRequisito::class, 'addRequisito'])->name('add.requisitos');
+
+Route::get('asignar-requisitos/{laboratorio}/page', [AsignarRequisito::class, 'deleteRequisitoShowPage'])->name('show.page.delete.requisitos');
+Route::delete('asignar-requisitos/{laboratorio}/requisito/delete', [AsignarRequisito::class, 'deleteRequisito'])->name('delete.requisitos');

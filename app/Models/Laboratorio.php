@@ -25,7 +25,7 @@ class Laboratorio extends Model
 
     public function area()
     {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(Area::class, 'area_cod', 'cod_serv');
     }
 
     public function requisitos()

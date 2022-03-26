@@ -28,9 +28,9 @@ Route::post('login', [AuthController::class, 'validateData']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('orden', [OrdenLabController::class, 'validateOrdenLab']);
 
-    Route::get('logout', [AuthController::class, 'logout']);
-    Route::get('reserva/calendario/{fecha}/grupos', [GrupoController::class, 'getGrupos']);
     Route::get('reserva/calendario', [CalendarioController::class, 'calendario']);
+    Route::get('reserva/calendario/{fecha}/grupos', [GrupoController::class, 'getGrupos']);
     Route::post('reserva/reservar', [ReservaController::class, 'reservar']);
     Route::get('boleta/{reserva}', [ReservaController::class, 'verReserva']);
+    Route::get('logout', [AuthController::class, 'logout']);
 });

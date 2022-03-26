@@ -16,11 +16,11 @@ class Area extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'nombre','cod_serv'
+        'nombre', 'cod_serv'
     ];
 
     public function laboratorios()
     {
-        return $this->hasMany(Laboratorio::class);
+        return $this->hasMany(Laboratorio::class, 'area_cod', "cod_serv");
     }
 }

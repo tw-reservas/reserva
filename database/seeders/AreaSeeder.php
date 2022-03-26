@@ -18,7 +18,7 @@ class AreaSeeder extends Seeder
 
     public function run()
     {
-        $ScriptArea = "INSERT INTO AREAs(cod_serv, Nombre)
+        $ScriptArea = "INSERT INTO AREAS(cod_serv, Nombre)
         VALUES
         (1,'HEMATOLOGIA'),
         (2,'QUIMICA'),
