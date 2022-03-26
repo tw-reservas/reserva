@@ -1,3 +1,12 @@
+/*    nav list   */
+
+.sidebar-dark-success .nav-sidebar>.nav-item>.nav-link.active,
+.sidebar-light-success .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #149776;
+    color: rgb(235, 235, 235);
+}
+
+
 /*content header*/
 
 .content-header {
@@ -5,7 +14,7 @@
     background-color: #6c757d47;
 }
 
-.content-wrapper > .content {
+.content-wrapper>.content {
     padding: 0 0.5rem;
     background-color: #6c757d45;
     min-height: calc(100vh - calc(3.5rem + 1px) - calc(3.5rem + 1px));
@@ -30,6 +39,7 @@
     background-color: #e2e2e2;
 }
 
+
 /*--     tabla   ---*/
 
 .table {
@@ -42,6 +52,7 @@
 .tbody2 {
     background-color: #f1f1f1;
 }
+
 
 /* --------------------*/
 
@@ -75,6 +86,7 @@
     color: #ffffff;
 }
 
+
 /* -----   btn agrupa btn-editar y btn-eliminar  ----- */
 
 .btn-group,
@@ -84,6 +96,7 @@
     display: inline-flex;
     vertical-align: middle;
 }
+
 
 /* btn-guardar */
 
@@ -102,11 +115,12 @@
 
 .btn-guardar:not(:disabled):not(.disabled):active,
 .btn-guardar:not(:disabled):not(.disabled).active,
-.show > .btn-guardar.dropdown-toggle {
+.show>.btn-guardar.dropdown-toggle {
     color: #fff;
     background-color: #007b6d;
     border-color: #070707;
 }
+
 
 /* btn-cancelar */
 
@@ -125,11 +139,12 @@
 
 .btn-cancelar:not(:disabled):not(.disabled):active,
 .btn-cancelar:not(:disabled):not(.disabled).active,
-.show > .btn-cancelar.dropdown-toggle {
+.show>.btn-cancelar.dropdown-toggle {
     color: #fff;
     background-color: #6c757d;
     border-color: #6c757d;
 }
+
 
 /* btn-editar */
 
@@ -148,11 +163,12 @@
 
 .btn-editar:not(:disabled):not(.disabled):active,
 .btn-editar:not(:disabled):not(.disabled).active,
-.show > .btn-editar.dropdown-toggle {
+.show>.btn-editar.dropdown-toggle {
     color: #fff;
     background-color: #0d7480;
     border-color: #0d7480;
 }
+
 
 /* btn-eliminar */
 
@@ -171,11 +187,12 @@
 
 .btn-eliminar:not(:disabled):not(.disabled):active,
 .btn-eliminar:not(:disabled):not(.disabled).active,
-.show > .btn-eliminar.dropdown-toggle {
+.show>.btn-eliminar.dropdown-toggle {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
 }
+
 
 /* btn-activar */
 
@@ -194,11 +211,12 @@
 
 .btn-activar:not(:disabled):not(.disabled):active,
 .btn-activar:not(:disabled):not(.disabled).active,
-.show > .btn-activar.dropdown-toggle {
+.show>.btn-activar.dropdown-toggle {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8;
 }
+
 
 /* btn-verdetalle */
 
@@ -217,10 +235,11 @@
 
 .btn-verdetalle:not(:disabled):not(.disabled):active,
 .btn-verdetalle:not(:disabled):not(.disabled).active,
-.show > .btn-verdetalle.dropdown-toggle {
+.show>.btn-verdetalle.dropdown-toggle {
     color: #fff;
     background-color: #6c757d;
     border-color: #6c757d;
 }
+
 
 /*------------------------------------------------------------*/
