@@ -2,7 +2,7 @@
 
 
 @section('content_header')
-    <h1>Listado de labs</h1>
+    <h1>Listado de Laboratorios</h1>
 @stop
 
 
@@ -23,34 +23,34 @@
                                 <thead class="table-newcolor">
                                     <tr>
                                         <th>Id</th>
+                                        <th>Area</th>
                                         <th>Cod_arancel</th>
                                         <th>Nombre</th>
                                         <th>Estado</th>
-                                        <th>Requisito_id</th>
-                                        <th>Area_cod</th>
+
                                         <th> Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody2">
-                                    @foreach ($laboratoriosDatos as $labs)
+                                    @foreach ($laboratorios as $lab)
                                         <tr>
-                                            <td>{{ $labs->id }}</td>
-                                            <td>{{ $labs->cod_arancel }}</td>
-                                            <td>{{ $labs->nombre }}</td>
-                                            @if ($labs->estado)
+                                            <td>{{ $lab->id }}</td>
+                                            <td>{{$lab->area->nombre}}</td>
+                                            <td>{{ $lab->cod_arancel }}</td>
+                                            <td>{{ $lab->nombre }}</td>
+                                            @if ($lab->estado)
                                                 <td>Activo</td>
                                             @else
                                                 <td>Desactivado</td>
                                             @endif
-                                            <td>{{ $labs->requisito_id }} </td>
-                                            <td>{{ $labs->area_cod }} </td>
+
 
                                             <td>
 
-                                                <form action="{{ route('laboratorios.delete', $labs->id) }}"
+                                                <form action="{{ route('laboratorios.delete', $lab->id) }}"
                                                     method="POST">
                                                     <div class="btn-group btn-group-sm">
-                                                        <a href="{{ route('laboratorios.edit', $labs->id) }}"
+                                                        <a href="{{ route('laboratorios.edit', $lab->id) }}"
                                                             class="btn btn-editar btn-sm">
                                                             <i class="fas fa-pen p-0"></i>
                                                         </a>
@@ -74,3 +74,6 @@
         </div>
     </div>
 @stop
+@section('js')
+@include('global.script-toast')
+@endsection

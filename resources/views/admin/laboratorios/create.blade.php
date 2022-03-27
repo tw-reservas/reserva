@@ -12,21 +12,21 @@
                 <div class="card2 card-outline">
                     <!--<div class="card-header">
 
-                                </div>-->
+                                    </div>-->
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('laboratorios.store') }}" method="POST" id="form-grupo">
                                 @csrf
-                                <div class="mb-3">
-                                    <label for="" class="">ID de laboratorio :</label>
-                                    <input id="id" placeholder="inserte id de laboratorio" name="id" autocomplete="off"
-                                        type="text" class="form-control @error('id') is-invalid @enderror" tabindex="2">
-                                    @error('id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                <!--<div class="mb-3">
+                                        <label for="" class="">ID de laboratorio :</label>
+                                        <input id="id" placeholder="inserte id de laboratorio" name="id" autocomplete="off"
+                                            type="text" class="form-control @error('id') is-invalid @enderror" tabindex="2">
+                                        @error('id')
+        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+    @enderror
+                                    </div>-->
 
                                 <div class="mb-3">
                                     <label for="" class="">Codigo de Arancel :</label>
@@ -51,40 +51,41 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Estado :</label>
-                                    <input id="estado" name="estado"
-                                        placeholder="inserte el estado del laboratorio : true or false" type="text"
-                                        class="form-control @error('estado') is-invalid @enderror" tabindex="2">
-                                    @error('estado')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                <!--<div class="mb-3">
+                                        <label for="" class="form-label">Estado :</label>
+                                        <input id="estado" name="estado"
+                                            placeholder="inserte el estado del laboratorio : true or false" type="text"
+                                            class="form-control @error('estado') is-invalid @enderror" tabindex="2">
+                                        @error('estado')
+        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+    @enderror
+                                    </div>-->
+
+                                <!--<div class="mb-3">
+                                        <label for="" class="form-label">Requisito id :</label>
+                                        <input id="requisito_id" name="requisito_id" placeholder="inserte el id de requisito"
+                                            type="text" class="form-control @error('requisito_id') is-invalid @enderror"
+                                            tabindex="2">
+                                        @error('requisito_id')
+        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+    @enderror
+                                    </div>-->
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Requisito id :</label>
-                                    <input id="requisito_id" name="requisito_id" placeholder="inserte el id de requisito"
-                                        type="text" class="form-control @error('requisito_id') is-invalid @enderror"
-                                        tabindex="2">
-                                    @error('requisito_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Codigo de Area :</label>
-                                    <input id="area_cod" name="area_cod" placeholder="inserte el codigo del area"
-                                        type="text" class="form-control @error('area_cod') is-invalid @enderror"
-                                        tabindex="2">
-                                    @error('area_cod')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="form-group">
+                                        <label>Seleccionar Area</label>
+                                        <select name="area" id="areas" class="form-control">
+                                            @forelse ($areas as $area)
+                                                <option  value="{{$area->cod_serv}}">{{$area->cod_serv}} - {{$area->nombre}}</option>
+                                            @empty
+                                                <option disabled>No hay Area</option>
+                                            @endforelse
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <br>
@@ -153,4 +154,5 @@
             }
         }
     </script>
+    @include('global.script-toast')
 @stop

@@ -71,12 +71,5 @@
 
 
 
-    <script>
-        @if (Session::has('error'))
-            toastr.error("{{ session('error') }}");
-        @endif
-        @if (Session::has('success'))
-            toastr.success("{{ session('success') }}");
-        @endif
-    </script>
+@include('global.script-toast')
 @stop

@@ -21,7 +21,7 @@ class AsignarRequisito extends Controller
         $labRequisitos = $laboratorio->requisitos;
         //$requisitos = Requisito::all()->except($labRequisitos, ["id"])->sortBy('id');
         $requisitos = Requisito::whereNotIn('id', $labRequisitos->pluck('id')->toArray())->get();
-        return view('admin.assign-requisitos.add-requisitos', compact('laboratorio', 'labRequisitos', 'requisitos'));
+        return view('admin.assign-requisitos.modify-requisitos', compact('laboratorio', 'labRequisitos', 'requisitos'));
     }
 
     public function addRequisito(Laboratorio $laboratorio, Request $request)
@@ -33,15 +33,15 @@ class AsignarRequisito extends Controller
     public function deleteRequisitoShowPage(Laboratorio $laboratorio)
     {
         $laboratorio->requisitos;
-        return view('admin.assign-requisitos.delete-requisitos', compact('laboratorio'));
+        return view('admin.assign-requisitos.modify-requisitos', ['delete'=> 'delete','laboratorio'=>$laboratorio]);
     }
 
     public function deleteRequisito(Laboratorio $laboratorio, Request $request)
     {
-        $request->validate([
+        /*$request->validate([
             "requisito_id" => 'required|numeric',
-        ]);
-        $laboratorio->requisitos()->detach($request->requisito_id);
+        ]);*/
+        $laboratorio->requisitos()->detach($request->duallist_requisitos);
         return back()->with("success", "Los requisitos del laboratorio fueron eliminados con éxito");
     }
 }

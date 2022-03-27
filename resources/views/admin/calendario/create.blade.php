@@ -93,9 +93,5 @@
 
         }
     </script>
-    <script>
-        @if (Session::has('error'))
-            toastr.error("{{ session('error') }}");
-        @endif
-    </script>
+    @include('global.script-toast')
 @stop

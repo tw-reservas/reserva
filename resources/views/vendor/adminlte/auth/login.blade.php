@@ -83,13 +83,7 @@
         </div>
 
     </form>
-<style>
-    .btn-success:hover, .btn-success:active, .btn-success:focus {
-  color: #ffffff !important;
-  background-color: #666666 !important;
-  border-color: #888888 !important;
-}
-</style>
+
 @stop
 
 @section('auth_footer')

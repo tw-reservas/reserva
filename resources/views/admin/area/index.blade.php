@@ -58,3 +58,6 @@
     </div>
 
 @stop
+@section('js')
+@include('global.script-toast')
+@stop

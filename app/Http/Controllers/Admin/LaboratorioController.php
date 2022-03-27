@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\Laboratorio;
 use App\Models\Requisito;
 use Illuminate\Http\Request;
@@ -16,9 +17,8 @@ class LaboratorioController extends Controller
      */
     public function index()
     {
-        $lab = Laboratorio::all()->sortBy('id');
-
-        return view('admin.laboratorios.saludos')->with('laboratoriosDatos', $lab);
+        $labs = Laboratorio::with('area')->get()->sortBy('area.cod_serv',SORT_REGULAR,false);
+        return view('admin.laboratorios.index')->with('laboratorios', $labs);
     }
 
     /**
@@ -28,7 +28,8 @@ class LaboratorioController extends Controller
      */
     public function create()
     {
-        return view("admin.laboratorios.create");
+        $areas = Area::all()->sortBy('id');
+        return view("admin.laboratorios.create",compact("areas"));
     }
 
     /**
@@ -40,25 +41,22 @@ class LaboratorioController extends Controller
     public function store(Request $request)
     {
         try{
-            $id = $request->id;
+
             $codigo_arancel = $request->cod_arancel;
             $nombre = $request->nombre;
-            $estado = $request->estado;
-            $requisito = $request->requisito_id;
-            $area_codigo = $request->area_cod;
+
+            $area_codigo = $request->input('area');
 
             $req = new Laboratorio();
-            $req->id = $id;
             $req->cod_arancel = $codigo_arancel;
             $req->nombre = $nombre;
-            $req->estado = $estado;
-            $req->requisito_id = $requisito;
             $req->area_cod = $area_codigo;
             $req->save();
-            return redirect("admin/laboratorios");
+            return redirect("admin/laboratorios")->with('success',"Laboratorio creado con éxito");
         }
         catch(\Throwable $th){
-            return redirect()->back();
+
+            return redirect()->back()->with('error',"No se pudo guardar el laboratorio");
         }
     }
 
@@ -81,7 +79,8 @@ class LaboratorioController extends Controller
      */
     public function edit(Laboratorio $laboratorio)
     {
-        return view("admin.laboratorios.edit")->with("laboratorio",$laboratorio);
+        $areas = Area::all()->sortBy('id');
+        return view("admin.laboratorios.edit",compact('laboratorio'))->with("areas",$areas);
     }
 
     /**
@@ -94,25 +93,21 @@ class LaboratorioController extends Controller
     public function update(Request $request, Laboratorio $laboratorio)
     {
         try{
-            $id = $request->id;
+
             $codigo_arancel = $request->cod_arancel;
             $nombre = $request->nombre;
-            $estado = $request->estado;
-            $requisito = $request->requisito_id;
-            $area_codigo = $request->area_cod;
+            $area_codigo =$request->input('area');
 
-            $laboratorio->id = $id;
+
             $laboratorio->cod_arancel = $codigo_arancel;
             $laboratorio->nombre = $nombre;
-            $laboratorio->estado = $estado;
-            $laboratorio->requisito_id = $requisito;
             $laboratorio->area_cod = $area_codigo;
             $laboratorio->update();
-            return redirect("admin/laboratorios");
+            return redirect("admin/laboratorios")->with('success',"Laboratorio actualizado con éxito");
         }
         catch(\Throwable $th){
             dd($th);
-            return redirect()->back();
+            return redirect()->back()->with('error',"No se pudo actualizar el laboratorio");
         }
     }
 
@@ -125,6 +120,6 @@ class LaboratorioController extends Controller
     public function destroy(Laboratorio $laboratorio)
     {
         $laboratorio->delete();
-        return back();
+        return back()->with('success', "Laboratorio eliminado con éxito");
     }
 }

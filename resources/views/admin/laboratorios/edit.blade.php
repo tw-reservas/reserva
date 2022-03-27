@@ -19,7 +19,7 @@
                                 id="form-grupo">
                                 @csrf
                                 @method("PUT")
-                                <div class="mb-3">
+                                <!--<div class="mb-3">
                                     <label for="" class="">ID del laboratorio :</label>
                                     <input id="id" value="{{ $laboratorio->id }}"
                                         placeholder="inserte el id del laboratorio : " name="id" autocomplete="off"
@@ -29,7 +29,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div>-->
                                 <div class="mb-3">
                                     <label for="" class="">Codigo Arancel :</label>
                                     <input id="cod_arancel" value="{{ $laboratorio->cod_arancel }}"
@@ -53,7 +53,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
+                                <!--<div class="mb-3">
                                     <label for="" class="">Estado del Laboratorio : </label>
                                     <input id="estado" value="{{ $laboratorio->estado }}"
                                         placeholder="inserte estado de ese laboratorio" name="estado" autocomplete="off"
@@ -63,29 +63,20 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div>-->
                                 <div class="mb-3">
-                                    <label for="" class="">Requisito ID :</label>
-                                    <input id="requisito_id" value="{{ $laboratorio->requisito_id }}"
-                                        placeholder="inserte el id el requisito" name="requisito_id" autocomplete="off"
-                                        type="text" class="form-control @error('requisito_id') is-invalid @enderror"
-                                        tabindex="2">
-                                    @error('requisito_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Area del Codigo :</label>
-                                    <input id="area_cod" name="area_cod" value="{{ $laboratorio->area_cod }}"
-                                        placeholder="inserte el codigo del area " type="text"
-                                        class="form-control @error('area_cod') is-invalid @enderror" tabindex="2">
-                                    @error('area_cod')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="form-group">
+                                        <label>Seleccionar Area</label>
+                                        <select name="area" id="areas" class="form-control">
+                                            @forelse ($areas as $area)
+                                                <option  value="{{$area->cod_serv}}"
+
+                                                    @if ($area->cod_serv == $laboratorio->area_cod) selected @endif>{{$area->cod_serv}} - {{$area->nombre}}</option>
+                                            @empty
+                                                <option disabled>No hay Area</option>
+                                            @endforelse
+                                        </select>
+                                    </div>
                                 </div>
                                 <a href="{{ route('laboratorios.index') }}" class="btn btn-cancelar btn-sm"
                                     tabindex="5">Cancelar</a>
@@ -143,4 +134,5 @@
             }
         }
     </script>
+    @include('global.script-toast')
 @stop

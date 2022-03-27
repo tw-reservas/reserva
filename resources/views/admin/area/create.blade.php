@@ -85,4 +85,5 @@
             }
         }
     </script>
+    @include('global.script-toast')
 @stop
