@@ -9,3 +9,9 @@
 @section('content')
     @include('global.ver-reserva', ['detalleReserva' => $detalleReserva,"admin" => "admin"])
 @stop
+
+@section('js')
+
+@include('global.script-toast')
+
+@stop
