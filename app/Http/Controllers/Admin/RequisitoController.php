@@ -39,16 +39,14 @@ class RequisitoController extends Controller
     public function store(Request $request)
     {
         try{
-            $id = $request->id;
             $descripcion = $request->descripcion;
             $req = new Requisito();
             $req->descripcion = $descripcion;
-            $req->id = $id;
             $req->save();
-            return redirect("admin/requisitos");
+            return redirect("admin/requisitos")->with('success','El requisito se guardo éxitosamente');
         }
         catch(\Throwable $th){
-            return redirect()->back();
+            return redirect()->back()->with('error','No se pudo guardar el Requisito');
         }
     }
 
@@ -84,15 +82,13 @@ class RequisitoController extends Controller
     public function update(Request $request, Requisito $requisito)
     {
         try{
-            $id = $request->id;
             $descripcion = $request->descripcion;
             $requisito->descripcion = $descripcion;
-            $requisito->id = $id;
             $requisito->update();
-            return redirect("admin/requisitos");
+            return redirect("admin/requisitos")->with('success','Se actualizó correctamente');
         }
         catch(\Throwable $th){
-            return redirect()->back();
+            return redirect()->back()->with('error','Ocurrio un error');
         }
     }
 
@@ -105,6 +101,6 @@ class RequisitoController extends Controller
     public function destroy(Requisito $requisito)
     {
         $requisito->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Se elimino con éxito');
     }
 }

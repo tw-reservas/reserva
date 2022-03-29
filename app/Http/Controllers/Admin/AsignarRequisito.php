@@ -42,6 +42,6 @@ class AsignarRequisito extends Controller
             "requisito_id" => 'required|numeric',
         ]);*/
         $laboratorio->requisitos()->detach($request->duallist_requisitos);
-        return back()->with("success", "Los requisitos del laboratorio fueron eliminados con éxito");
+        return redirect('admin/asignar-requisitos')->with("success", "Los requisitos del laboratorio fueron eliminados con éxito");
     }
 }

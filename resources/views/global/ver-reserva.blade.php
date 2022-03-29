@@ -37,15 +37,30 @@
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <a href="{{ route('download-pdf') }}" class="btn btn-info btn-sm">imprimir</a>
+
                     @isset($admin)
                         <a href="{{ route('reserva.cancelar-admin', $detalleReserva->id) }}"
                             class="btn btn-danger btn-sm">Cancelar</a>
                     @else
+                        <a href="{{ route('download-pdf') }}" class="btn btn-info btn-sm">imprimir</a>
                         <a href="{{ route('reserva.cancelar') }}" class="btn btn-danger btn-sm">Cancelar</a>
                     @endisset
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-3">
+            @forelse ($detalleReserva->ordenlab->laboratorios as $laboratorio )
+                <td>{{$laboratorio->nombre}}</td>
+                @forelse ($laboratorio->requisitos as $requisito)
+                    <h5>{{$requisito->id}} - {{$requisito->descripcion}}</h5>
+                    <h5></h5>
+                @empty
+                <h5>No tiene requisitos</h5>
+                @endforelse
+            @empty
+            <h5>Sin laboratorio</h5>
+            @endforelse
         </div>
     </div>
 </div>

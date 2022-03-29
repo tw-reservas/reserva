@@ -17,16 +17,7 @@
                         <div class="col-md-6">
                             <form action="{{ route('requisitos.store') }}" method="POST" id="form-grupo">
                                 @csrf
-                                <div class="mb-3">
-                                    <label for="" class="">ID del Requisito :</label>
-                                    <input id="id" placeholder="inserte id del Requisito" name="id" autocomplete="off"
-                                        type="text" class="form-control @error('id') is-invalid @enderror" tabindex="2">
-                                    @error('id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+
                                 <div class="mb-3">
                                     <label for="" class="form-label">Descripcion :</label>
                                     <input id="descripcion" name="descripcion"

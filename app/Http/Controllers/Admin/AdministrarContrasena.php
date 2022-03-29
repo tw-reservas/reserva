@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,12 +43,11 @@ class AdministrarContrasena extends Controller
         return view('admin.change-password.index');
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(ChangePasswordRequest $request)
     {
-        $this->validate($request, [
-            "password" => "required|numeric|digits_between:6,12",
-            "verify_password" => "required|numeric|digits_between:6,12",
-        ]);
+        if(!Hash::check($request->password_actual, Auth::user()->password)){
+            return redirect()->back()->with("error", "El campo contraseña actual no es correcta");
+        }
         if ($request->password != $request->verify_password) {
             return redirect()->back()->with("error", "contraseñas incorrectas");
         }

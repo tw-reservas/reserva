@@ -19,17 +19,7 @@
                                 id="form-grupo">
                                 @csrf
                                 @method("PUT")
-                                <div class="mb-3">
-                                    <label for="" class="">ID de Requisito :</label>
-                                    <input id="id" value="{{ $requisitos->id }}" placeholder="inserte ID de Requisito"
-                                        name="id" autocomplete="off" type="text"
-                                        class="form-control @error('ID') is-invalid @enderror" tabindex="2">
-                                    @error('id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+
                                 <div class="mb-3">
                                     <label for="" class="form-label">Descripcion :</label>
                                     <input id="descripcion" name="descripcion"" value = " {{ $requisitos->descripcion }}"

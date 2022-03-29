@@ -46,9 +46,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <p>
-                            El grupo registrado tendra cupo 0, dar click en Config. %, para repartir los porcentajes.
-                        </p>
+
                     </div>
                 </div>
             </div>

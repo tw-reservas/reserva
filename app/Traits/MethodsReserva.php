@@ -57,9 +57,8 @@ trait MethodsReserva
         if ($re == null) {
             return redirect()->back()->with("error", "El orden ya tiene una reserva.");
         }
-        $grupo = $re->detalleCalendario->grupo;
 
-        $reservaNew = Reserva::where("id", $reserva->id)->with(['ordenLab:id,codigo', 'detalleCalendario:id,fecha,grupo_id', 'detalleCalendario.grupo'])->first();
+        $reservaNew = Reserva::where("id", $reserva->id)->with(['ordenLab:id,codigo', 'detalleCalendario:id,fecha,grupo_id', 'detalleCalendario.grupo','ordenLab.laboratorios.requisitos'])->first();
         return $reservaNew;
         //return view('paciente.content.verReserva')->with("reserva", $re)->with('grupo', $grupo);
         //return view('paciente.pdf.pdf-reserva')->with("reserva", $re)->with('grupo', $grupo);

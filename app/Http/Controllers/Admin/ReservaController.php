@@ -37,8 +37,10 @@ class ReservaController extends Controller
             $orden = $this->verificarOrdenWithMatricula($orden_lab, $matricula);
             $messageError = $this->verifyError($paciente, $orden);
             $haveReserva = $this->verifyReserva($orden);
-            if ($messageError != "" && $haveReserva != "") {
-                return redirect()->back()->with('error', $messageError);
+
+            if ($messageError != "" || $haveReserva != "") {
+                //dd($messageError);
+                return back()->with("error", $messageError);
             }
             return $this->reservaCalendario($paciente, $orden);
         } catch (\Throwable $th) {
@@ -60,7 +62,7 @@ class ReservaController extends Controller
             return "!! Matricula u orden incorrectos ¡¡";
         }
         if ($this->diffDateOrdenLab($orden->fecha) > $this->days) {
-            return nl2br("Orden de laboratorio caducado \n Fecha: " . $orden->fecha);
+            return "Orden de laboratorio caducado Fecha: " . $orden->fecha;
         }
 
         return "";
