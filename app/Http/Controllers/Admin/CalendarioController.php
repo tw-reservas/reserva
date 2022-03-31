@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CalendarioRequest;
 use App\Models\Calendario;
+use App\Traits\RangeDate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 
 class CalendarioController extends Controller
 {
+    use RangeDate;
     /**
      * Display a listing of the resource.
      *
@@ -34,38 +36,37 @@ class CalendarioController extends Controller
         return view('admin.calendario.create')->with('fecha', $fecha);
     }
 
+    private function validateFechaInicio($fecha)
+    {
+        $now = Carbon::now()->format("Y-m-d");
+        if ($fecha == $now) {
+            return "La fecha debe ser mayor a " . $now;
+        }
+        if ($this->isSundaySaturdayHoliday(Carbon::parse($fecha))) {
+            return "No se puede reservar en este dia: feriado o fin de semana";
+        }
+        $fechaMax = Calendario::max('fechaFin');
+        if (!is_null($fechaMax)) {
+            if ($fecha <= $fechaMax) {
+                return "Fecha reservadas hasta " . $fechaMax . ". Intente con una fecha superior.";
+            }
+        }
+        return "";
+    }
+
 
     public function store(CalendarioRequest $request)
     {
         $cantidad = $request->cantidad;
-        $now = Carbon::now()->format("Y-m-d");
         $fechaForm = Carbon::parse($request->fechaInicio)->format("Y-m-d");
-        if ($fechaForm == $now) {
-            return back()->with("error", "La fecha debe ser mayor a " . $now);
+        $errorMessage = $this->validateFechaInicio($request->fechaInicio);
+        if ($errorMessage != "") {
+            return back()->with("error", $errorMessage);
         }
-        $fecha = Calendario::all('fechaFin')->max('fechaFin');
-
-
-        if ($fecha != null) {
-            if ($fechaForm <= $fecha) {
-                return back()->with("error", "Fecha reservadas hasta " . $fecha . ". Intente con una fecha superior.");
-            }
-        }
-
-        //logica de quitar sabado domingos y feriados
-        $i = 0;
+        //lógica de quitar sábado domingos y feriados
         $fechaFin = Carbon::createFromFormat('Y-m-d',  $fechaForm);
+        $this->lastDate($fechaFin, $cantidad);
 
-        while ($i < $cantidad) {
-            if ($fechaFin->dayOfWeek == Carbon::SUNDAY || $fechaFin->dayOfWeek == Carbon::SATURDAY) {
-                $fechaFin = $fechaFin->addDay();
-            } else {
-                $i += 1;
-                if ($i < $cantidad) {
-                    $fechaFin = $fechaFin->addDay();
-                }
-            }
-        }
         $calendario = new Calendario();
         $calendario->cantidad = $cantidad;
         $calendario->fechaInicio = $fechaForm;

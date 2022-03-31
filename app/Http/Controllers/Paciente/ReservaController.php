@@ -12,6 +12,8 @@ use App\Models\Reserva;
 use App\Services\CpsServices;
 use App\Traits\CpsOrden;
 use App\Traits\CpsUserAndOrden;
+use App\Traits\MethodsReserva;
+use App\Traits\RangeDate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,10 +24,11 @@ class ReservaController extends Controller
 {
     protected $orden;
     /*cantidad de dias validas de orden laboratorio  */
-    protected $days = 30;
     //private $cpsAdapter;
 
     use CpsUserAndOrden;
+    use MethodsReserva;
+    use RangeDate;
 
     public function __construct(CpsServices $cpsService)
     {
@@ -37,30 +40,31 @@ class ReservaController extends Controller
         return view("paciente.index");
     }
 
-    private function diffDateOrdenLab($date)
+    private function validaciones($orden)
     {
-        $dateTime1 = strtotime($date);
-        $dateTime2 = strtotime(Carbon::now());
-        $days = (int)(($dateTime2 - $dateTime1) / 86400);
-        return $days;
+        if ($orden == null) {
+            return "Código de laboratorio incorrecto";
+        }
+        if ($this->diffDateOrdenLab($orden->fecha) > $this->days) {
+            return "Orden de laboratorio caducado Fecha: " . $orden->fecha;
+        }
+        $OrdenLabUser = $orden->paciente;
+        if ($OrdenLabUser->matricula != Auth::guard('paciente')->user()->matricula) {
+            return "Ingrese el Código de laboratorio del paciente: " . $OrdenLabUser->nombre . " matricula: " . $OrdenLabUser->matricula;
+        }
+        return "";
     }
+
     public function verificarCodLab(CodigoLabRequest $request)
     {
         Session::put('reserva', null);
         Session::put('ordenLab', null);
         $orden = $this->verificarOrden($request->orden);
-        if ($orden == null) {
-            return redirect()->back()->with('error', "Código de laboratorio incorrecto");
+        $errorMessage = $this->validaciones($orden);
+        if ($errorMessage != "") {
+            return redirect()->back()->with('error', $errorMessage);
         }
 
-        if ($this->diffDateOrdenLab($orden->fecha) > $this->days) {
-            return redirect()->back()->with('error', nl2br("Orden de laboratorio caducado Fecha: " . $orden->fecha));
-        }
-
-        $OrdenLabUser = $orden->paciente;
-        if ($OrdenLabUser->matricula != Auth::guard('paciente')->user()->matricula) {
-            return redirect()->back()->with('error', "Ingrese el Código de laboratorio del paciente: " . $OrdenLabUser->nombre . " matricula: " . $OrdenLabUser->matricula);
-        }
         $reserva = $orden->reserva;
         if ($reserva != null) {
             Session::put('reserva', $reserva->id);
@@ -72,12 +76,12 @@ class ReservaController extends Controller
 
     public function calendarioView($orden)
     {
-        $now = Carbon::now()->format('Y-m-d');
-        $detalle = DetalleCalendario::where("estado", true)
+        $detalle = $this->getDateOfDetalleCalendario();
+        /*$detalle = DetalleCalendario::where("estado", true)
             ->selectRaw("fecha")
             ->selectRaw("(fecha <= '$now') as estado")
             ->selectRaw('(SUM("cupoMaximo") - SUM("cupoOcupado")) as cupoRestante')
-            ->groupBy("fecha")->orderBy("fecha")->get();
+            ->groupBy("fecha")->orderBy("fecha")->get();*/
         return view('paciente.content.reserva')->with("detalles", $detalle)->with("orden", $orden);
     }
 
@@ -85,12 +89,13 @@ class ReservaController extends Controller
     public function grupos($orden, $date)
     {
         $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->where("estado", true)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
+
         return response()->json(["detalle" => $detalleCalendario]);
     }
 
     public function reservar($ordenLab, $detalleId)
     {
-        $orden = Ordenlab::where("codigo", $ordenLab)->first();
+        /*$orden = Ordenlab::where("codigo", $ordenLab)->first();
 
         if ($orden == null) {
             return redirect('paciente/')->with('error', "Código de laboratorio no existe.");
@@ -119,26 +124,37 @@ class ReservaController extends Controller
                 return back()->with("error", "Este grupo no tiene cupo, intente con otro grupo.");
             }
             return redirect()->back()->with("error", "No se pudo programar la orden de laboratorio");
+        }*/
+
+        try {
+            $reserva = $this->programReservar($ordenLab, $detalleId);
+            Session::put('reserva', $reserva->id);
+            return redirect('paciente/reserva/ver');
+        } catch (\Throwable $th) {
+            if ($th->getCode() == "20808") {
+                return back()->with("error", "Este grupo no tiene cupo, intente con otro grupo.");
+            }
+            return redirect()->back()->with("error", "No se pudo programar la orden de laboratorio");
         }
     }
 
 
 
 
-    public function ver()
+    public function verReserva()
     {
         $reserva_id = Session::get('reserva');
         if ($reserva_id == null) {
             return redirect('paciente/')->with("error", "Usted no tiene Reserva Activa pruebe ingresando otro orden de laboratorio");
         }
-        $re = Reserva::where('id', $reserva_id)->with('ordenLab:id,codigo')->with('detalleCalendario:id,fecha,grupo_id')->first();
+        $re = $this->ver(Reserva::find($reserva_id));
 
 
         if ($re == null) {
             return redirect('paciente/')->with("error", "El orden ya tiene una reserva.");
         }
-        $grupo = $re->detalleCalendario->grupo;
-        return view('paciente.content.verReserva')->with("reserva", $re)->with('grupo', $grupo);
+        //$grupo = $re->detalleCalendario->grupo;
+        return view('paciente.content.verReserva')->with("reserva", $re)/*->with('grupo', $grupo)*/;
         //return view('paciente.pdf.pdf-reserva')->with("reserva", $re)->with('grupo', $grupo);
     }
 

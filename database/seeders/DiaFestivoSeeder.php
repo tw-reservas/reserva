@@ -17,9 +17,7 @@ class DiaFestivoSeeder extends Seeder
         $feriados = [
             ["titulo" => "año nuevo", "fecha" => "2020-01-01"],
             ["titulo" => "dia del estado plurinacional", "fecha" => "2020-01-22"],
-            ["titulo" => "viernes santo", "fecha" => "2020-04-15"],
             ["titulo" => "dia del trabajo", "fecha" => "2020-05-01"],
-            ["titulo" => "corpus christi", "fecha" => "2020-06-16"],
             ["titulo" => "año nuevo aymara", "fecha" => "2020-06-21"],
             ["titulo" => "dia de la independencia", "fecha" => "2020-08-06"],
             ["titulo" => "Dia de los difuntos", "fecha" => "2020-11-2"],
