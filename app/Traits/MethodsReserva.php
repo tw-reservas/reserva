@@ -58,9 +58,18 @@ trait MethodsReserva
             return redirect()->back()->with("error", "El orden ya tiene una reserva.");
         }
 
-        $reservaNew = Reserva::where("id", $reserva->id)->with(['ordenLab:id,codigo', 'detalleCalendario:id,fecha,grupo_id', 'detalleCalendario.grupo','ordenLab.laboratorios.requisitos'])->first();
+        $reservaNew = Reserva::where("id", $reserva->id)->with(['ordenLab:id,codigo', 'detalleCalendario:id,fecha,grupo_id', 'detalleCalendario.grupo', 'ordenLab.laboratorios.requisitos'])->first();
         return $reservaNew;
         //return view('paciente.content.verReserva')->with("reserva", $re)->with('grupo', $grupo);
         //return view('paciente.pdf.pdf-reserva')->with("reserva", $re)->with('grupo', $grupo);
+    }
+
+    public function getGruposMethod($fecha)
+    {
+        $grupos = DetalleCalendario::where("fecha", $fecha)
+            ->select('detalles_calendarios.*', 'grupos.nombre', 'grupos.horaInicio', 'grupos.horaFin')
+            ->join('grupos', "detalles_calendarios.grupo_id", 'grupos.id')
+            ->orderBy("id")->get();
+        return $grupos;
     }
 }

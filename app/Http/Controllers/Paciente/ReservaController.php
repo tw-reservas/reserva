@@ -88,6 +88,9 @@ class ReservaController extends Controller
 
     public function grupos($orden, $date)
     {
+        if (!$this->hourAndDateValidate($date)) {
+            return response()->json(["error" => "Ya no se puede reservar en este grupo"], 403);
+        }
         $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->where("estado", true)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
 
         return response()->json(["detalle" => $detalleCalendario]);

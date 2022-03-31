@@ -12,6 +12,8 @@ trait RangeDate
 {
     //cantidad de días para que la orden sea obsoleta;
     protected $days = 30;
+    //hora predefinida
+    private $predefinedTime = "09:45";
 
     /*diferencia de dias entre ahora y $date */
     private function diffDateOrdenLab($date)
@@ -101,5 +103,16 @@ trait RangeDate
             }
         }
         return $start;
+    }
+
+    private function hourAndDateValidate($fecha)
+    {
+        $now = Carbon::now();
+        $dateSelected = Carbon::parse($fecha);
+        $timeNow = strtotime($now->format("H:m"));
+        if ($dateSelected->diff($now)->days <= 0 && $timeNow > strtotime($this->predefinedTime)) {
+            return false;
+        }
+        return true;
     }
 }
