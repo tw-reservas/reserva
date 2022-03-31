@@ -25,6 +25,7 @@ class CasoDeUsoSeeder extends Seeder
             "Administrar Cupo",
             "Adm. Calendario",
             "Detalle Calendario",
+            "Feriados",
             "Gestionar Administrador",
             "Administrar rol",
             "Restablecer contraseña",
@@ -43,6 +44,7 @@ class CasoDeUsoSeeder extends Seeder
             "/admin/cupo",
             "/admin/calendario",
             "/admin/detalle-calendario",
+            "/admin/feriados",
             "/admin/user",
             "/admin/rol",
             "/admin/restablecer-contra",
@@ -51,7 +53,7 @@ class CasoDeUsoSeeder extends Seeder
         ];
 
         $paquete_id = [
-            1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5
+            1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5
         ];
 
         for ($i = 0; $i < count($nombre); $i++) {

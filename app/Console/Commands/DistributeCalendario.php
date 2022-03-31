@@ -7,6 +7,7 @@ use App\Models\Calendario;
 use App\Models\Cupo;
 use App\Models\DetalleCalendario;
 use App\Models\Grupo;
+use App\Traits\RangeDate;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
@@ -20,6 +21,7 @@ class DistributeCalendario extends Command
      *
      * @var string
      */
+    use RangeDate;
     protected $signature = 'distribute:calendario';
 
     /**
@@ -78,7 +80,7 @@ class DistributeCalendario extends Command
             Log::info("Calendario insertado con éxito. calendario:id " . $calendario->id);
 
             $listDate = $this->getListDates($calendario->fechaInicio, $calendario->fechaFin, $calendario->id);
-            
+
             DetalleCalendario::insert($listDate);
 
             $calendario->estado =   !$calendario->estado;
@@ -103,7 +105,6 @@ class DistributeCalendario extends Command
         /*si la diferencia de fecha entre now y el ultimo activado es mayor a 1 no es valido*/
         /*si el calendario ya fue repartido no es valido*/
         $calendario = Calendario::withCount("detalleCalendario")->find($activeCalendario->current_id);
-
         if ($lastDate->diff($now)->days > 1 && $calendario->detalle_calendario_count > 0) {
             return false;
         }
@@ -124,60 +125,5 @@ class DistributeCalendario extends Command
         } else {
             Log::info("No hay calendarios a repartir");
         }
-    }
-
-    private function getListDates($fechaInicio, $fechaFin, $calendario_id)
-    {
-        $start = Carbon::createFromFormat('Y-m-d', $fechaInicio);
-        $end = Carbon::createFromFormat('Y-m-d', $fechaFin);
-        $grupos = Grupo::where("estado", true)->get();
-        $cupo = Cupo::where("estado", true)->first();
-        $diaGrupo = [];
-        for ($i = $start; $i <= $end; $i->addDay()) {
-            if ($i->dayOfWeek == Carbon::SUNDAY || $i->dayOfWeek == Carbon::SATURDAY) {
-            } else {
-                foreach ($grupos as $grupo => $value) {
-                    $diaGrupo[] = [
-                        "cupoMaximo" => $value->porcentaje,
-                        "cupoOcupado" => 0,
-                        "fecha" => $i->format('Y-m-d'),
-                        "estado" => true,
-                        "cupo_id" => $cupo->id,
-                        "grupo_id" => $value->id,
-                        "calendario_id" => $calendario_id,
-                        "created_at" => Carbon::now(),
-                        "updated_at" => Carbon::now(),
-                    ];
-                }
-            }
-        }
-        return $diaGrupo;
-    }
-
-    private function startDate($start)
-    {
-        while (true) {
-            if ($start->dayOfWeek == Carbon::SUNDAY || $start->dayOfWeek == Carbon::SATURDAY) {
-                $start = $start->addDay();
-            } else {
-                break;
-            }
-        }
-    }
-
-    private function lastDate($start, $amount)
-    {
-        $a = 0;
-        while ($a < $amount) {
-            if ($start->dayOfWeek == Carbon::SUNDAY || $start->dayOfWeek == Carbon::SATURDAY) {
-                $start = $start->addDay();
-            } else {
-                $a += 1;
-                if ($a < $amount) {
-                    $start = $start->addDay();
-                }
-            }
-        }
-        return $start;
     }
 }

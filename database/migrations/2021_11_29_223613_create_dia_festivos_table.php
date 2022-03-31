@@ -18,6 +18,7 @@ class CreateDiaFestivosTable extends Migration
             $table->string('titulo');
             $table->date('fecha');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
