@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             PaqueteSeeder::class,
             CasoDeUsoSeeder::class,
             MenuSeeder::class,
+            DiaFestivoSeeder::class,
         ]);
     }
 }

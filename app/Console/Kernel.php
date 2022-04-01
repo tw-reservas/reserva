@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('disable:detalle-calendario')->dailyAt('09:40');
-        $schedule->command('distribute:calendario')->dailyAt('21:00');
+        $schedule->command('distribute:calendario')->dailyAt('13:28');
     }
 
     /**

@@ -12,7 +12,7 @@ Route::get('/', [ReservaController::class, 'index'])->name('paciente.home');
 Route::post('/', [ReservaController::class, 'verificarCodLab'])->name('verificar.orden');
 
 
-Route::get("reserva/ver", [ReservaController::class, 'ver'])->name('ver-reserva');
+Route::get("reserva/ver", [ReservaController::class, 'verReserva'])->name('ver-reserva');
 
 
 Route::get("reserva/{orden}/date/{date}", [ReservaController::class, 'grupos'])->name('get-grupos');

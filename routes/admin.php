@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CalendarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CupoController;
 use App\Http\Controllers\Admin\DetalleCalendarioController;
+use App\Http\Controllers\Admin\FeriadoController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\LaboratorioController;
 use App\Http\Controllers\Admin\MenuController;
@@ -98,3 +99,6 @@ Route::post('asignar-requisitos/{laboratorio}/save', [AsignarRequisito::class, '
 
 Route::get('asignar-requisitos/{laboratorio}/page', [AsignarRequisito::class, 'deleteRequisitoShowPage'])->name('show.page.delete.requisitos');
 Route::delete('asignar-requisitos/{laboratorio}/requisito/delete', [AsignarRequisito::class, 'deleteRequisito'])->name('delete.requisitos');
+
+
+Route::resource('feriados', FeriadoController::class);
