@@ -6,6 +6,7 @@ use App\Models\Ordenlab;
 use App\Models\Paciente;
 use App\Services\CpsServices;
 use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 trait CpsUserAndOrden
@@ -38,7 +39,7 @@ trait CpsUserAndOrden
     public function verificarMatricula($matricula)
     {
         if (!$this->checkMatricula($matricula)) {
-            throw new Exception("¡Matricula inactiva! ", 1);
+            throw new Exception("¡Matricula inactiva! ", Response::HTTP_FORBIDDEN);
         }
         $paciente = $this->verificarMatriculaLocal($matricula);
         if (!is_null($paciente)) {
@@ -86,5 +87,31 @@ trait CpsUserAndOrden
         }
         $ordenLab = $this->verificarOrdenCps($orden);
         return $ordenLab;
+    }
+
+    /* métodos auxiliares */
+    private function matriculaIsValid($paciente)
+    {
+        if (is_null($paciente)) {
+            throw new Exception("matricula incorrecta", Response::HTTP_BAD_REQUEST);
+        }
+    }
+    private function ordenIsValid($orden)
+    {
+        if (is_null($orden)) {
+            throw new Exception("Orden de laboratorio incorrectos", Response::HTTP_BAD_REQUEST);
+        }
+        if ($this->diffDateOrdenLab($orden->fecha) > $this->days) {
+            throw new Exception("Orden de Laboratorio obsoleto '\n' fecha: " . $orden->fecha, Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    private function ordenHaveReserva($orden)
+    {
+        if (!is_null($orden->reserva)) {
+            return true;
+        }
+
+        return false;
     }
 }
