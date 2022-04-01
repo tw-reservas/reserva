@@ -46,7 +46,7 @@ class AuthController extends Controller
                     "orden" => $orden,
                     "token" => $token,
                 ]
-            ], Response::HTTP_BAD_REQUEST);
+            ], Response::HTTP_OK);
         } catch (\Throwable $th) {
 
             return response()->json(["message" => $th->getMessage(), "matricula" => $matricula], $th->getCode());
