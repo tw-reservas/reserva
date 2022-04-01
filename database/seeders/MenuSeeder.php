@@ -24,7 +24,7 @@ class MenuSeeder extends Seeder
             $menu->save();
         }
 
-        $casos_id = [1, 2, 3, 4, 5, 6, 12, 14, 15];
+        $casos_id = [1, 2, 3, 4, 5, 6, 14];
 
         for ($i = 0; $i < count($casos_id); $i++) {
             $menu = new Menu();
