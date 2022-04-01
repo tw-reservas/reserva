@@ -42,14 +42,6 @@
                                         <!--<span class="bs-stepper-label">Logins</span>-->
                                     </button>
                                 </div>
-                                <!--<div class="line"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="step" data-target="#ticket-part">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button type="button" class="step-trigger" role="tab"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        aria-controls="ticket-part" id="ticket-part-trigger">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="bs-stepper-circle">3</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="bs-stepper-label">Various information</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>-->
                             </div>
                             <div class="loadingMask" id="loadingMask" style="visibility: hidden;"></div>
                             <div class="bs-stepper-content">
@@ -65,19 +57,19 @@
                                     <div id="date-select" class="m-auto text-center" style="width: 80%">
                                     </div>
                                     <table id="grupos" class="m-auto table table-striped table-bordered shadow-lg mt-4">
-                                        <thead class="bg-primary text-white">
+                                        <thead class="table-newcolor">
                                             <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Grupo</th>
-                                                <th scope="col">Cupo</th>
-                                                <th scope="col">Opciones</th>
+                                                <th>Id</th>
+                                                <th>Grupo</th>
+                                                <th>Cupo</th>
+                                                <th>Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         </tbody>
                                     </table>
                                     <br>
-                                    <button class="btn bg-olive color-palette btn-sm btnPrevius"
+                                    <button class="btn btn-success color-palette btn-sm btnPrevius"
                                         onclick="">Anterior</button>
                                 </div>
 

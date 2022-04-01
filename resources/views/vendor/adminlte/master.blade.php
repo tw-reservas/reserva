@@ -34,10 +34,17 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     @else
+        <link rel="stylesheet" href="{{ asset('css/twitter.bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset(mix(config('adminlte.laravel_mix_css_path', 'css/app.css'))) }}">
         <link rel="stylesheet" href="{{ asset('css/css-themes/nino.css') }}">
+
+        {{-- datatable - paginacion --}}
+
+        <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap4.min.css') }}">
+
+        {{-- Mis estilos =) --}}
         <link href="{{ asset('css/misestilos.css') }}" rel="stylesheet">
-        <!--<link href="{{ asset('css/estiloadm.css') }}" rel="stylesheet">-->
     @endif
 
     {{-- Livewire Styles --}}
@@ -97,6 +104,22 @@
         <script src="{{ asset('js/moment.min.js') }}"></script>
         <script src="{{ asset('js/locale/bo.js') }}"></script>
         <script src="{{ asset('js/locale/es-mx.js') }}"></script>
+        {{-- mis Scripts de Paginacion --}}
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
+        <script src="{{ asset('js/responsive.bootstrap4.min.js') }}"></script>
+
+        <script>
+            $('#datatable').DataTable({
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
+                responsive: true,
+                autoWidth: false
+
+            });
+        </script>
     @endif
 
     {{-- Livewire Script --}}

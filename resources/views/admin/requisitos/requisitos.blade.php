@@ -10,22 +10,22 @@
 @section('content')
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-10 m-auto">
-                <div class="card2">
-                    <div class="card-body2">
-                        <div class="row text-align-center">
-                            <!--<h5>Crear grupo   </h5>-->
-                            <a href="{{ route('requisitos.create') }}" class="btn btn-newcolor btn-sm">
-                                <i class="fas fa-plus align-items-center mr-1 p-1 "></i>Crear Requisito</a>
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered col-md-10 m-auto">
+            <div class="table-responsive">
+                <div class="col-md-10 m-auto">
+                    <div class="card2">
+                        <div class="card-body2">
+                            <div class="row text-align-center">
+                                <!--<h5>Crear grupo   </h5>-->
+                                <a href="{{ route('requisitos.create') }}" class="btn btn-newcolor btn-sm">
+                                    <i class="fas fa-plus align-items-center mr-1 p-1 "></i>Crear Requisito</a>
+                            </div>
+                            <br>
+                            <table id="datatable" class="table table-bordered">
                                 <thead class="table-newcolor">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>DESCRIPCION</th>
-                                        <th> Opciones</th>
+                                        <th>Id</th>
+                                        <th>Descripcion</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody2">

@@ -9,11 +9,11 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-11 m-auto">
+            <div class="col-md-12 m-auto">
                 <div class="card2">
                     <div class="card-body2">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <div class="card2">
                                     <div class="card-header">
                                         <strong>Lista de calendarios</strong>
@@ -24,11 +24,11 @@
                                                 <thead class="table-newcolor">
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>DIAS</th>
-                                                        <th>FECHA INICIO</th>
-                                                        <th>FECHA FIN</th>
-                                                        <th>ESTADO</th>
-                                                        <th>OPCIÓN</th>
+                                                        <th>Cant. Dias</th>
+                                                        <th>Fecha Inicio</th>
+                                                        <th>Fecha Fin</th>
+                                                        <th>Estado</th>
+                                                        <th>Opcion</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody  class="tbody2">
@@ -74,20 +74,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="card2">
                                     <div class="card-header">
                                         <strong>Grupos Activos</strong>
                                     </div>
                                     <div class="card-body2">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-md col-md-11 m-auto">
+                                            <table class="table table-bordered table-md col-md-12 m-auto">
                                                 <thead class="table-newcolor">
                                                     <tr class="tr-sm">
                                                         <th>#</th>
-                                                        <th>NOMBRE</th>
-                                                        <th>HORA INICIO</th>
-                                                        <th>HORA FIN</th>
+                                                        <th>Nombre</th>
+                                                        <th>Hora Inicio</th>
+                                                        <th>Hora Fin</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

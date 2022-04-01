@@ -4,25 +4,23 @@
     <h1>Asignar Requisitos</h1>
 @endsection
 
-
 @section('content')
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-10 m-auto">
-                <div class="card2">
-                    <div class="card-body2">
-
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered col-md-10 m-auto">
+            <div class="table-responsive">
+                <div class="col-md-10 m-auto">
+                    <div class="card2">
+                        <div class="card-body2">
+                            <br>
+                            <table id="datatable" class="table table-bordered">
                                 <thead class="table-newcolor">
                                     <tr>
-                                        <th style="width: 10%">#</th>
+                                        <th>#</th>
                                         <th>Area</th>
                                         <th>Cod. Arancel</th>
                                         <th>Nombre</th>
                                         <th>Estado</th>
-                                        <th> Opciones</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody2">
@@ -43,7 +41,7 @@
                                                 <div class="form-group">
                                                     <select class="form-control form-control-sm"
                                                         onchange="location=this.value">
-                                                        <option>Opciones</option>
+                                                        <option>Seleccionar</option>
                                                         <option
                                                             value="{{ route('show.page.add.requisitos', $labs->id) }}">
                                                             Agregar

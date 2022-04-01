@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
 @endsection
 
-
 @section('content')
+<div class="container-fluit">
     <div class="row">
         <div class="col-md-6 col-sm-12 m-auto">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header2">
                     INGRESE LOS DATOS:
                 </div>
                 @isset($ver)
@@ -31,7 +31,7 @@
                         @endisset
 
                         @csrf
-                        <div class="card-body">
+                        <div class="card-body2 pad table-responsive">
                             <form action="" method="POST" id="form-grupo">
                                 <div class="form-group row">
                                     <label for="label-matricula" class="col-sm-4 col-form-label"> Matricula: </label>
@@ -58,11 +58,11 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success float-right">
+                                <button type="submit" class="btn btn-sm btn-success float-right">
                                     @isset($ver)
                                         Ver Reserva
                                     @else
-                                        Reservar
+                                        Verificar
                                     @endisset
                                 </button>
                             </form>
@@ -70,7 +70,7 @@
                     </form>
             </div>
         </div>
-    </div>
+    </div> </div>
 
 @stop
 

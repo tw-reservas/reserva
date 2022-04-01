@@ -8,22 +8,22 @@
 @section('content')
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-10 m-auto">
-                <div class="card2">
-                    <div class="card-body2">
-                        <div class="row text-align-center">
-                            <!--<h5>Crear Area  </h5>-->
-                            <a href="{{ route('area.create') }}" class="btn btn-newcolor btn-sm">
-                                <i class="fas fa-plus align-items-center mr-1 p-1 "></i>Crear Area</a>
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered col-md-10 m-auto">
+            <div class="table-responsive">
+                <div class="col-md-10 m-auto">
+                    <div class="card2">
+                        <div class="card-body2">
+                            <div class="row text-align-center">
+                                <!--<h5>Crear Area  </h5>-->
+                                <a href="{{ route('area.create') }}" class="btn btn-newcolor btn-sm">
+                                    <i class="fas fa-plus align-items-center mr-1 p-1 "></i>Crear Area</a>
+                            </div>
+                            <br>
+                            <table id="datatable" class="table table-bordered">
                                 <thead class="table-newcolor">
                                     <tr>
-                                        <th>CODIGO</th>
-                                        <th>NOMBRE</th>
-                                        <th> Opciones</th>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody2">
@@ -59,5 +59,5 @@
 
 @stop
 @section('js')
-@include('global.script-toast')
-@stop
+    @include('global.script-toast')
+@endsection
