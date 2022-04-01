@@ -19,6 +19,10 @@ class Laboratorio extends Model
         'id', 'cod_arancel', 'nombre', 'estado', 'area_cod',
     ];
 
+    protected $hidden = [
+        "created_at", "updated_at", "deleted_at", "pivot"
+    ];
+
     protected $casts  = [
         'estado' => 'boolean',
     ];
