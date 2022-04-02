@@ -11,8 +11,7 @@
             <div class="col-md-10">
                 <div class="card2 card-outline">
                     <!--<div class="card-header">
-
-                                    </div>-->
+                                </div>-->
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('user.store') }}" method="POST" id="form-grupo">
@@ -99,16 +98,16 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <!--<div class="mb-3">
-                                        <label for="" class="">Correo electronico:</label>
-                                        <input id="email" placeholder="email" name="email" autocomplete="off" type="text"
-                                            class="form-control @error('email') is-invalid @enderror" tabindex="2">
-                                        @error('email')
-        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-    @enderror
-                                    </div>-->
+                                <div class="mb-3">
+                                    <label for="" class="">Correo electronico:</label>
+                                    <input id="email" placeholder="email" name="email" autocomplete="off" type="text"
+                                        class="form-control @error('email') is-invalid @enderror" tabindex="2">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
                                 <div class="col-md-12">
                                     <div class="object-group">
@@ -150,7 +149,6 @@
                 materno = document.getElementById('materno').value;
                 telefono = document.getElementById('telefono').value;
                 email = document.getElementById('email').value;
-
                 if (matricula === '') {
                     toastr.error("El campo MATRICULA es requerido");
                 }
@@ -161,7 +159,6 @@
                     toastr.error("El campo Verifique el campo contraseña ");
                     return false;
                 }
-
                 if (nombre === '') {
                     toastr.error("El campo NOMBRE es requerido");
                 }
@@ -171,14 +168,12 @@
                 if (materno === '') {
                     toastr.error("El campo MATERNO es requerido");
                 }
-
                 if (telefono === '') {
                     toastr.error("El campo TELEFONO es requerido");
                 }
                 if (email === '') {
                     toastr.error("El campo CORREO es requerido");
                 }
-
                 if (email !== '' && matricula !== '' && password == password1 && nombre !== '' && paterno !== '' &&
                     materno !== '' && telefono != ''
                 ) {
@@ -189,5 +184,4 @@
             }
         }
     </script>
-    @include('global.script-toast')
 @stop

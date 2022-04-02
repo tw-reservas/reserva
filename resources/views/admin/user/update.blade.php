@@ -2,17 +2,14 @@
 
 
 @section('content_header')
-    <h4>Crear Usuario</h4>
+    <h4>Editar Usuario</h4>
 @stop
 
 @section('content')
     <div class="container-fluit">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row" style="justify-content: center;">
+            <div class="col-md-10">
                 <div class="card2 card-outline">
-                    <div class="card-header">
-
-                    </div>
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('user.update', $user->id) }}" method="POST" id="form-grupo">
@@ -62,20 +59,10 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <!--<div class="mb-3">
-                                        <label for="" class="">Correo electronico:</label>
-                                        <input id="email" placeholder="email" name="email" autocomplete="off"
-                                            value="{{ $user->email }}" type="text"
-                                            class="form-control @error('email') is-invalid @enderror" tabindex="2">
-                                        @error('email')
-        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-    @enderror
-                                    </div>-->
 
-                                <div class="col-md-6">
-                                    <div>
+                                <div class="col-md-12">
+                                    <div class="object-group">
+                                        <label for="" class="">Seleccione un rol:</label>
                                         <select name="roles" id="rol" required>
                                             @foreach ($roles as $rol)
                                                 <option value="{{ $rol->id }}"
@@ -83,19 +70,15 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <label for="" class="">Seleccione un rol:</label>
                                     </div>
                                 </div>
-
+                                <br>
                                 <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm"
                                     tabindex="5">Cancelar</a>
                                 <button type="submit" class="btn btn-success btn-sm" id="guardar"
                                     tabindex="4">Guardar</button>
                             </form>
                         </div>
-                    </div>
-                    <div class="card-footer">
-
                     </div>
                 </div>
             </div>

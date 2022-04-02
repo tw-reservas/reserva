@@ -85,6 +85,7 @@
             </div>
         </div>
     </div>
+    @include('global.estilo-reserva')
 @stop
 
 

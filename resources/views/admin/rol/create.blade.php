@@ -5,18 +5,15 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-10 col-sm-12">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-8">
             <div class="card2">
-                <div class="card header">
-
-                </div>
-                <div class="card-body2">
-                    <form action="{{ route('rol.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="inputNombre" class="col-sm-2 col-form-label">Nombre: </label>
-                            <div class="col-sm-8">
+                <div class="card-body2 pad table-responsive">
+                    <div class="col-md-6">
+                        <form action="{{ route('rol.store') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="inputNombre" class="">Nombre: </label>
                                 <input type="text" class="form-control @error('nombre') is-valid @enderror" id="nombre"
                                     name="nombre" placeholder="Ingrese un nombre">
                                 @error('nombre')
@@ -25,22 +22,18 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="inputNombre" class="col-sm-2 col-form-label">Abreviatura: </label>
-                            <div class="col-sm-4">
+                            <div class="mb-3">
+                                <label for="inputNombre" class="">Abreviatura: </label>
                                 <input type="text" class="form-control" id="abreviatura" name="abreviatura"
                                     placeholder="Abreviatura del rol">
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </form>
-                </div>
-                <div class="card-footer">
-
+                            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @stop

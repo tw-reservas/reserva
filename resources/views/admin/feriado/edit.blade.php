@@ -2,7 +2,7 @@
 
 
 @section('content_header')
-    <h4>Agregar Feriado</h4>
+    <h4>Editar Feriado</h4>
 
 @stop
 
