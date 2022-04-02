@@ -20,7 +20,7 @@ class DiaFestivoSeeder extends Seeder
             ["titulo" => "dia del trabajo", "fecha" => "2020-05-01"],
             ["titulo" => "año nuevo aymara", "fecha" => "2020-06-21"],
             ["titulo" => "dia de la independencia", "fecha" => "2020-08-06"],
-            ["titulo" => "Dia de los difuntos", "fecha" => "2020-11-2"],
+            ["titulo" => "Dia de los difuntos", "fecha" => "2020-11-02"],
             ["titulo" => "Navidad", "fecha" => "2020-12-25"],
         ];
         DiaFestivo::insert($feriados);

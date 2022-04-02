@@ -6,54 +6,48 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MatriculaAndOrdenRequest;
 use App\Services\CpsServices;
 use App\Traits\CpsUserAndOrden;
+use App\Traits\RangeDate;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class OrdenLabController extends Controller
 {
     use CpsUserAndOrden;
-    protected $days = 30;
+    use RangeDate;
 
     public function __construct(CpsServices $cpsService)
     {
         $this->setCpsAdapter($cpsService);
     }
 
-    private function diffDateOrdenLab($date)
-    {
-        $dateTime1 = strtotime($date);
-        $dateTime2 = strtotime(Carbon::now());
-        $days = (int)(($dateTime2 - $dateTime1) / 86400);
-        return $days;
-    }
+
 
     public function validateOrdenLab(MatriculaAndOrdenRequest $request)
     {
         $matricula = $request->matricula;
         $ordenLab = $request->orden_lab;
 
-        $ordenLab = $this->verificarOrdenWithMatricula($ordenLab, $matricula);
-        if (is_null($ordenLab)) {
-            return response()->json(["message" => "Orden de laboratorio incorrectos", "data" => []], Response::HTTP_BAD_REQUEST);
-        }
-        if ($this->diffDateOrdenLab($ordenLab->fecha) > $this->days) {
-            return response()->json(["message" => "Orden de Laboratorio obsoleto '\n' fecha: " . $ordenLab->fecha], Response::HTTP_BAD_REQUEST);
-        }
-        $reserva = $ordenLab->reserva;
-        if (!is_null($reserva)) {
-            return response()->json(["message" => "Orden de laboratorio correcto con reserva ", "data" => [
-                "orden" => $ordenLab,
-            ]]);
-        }
-        return response()->json(
-            [
-                "message" => "Orden correctos",
-                "data" => [
+        try {
+            $ordenLab = $this->verificarOrdenWithMatricula($ordenLab, $matricula);
+            $this->ordenIsValid($ordenLab);
+            if ($this->ordenHaveReserva($ordenLab)) {
+                return response()->json(["message" => "Orden de laboratorio correcto con reserva ", "data" => [
                     "orden" => $ordenLab,
+                ]]);
+            }
+            return response()->json(
+                [
+                    "message" => "Orden correctos",
+                    "data" => [
+                        "orden" => $ordenLab,
+                    ],
                 ],
-            ],
-            Response::HTTP_OK
-        );
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], $th->getCode());
+        }
     }
 }
