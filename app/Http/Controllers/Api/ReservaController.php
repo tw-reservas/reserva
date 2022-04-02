@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrdenDetalleRequest;
 use App\Models\Ordenlab;
 use App\Models\Reserva;
+use App\Traits\MethodsReserva;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
-use function PHPUnit\Framework\isNull;
 
 class ReservaController extends Controller
 {
+    use MethodsReserva;
     public function reservar(OrdenDetalleRequest $request)
     {
         $orden = $request->orden_lab;
@@ -27,7 +30,7 @@ class ReservaController extends Controller
                 "mensaje" => "Este orden ya tiene una reserva",
                 "data" => [],
 
-            ], Response::HTTP_CONFLICT);
+            ], Response::HTTP_BAD_REQUEST);
         }
         DB::beginTransaction();
         try {
@@ -62,11 +65,9 @@ class ReservaController extends Controller
     public function verReserva(Reserva $reserva, Request $request)
     {
         $user = auth('sanctum')->user();
+        $reserva = $this->ver($reserva);
         return response()->json([
             "data" => [
-
-                "grupo" => $reserva->detalleCalendario->grupo,
-                "detalle" => $reserva->detalleCalendario()->first(),
                 "reserva" => $reserva,
                 "user" => $user,
             ]

@@ -4,12 +4,9 @@ namespace App\Traits;
 
 use App\Models\DetalleCalendario;
 use App\Models\Ordenlab;
-use App\Models\Paciente;
 use App\Models\Reserva;
-use App\Services\CpsServices;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 trait MethodsReserva
@@ -48,6 +45,17 @@ trait MethodsReserva
         }
     }
 
+    public function isValidReserva($reserva)
+    {
+        if ($reserva == null) {
+            return redirect()->back()->with("error", "Usted no tiene Reserva Activa pruebe ingresando otro orden de laboratorio");
+        }
+        $re = Reserva::where('id', $reserva->id)->with('ordenLab:id,codigo')->with('detalleCalendario:id,fecha,grupo_id')->first();
+        if ($re == null) {
+            return redirect()->back()->with("error", "El orden ya tiene una reserva.");
+        }
+    }
+
     public function ver($reserva)
     {
         if ($reserva == null) {
@@ -60,8 +68,6 @@ trait MethodsReserva
 
         $reservaNew = Reserva::where("id", $reserva->id)->with(['ordenLab:id,codigo', 'detalleCalendario:id,fecha,grupo_id', 'detalleCalendario.grupo', 'ordenLab.laboratorios.requisitos'])->first();
         return $reservaNew;
-        //return view('paciente.content.verReserva')->with("reserva", $re)->with('grupo', $grupo);
-        //return view('paciente.pdf.pdf-reserva')->with("reserva", $re)->with('grupo', $grupo);
     }
 
     public function getGruposMethod($fecha)
