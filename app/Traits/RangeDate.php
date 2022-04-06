@@ -11,7 +11,7 @@ use Carbon\Carbon;
 trait RangeDate
 {
     //cantidad de días para que la orden sea obsoleta;
-    protected $days = 30;
+    protected $days = 60;
     //hora predefinida
     private $predefinedTime = '09:45';
 
