@@ -1,6 +1,9 @@
-@section('content')
-    <div class="container-fluid">
+<div class="container-fluid">
+    @isset($admin)
         <div class="row">
+        @else
+            <div class="row col-md-10 m-auto">
+            @endisset
             <div class="col-md-6">
                 <div class="card2">
                     <div class="card-header2">
@@ -39,12 +42,10 @@
                                             una reserva.</h3>
                                     </div>
                                 @endif
-
                             </div>
                         </div>
                     </div>
                     <div class="card-footer2 text-right">
-
                         @isset($admin)
                             <a href="{{ route('reserva.cancelar-admin', $detalleReserva->id) }}"
                                 class="btn btn-danger btn-sm">Cancelar</a>
@@ -53,10 +54,8 @@
                             <a href="{{ route('reserva.cancelar') }}" class="btn btn-danger btn-sm">Cancelar</a>
                         @endisset
                     </div>
-
                 </div>
             </div>
-
 
             <div class="col-md-6">
                 <div class="card2">
@@ -81,4 +80,3 @@
             </div>
         </div>
     </div>
-@stop

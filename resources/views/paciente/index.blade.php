@@ -1,22 +1,23 @@
 @extends('paciente.utils.header')
 
 @section('contenido')
-
-    <div class="tab-content">
-        <div class="tab-empty" style="height: 100%;">
-            <br>
-            <div class="col-md-6  m-auto p-3">
-                <div class="card card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">Ingresar</h3>
+<br>
+    <div class="container-fluit">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 m-auto">
+                <div class="card">
+                    <div class="card-header2">
+                        Ingrese los datos
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="{{ route('verificar.orden') }}" method="POST" id="form-orden">
-                        @csrf
-                        <div class="card-body">
+                    <div class="card-body2">
+                        <form class="form-horizontal" action="{{ route('verificar.orden') }}" method="POST"
+                            id="form-orden">
+                            @csrf
+
                             <div class="form-group row">
-                                <label for="id_remedy" class="col-form-label">Orden de Laboratorio: </label>
+                                <label for="id_remedy" class="col-sm-4 col-form-label">Orden de Laboratorio: </label>
                                 <div class="col-sm-8">
                                     <input id="orden" name="orden" type="text" autocomplete="off"
                                         class="form-control @error('cupo') is-invalid @enderror" tabindex="2">
@@ -29,27 +30,14 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-body">
-                            <button type="submit" class="btn bg-olive color-palette btn-sm" tabindex="4"
-                                id="verificar">Verificar</button>
-                        </div>
-                        <!-- /.card-footer -->
-                    </form>
+                            <button type="submit" class="btn btn-guardar btn-sm float-right" id="verificar"> Verificar
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <style>
-        .label {
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-        }
-
-    </style>
-
 @stop
 
 @section('js')

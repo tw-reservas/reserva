@@ -1,9 +1,8 @@
 @extends('paciente.utils.header')
 
 @section('contenido')
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <div class="tab-content">
-        <div class="tab-empty" style="height: 100%;">
+        <div class="tab-empty">
             <div class="row ">
                 <div class="col-md-6 m-auto">
                     <div class="card card-outline">
@@ -52,7 +51,7 @@
                                             </div>
                                             <table id="grupos"
                                                 class="m-auto table table-striped table-bordered shadow-lg mt-4">
-                                                <thead class="bg-primary text-white">
+                                                <thead class="table-newcolor text-white">
                                                     <tr>
                                                         <th scope="col">Id</th>
                                                         <th scope="col">Grupo</th>
@@ -64,7 +63,7 @@
                                                 </tbody>
                                             </table>
                                             <br>
-                                            <button class="btn bg-olive color-palette btn-sm btnPrevius"
+                                            <button class="btn btn-success color-palette btn-sm btnPrevius"
                                                 onclick="">Anterior</button>
                                         </div>
                                     </div>

@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-    <section class="content " style="background-color: #f4f6f9; ">
+    <section class="content ">
         <div class="container-fluid">
 
             @yield('contenido')

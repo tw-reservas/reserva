@@ -16,7 +16,7 @@
 .btn-success:focus {
     color: #ffffff !important;
     background-color: #666666 !important;
-    border-color: #888888 !important;
+    border-color: #202020 !important;
 }
 
 .btn-sm,
@@ -343,4 +343,12 @@ div.dataTables_wrapper div.dataTables_filter input {
 table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before,
 table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
     background-color: #007b6d;
+}
+
+
+/*  ------  VISTA PACIENTE  ------  */
+
+section.content {
+    background-color: #f8f9fa;
+    min-height: calc(105vh - calc(3.5rem + 1px) - calc(3.5rem + 1px));
 }

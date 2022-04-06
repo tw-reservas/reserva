@@ -116,10 +116,6 @@
         background-color: #f5f5f5;
     }
 
-    a {
-        color: #007b6d;
-    }
-
 
     .fc .fc-toolbar-title {
         font-size: 1.50em;
