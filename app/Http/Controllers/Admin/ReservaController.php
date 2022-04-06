@@ -40,7 +40,7 @@ class ReservaController extends Controller
 
             if ($messageError != "" || $haveReserva != "") {
                 //dd($messageError);
-                return back()->with("error", $messageError);
+                return back()->with("error", $messageError!=""?$messageError:$haveReserva);
             }
             return $this->reservaCalendario($paciente, $orden);
         } catch (\Throwable $th) {
@@ -51,7 +51,8 @@ class ReservaController extends Controller
     private function verifyReserva($orden)
     {
         if (!is_null($orden->reserva)) {
-            return 'El orden de laboratorio tiene una reserva!. <a href="" > ver reserva </a>';
+            //dd('El orden de laboratorio tiene una reserva!');
+            return 'El orden de laboratorio tiene una reserva!.';
         }
         return "";
     }
@@ -76,6 +77,14 @@ class ReservaController extends Controller
 
     public function getGrupos($orden, $date)
     {
+        if(!$this->hourAndDateValidate($date)){
+            return response()->json(["detalle" => []]);
+        }
+        /*$now = Carbon::now();
+        $dateSelected = Carbon::parse($date);
+        $now->setTime(0, 0, 0);
+        $dateSelected->setTime(0, 0, 0);*/
+        //$detalleCalendario = $this->getGruposMethod($date);
         $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->where("estado", true)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
         return response()->json(["detalle" => $detalleCalendario]);
     }

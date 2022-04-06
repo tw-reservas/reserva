@@ -20,7 +20,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="" class="">Titulo: </label>
-                                    <input id="titulo" name="titulo" type="text"
+                                    <input id="titulo" name="titulo" autocomplete="off" type="text"
                                         class="form-control @error('titulo') is-invalid @enderror" tabindex="2">
                                     @error('titulo')
                                         <span class="invalid-feedback" role="alert">

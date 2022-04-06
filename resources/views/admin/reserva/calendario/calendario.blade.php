@@ -15,7 +15,7 @@
         <div class="col-md-8 col-sm-12 m-auto">
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">bs-stepper</h3>
+                    <h3 class="card-title">Elegir dia</h3>
                 </div>
                 @if (count($detalles) <= 0)
                     <div class="admonition caution">
@@ -79,9 +79,6 @@
                     </div>
                 @endif
                 <!-- /.card-body -->
-                <div class="card-footer">
-
-                </div>
             </div>
         </div>
     </div>

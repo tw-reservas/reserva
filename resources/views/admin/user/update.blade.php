@@ -73,9 +73,9 @@
                                     </div>
                                 </div>
                                 <br>
-                                <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm"
+                                <a href="{{ route('user.index') }}" class="btn btn-cancelar btn-sm"
                                     tabindex="5">Cancelar</a>
-                                <button type="submit" class="btn btn-success btn-sm" id="guardar"
+                                <button type="submit" class="btn btn-guardar btn-sm" id="guardar"
                                     tabindex="4">Guardar</button>
                             </form>
                         </div>

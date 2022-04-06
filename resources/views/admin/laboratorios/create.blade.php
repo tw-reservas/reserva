@@ -17,16 +17,6 @@
                         <div class="col-md-6">
                             <form action="{{ route('laboratorios.store') }}" method="POST" id="form-grupo">
                                 @csrf
-                                <!--<div class="mb-3">
-                                        <label for="" class="">ID de laboratorio :</label>
-                                        <input id="id" placeholder="inserte id de laboratorio" name="id" autocomplete="off"
-                                            type="text" class="form-control @error('id') is-invalid @enderror" tabindex="2">
-                                        @error('id')
-        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-    @enderror
-                                    </div>-->
 
                                 <div class="mb-3">
                                     <label for="" class="">Codigo de Arancel :</label>
@@ -50,30 +40,6 @@
                                         </span>
                                     @enderror
                                 </div>
-
-                                <!--<div class="mb-3">
-                                        <label for="" class="form-label">Estado :</label>
-                                        <input id="estado" name="estado"
-                                            placeholder="inserte el estado del laboratorio : true or false" type="text"
-                                            class="form-control @error('estado') is-invalid @enderror" tabindex="2">
-                                        @error('estado')
-        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-    @enderror
-                                    </div>-->
-
-                                <!--<div class="mb-3">
-                                        <label for="" class="form-label">Requisito id :</label>
-                                        <input id="requisito_id" name="requisito_id" placeholder="inserte el id de requisito"
-                                            type="text" class="form-control @error('requisito_id') is-invalid @enderror"
-                                            tabindex="2">
-                                        @error('requisito_id')
-        <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-    @enderror
-                                    </div>-->
 
                                 <div class="mb-3">
                                     <div class="form-group">

@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Nombre :</label>
-                                    <input id="nombre" name="nombre" placeholder="inserte el nombre del area" type="text"
+                                    <input id="nombre" name="nombre" placeholder="inserte el nombre del area" autocomplete="off" type="text"
                                         class="form-control @error('horaInicio') is-invalid @enderror" tabindex="2">
                                     @error('nombre')
                                         <span class="invalid-feedback" role="alert">

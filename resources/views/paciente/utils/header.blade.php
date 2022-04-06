@@ -1,27 +1,17 @@
 @extends('adminlte::master')
 
 @section('adminlte_css')
-    
+
     <link rel="stylesheet" href="{{ asset('css/bs-stepper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
-    
-@stop
-<style>
-.navbar-brand.abs
-    {
-        position: absolute;
-        width: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-    }
 
-</style>
+@stop
+
 @section('body')
     <!--NAV BAR-->
     <nav class="navbar navbar-expand-lg navbar-light bg-ligth">
         <div class="d-flex flex-grow-1">
-            <a href="" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <img class="d-none d-md-block" src="{{ asset('/images/cps.png') }}" alt="" style="width: 80%;">
                 <img class="d-md-none" src="{{ asset('/images/cps-logo1.svg') }}" alt="" style="width: 4rem; ">
             </a>
@@ -31,15 +21,13 @@
             </button>
             <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarNav">
                 <ul class="navbar-nav ml-auto flex-nowrap">
-                    <li class="nav-item active">
+                    <li id="menu-reserva" class="nav-item">
                         <a class="nav-link" href="{{ route('paciente.home') }}">Reservar</a>
                     </li>
-                    <li class="nav-item">
+                    <li id="ver-reserva" class="nav-item">
                         <a class="nav-link" href="{{ route('ver-reserva') }}">Ver Reserva</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('ver-resultado') }}">Ver Resultado</a>
-                    </li>
+
                     <li class="nav-item">
                         <form action="{{ route('logout.paciente') }}" method="post">
                             @csrf
@@ -55,7 +43,7 @@
 
     <section class="content " style="background-color: #f4f6f9; ">
         <div class="container-fluid">
-            
+
             @yield('contenido')
         </div>
     </section>

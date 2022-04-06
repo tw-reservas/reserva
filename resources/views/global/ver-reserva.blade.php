@@ -28,7 +28,7 @@
                                         <h4>Hora Reservada: <br>
                                             <strong>{{ $detalleReserva->detalleCalendario->grupo->horaInicio }}
                                                 am -
-                                                {{ $detalleReserva->detalleCalendario->grupo->horaInicio }}
+                                                {{ $detalleReserva->detalleCalendario->grupo->horaFin }}
                                                 am</strong>
                                         </h4>
                                     </div>

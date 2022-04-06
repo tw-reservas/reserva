@@ -9,9 +9,6 @@
         <div class="row" style="justify-content: center;">
             <div class="col-md-8">
                 <div class="card2 card-outline">
-                    <!--<div class="card-header">
-
-                                                                                                                                                                                                                                </div>-->
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('show.change-password.post') }}" method="POST" id="form-change-pass">
@@ -19,9 +16,9 @@
 
                                 <label for="" class="">Contraseña actual:</label>
                                 <div class="input-group mb-3">
-                                    <input id="password_actual" placeholder="contraseña actual" name="password_actual" autocomplete="off"
-                                        type="password" class="form-control @error('password_actual') is-invalid @enderror"
-                                        tabindex="2">
+                                    <input id="password_actual" placeholder="contraseña actual" name="password_actual"
+                                        autocomplete="off" type="password"
+                                        class="form-control @error('password_actual') is-invalid @enderror" tabindex="2">
                                     @error('password_actual')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -73,11 +70,6 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <p>
-
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -110,6 +102,6 @@
     </script>
 
 
-@include('global.script-toast')
+    @include('global.script-toast')
 
 @stop

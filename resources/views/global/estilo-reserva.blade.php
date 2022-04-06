@@ -1,4 +1,9 @@
 <style>
+    /*--------- LOGIN ---------*/
+    .card-success.card-outline {
+        border-top: 0px solid #28a745;
+    }
+
     .fc .fc-button-primary {
         color: #fff;
         color: var(--fc-button-text-color, #fff);
@@ -33,6 +38,7 @@
         width: 30px;
     }
 
+    /* ------  CALENDARIO ------ */
     /* Stepper  */
     .step {
         display: flex;
@@ -98,9 +104,22 @@
         flex: 1 0 2px;
         min-height: 3px;
         position: relative;
-        margin: 2rem 0 4rem;
-        top: 50%;
+        margin: 2rem 0 2rem;
+        /*top: 50%;*/
     }
+
+    .bs-stepper-header {
+        background-color: #f5f5f5;
+    }
+
+    .card {
+        background-color: #f5f5f5;
+    }
+
+    a {
+        color: #007b6d;
+    }
+
 
     .fc .fc-toolbar-title {
         font-size: 1.50em;

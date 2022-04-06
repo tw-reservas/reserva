@@ -36,14 +36,6 @@
                                                 <!--<span class="bs-stepper-label">Logins</span>-->
                                             </button>
                                         </div>
-                                        <!--<div class="line"></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="step" data-target="#ticket-part">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="button" class="step-trigger" role="tab"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                aria-controls="ticket-part" id="ticket-part-trigger">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="bs-stepper-circle">3</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="bs-stepper-label">Various information</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>-->
                                     </div>
                                     <div class="loadingMask" id="loadingMask" style="visibility: hidden;"></div>
                                     <div class="bs-stepper-content">
@@ -75,9 +67,7 @@
                                             <button class="btn bg-olive color-palette btn-sm btnPrevius"
                                                 onclick="">Anterior</button>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         @endif
@@ -91,10 +81,13 @@
     @include('global.estilo-reserva')
 @endsection
 
-
-
-
 @section('js')
+<script>
+    $('document').ready(function(){
+        $('#menu-reserva').addClass('active')
+    });
+
+</script>
     <script src="{{ asset('js/bs-stepper.min.js') }}"></script>
     <script src="{{ asset('js/main.min.js') }}"></script>
     @if (count($detalles) > 0)
@@ -164,6 +157,7 @@
                                             "esta fecha no tiene grupos. Elige otra fecha por favor",
                                             "Error");
                                         window.stepper.previous();
+                                        return false;
                                     }
                                     response.forEach(element => {
                                         if (element != null) {
@@ -200,9 +194,7 @@
 
                             toastr.error(
                                 "No se puede reservar en esta fecha");
-
                         }
-
                     },
                 });
                 window.calendario = calendar;

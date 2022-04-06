@@ -11,9 +11,7 @@
         <div class="row" style="justify-content: center;">
             <div class="col-md-8">
                 <div class="card2 card-outline">
-                    <!--<div class="card-header">
-
-                            </div>-->
+                    <!--<div class="card-header"></div>-->
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('calendario.store') }}" method="POST" id="form-create-calendario">
@@ -22,7 +20,7 @@
                                     <label for="" class="">Rango de Dias:</label>
                                     <input id="cantidad"
                                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                        name="cantidad" type="text"
+                                        name="cantidad" autocomplete="off" type="text"
                                         class="form-control @error('cantidad') is-invalid @enderror" tabindex="2">
                                     @error('cantidad')
                                         <span class="invalid-feedback" role="alert">
@@ -33,7 +31,7 @@
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">Fecha Inicio: </label>
-                                    <input id="fechaInicio" name="fechaInicio" value="{{ $fecha }}" type="date"
+                                    <input id="fechaInicio" name="fechaInicio" value="{{ $fecha }}" autocomplete="off" type="date"
                                         class="form-control @error('fechaInicio') is-invalid @enderror" tabindex="2">
                                     @error('fechaInicio')
                                         <span class="invalid-feedback" role="alert">
@@ -52,6 +50,8 @@
                     <div class="card-footer">
                         <p>
                             Rango de dias: es la cantidad de dias que se va habilitar para la reserva;
+                            <br>
+                            <strong>Nota:</strong> El rango de dias minimo es de 10 dias.
                         </p>
                     </div>
                 </div>

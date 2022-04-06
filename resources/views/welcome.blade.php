@@ -4,7 +4,6 @@
 
 
 @section('auth_body')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <form action="{{ route('paciente.post') }}" method="POST" id="form-paciente">
         @csrf
         @method('POST')
@@ -41,7 +40,7 @@
 
             <div class="col-5">
                 <button type=submit id="login-paciente"
-                    class="btn btn-block bg-olive {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                    class="btn btn-block btn-sm {{ config('adminlte.classes_auth_btn', 'bg-olive btn-success') }}">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>

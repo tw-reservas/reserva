@@ -42,9 +42,9 @@
         <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap4.min.css') }}">
 
-        {{-- Mis estilos =) --}}
-        <link href="{{ asset('css/misestilos.css') }}" rel="stylesheet">
     @endif
+    {{-- Mis estilos =) --}}
+    <link href="{{ asset('css/misestilos.css') }}" rel="stylesheet">
 
     {{-- Livewire Styles --}}
     @if (config('adminlte.livewire'))

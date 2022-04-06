@@ -19,6 +19,4 @@ Route::get("reserva/{orden}/date/{date}", [ReservaController::class, 'grupos'])-
 Route::get("reserva/{ordenlab}/detalle/{detalle_id}", [ReservaController::class, 'reservar'])->name('reservar');
 Route::get("reserva/cancelar", [ReservaController::class, "cancelarReserva"])->name("reserva.cancelar");
 
-Route::get("reserva/resultado", [ResultadoController::class, 'index'])->name('ver-resultado');
-
 Route::get("reserva/pdf", [PDFController::class, 'createPDFReserva'])->name('download-pdf');

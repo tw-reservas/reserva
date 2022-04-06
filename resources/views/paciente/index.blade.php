@@ -19,10 +19,7 @@
                                 <label for="id_remedy" class="col-form-label">Orden de Laboratorio: </label>
                                 <div class="col-sm-8">
                                     <input id="orden" name="orden" type="text" autocomplete="off"
-                                        class="form-control @error('cupo')
-                                is-invalid
-                              @enderror"
-                                        tabindex="2">
+                                        class="form-control @error('cupo') is-invalid @enderror" tabindex="2">
                                     @error('cupo')
                                         @method('POST')
                                         <span class="invalid-feedback" role="alert">
@@ -84,8 +81,6 @@
 
         }
     </script>
-
-
     <script>
         @if (Session::has('error'))
             toastr.error("{{ session('error') }}");

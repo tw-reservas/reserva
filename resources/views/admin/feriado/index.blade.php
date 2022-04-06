@@ -16,7 +16,7 @@
                             <div class="row text-align-center">
                                 <!--<h5>Crear Usuario </h5>-->
                                 <a href="{{ route('feriados.create') }}" class="btn btn-newcolor btn-sm">
-                                    <i class="fas fa-user-plus p-1"></i></a>
+                                    <i class="fas fa-plus align-items-center mr-1 p-1 "></i>Agregar feriado</a>
                             </div>
                             <br>
                             <table id="datatable" class="table table-bordered  ">

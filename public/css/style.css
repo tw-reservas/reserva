@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.card-success.card-outline {
+    border-top: 0px solid #28a745;
+}
+
 .bs-stepper-header {
     display: flex;
     align-items: center;

@@ -10,26 +10,15 @@
         <div class="row" style="justify-content: center;">
             <div class="col-md-10">
                 <div class="card2 card-outline">
-                    <!--<div class="card-header">
+                    <!--<div class="card-header"></div>-->
 
-                                    </div>-->
                     <div class="card-body2 pad table-responsive">
                         <div class="col-md-6">
                             <form action="{{ route('laboratorios.update', $laboratorio->id) }}" method="POST"
                                 id="form-grupo">
                                 @csrf
                                 @method("PUT")
-                                <!--<div class="mb-3">
-                                    <label for="" class="">ID del laboratorio :</label>
-                                    <input id="id" value="{{ $laboratorio->id }}"
-                                        placeholder="inserte el id del laboratorio : " name="id" autocomplete="off"
-                                        type="text" class="form-control @error('id') is-invalid @enderror" tabindex="2">
-                                    @error('id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>-->
+
                                 <div class="mb-3">
                                     <label for="" class="">Codigo Arancel :</label>
                                     <input id="cod_arancel" value="{{ $laboratorio->cod_arancel }}"
@@ -53,17 +42,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <!--<div class="mb-3">
-                                    <label for="" class="">Estado del Laboratorio : </label>
-                                    <input id="estado" value="{{ $laboratorio->estado }}"
-                                        placeholder="inserte estado de ese laboratorio" name="estado" autocomplete="off"
-                                        type="text" class="form-control @error('estado') is-invalid @enderror" tabindex="2">
-                                    @error('estado')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>-->
+
                                 <div class="mb-3">
                                     <div class="form-group">
                                         <label>Seleccionar Area</label>

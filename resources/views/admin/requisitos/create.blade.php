@@ -21,7 +21,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Descripcion :</label>
                                     <input id="descripcion" name="descripcion"
-                                        placeholder="inserte la descripcion del Requisito" type="text"
+                                        placeholder="inserte la descripcion del Requisito" autocomplete="off" type="text"
                                         class="form-control @error('horaInicio') is-invalid @enderror" tabindex="2">
                                     @error('descripcion')
                                         <span class="invalid-feedback" role="alert">

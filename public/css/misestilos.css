@@ -64,8 +64,8 @@
 .card-header2 {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: #dadbdc;
-    border-bottom: 1px solid #c5c5c5;
+    background-color: #e4e5e6;
+    border-bottom: 1px solid #d9dcdffc;
 }
 
 .card-body2 {
@@ -78,7 +78,7 @@
 
 .card-footer2 {
     padding: 0.75rem 1.25rem;
-    background-color: #dadbdc;
+    background-color: #e4e5e6;
     border-top: 1px solid #dadbdc;
 }
 
@@ -108,7 +108,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 .tbody2 {
-    background-color: #f1f1f1;
+    background-color: #f3f3f3;
 }
 
 
