@@ -23,6 +23,6 @@ class Calendario extends Model
 
     public function detalleCalendario()
     {
-        return $this->hasMany(DetalleCalendario::class);
+        return $this->hasMany(DetalleCalendario::class, 'calendario_id');
     }
 }

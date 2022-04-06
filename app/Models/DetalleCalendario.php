@@ -35,6 +35,6 @@ class DetalleCalendario extends Model
 
     public function reserva()
     {
-        return $this->hasMany(Reserva::class);
+        return $this->hasMany(Reserva::class, 'detallecalendario_id', 'id');
     }
 }

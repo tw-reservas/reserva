@@ -31,7 +31,7 @@
                                                         <th>Opcion</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody  class="tbody2">
+                                                <tbody class="tbody2">
                                                     @foreach ($calendarios as $calendario)
                                                         <tr>
                                                             <td>{{ $calendario->id }}</td>
@@ -42,6 +42,9 @@
                                                                 <td><span class="badge bg-success">Repartido</span></td>
                                                                 <td><a href="{{ route('detalle-calendario.ver', $calendario->id) }}"
                                                                         class="btn btn-verdetalle btn-sm">Ver Detalles</a>
+                                                                    <a href="{{ route('detalle-calendario.deshabilitar.show', $calendario->id) }}"
+                                                                        class="btn btn-verdetalle btn-sm btn-warning">Deshabilitar
+                                                                        Fechas</a>
                                                                 </td>
                                                             @else
                                                                 <td><span class="badge bg-info">Pendiente</span></td>
