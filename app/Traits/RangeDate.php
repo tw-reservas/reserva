@@ -120,7 +120,7 @@ trait RangeDate
     private function hourAndDateValidate($fecha)
     {
         $now = Carbon::now();
-                $timeNow = strtotime($now->format('H:m'));
+        $timeNow = strtotime($now->format('H:m'));
         if (
             $this->diffDateOrdenLab($fecha) <= 0 &&
             $timeNow > strtotime($this->predefinedTime)

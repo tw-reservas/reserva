@@ -40,7 +40,7 @@ class ReservaController extends Controller
 
             if ($messageError != "" || $haveReserva != "") {
                 //dd($messageError);
-                return back()->with("error", $messageError!=""?$messageError:$haveReserva);
+                return back()->with("error", $messageError != "" ? $messageError : $haveReserva);
             }
             return $this->reservaCalendario($paciente, $orden);
         } catch (\Throwable $th) {
@@ -77,7 +77,7 @@ class ReservaController extends Controller
 
     public function getGrupos($orden, $date)
     {
-        if(!$this->hourAndDateValidate($date)){
+        if (!$this->hourAndDateValidate($date)) {
             return response()->json(["detalle" => []]);
         }
         /*$now = Carbon::now();
@@ -85,7 +85,10 @@ class ReservaController extends Controller
         $now->setTime(0, 0, 0);
         $dateSelected->setTime(0, 0, 0);*/
         //$detalleCalendario = $this->getGruposMethod($date);
-        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)->where("estado", true)->with("grupo:id,nombre,horaInicio,horaFin")->orderBy('id', 'asc')->get();
+        $detalleCalendario = DetalleCalendario::where("fecha", "=", $date)
+            ->where("estado", true)
+            ->with("grupo:id,nombre,horaInicio,horaFin")
+            ->orderBy('id', 'asc')->get();
         return response()->json(["detalle" => $detalleCalendario]);
     }
 

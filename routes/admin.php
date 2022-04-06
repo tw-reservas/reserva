@@ -34,6 +34,8 @@ Route::resource('calendario', CalendarioController::class)->only(['index', 'crea
 Route::get('detalle-calendario', [DetalleCalendarioController::class, 'index'])->name('detalle-calendario.index');
 Route::get('detalle-calendario/repartir/{calendario}/cupo/{cupo}', [DetalleCalendarioController::class, 'repartir'])->name('detalle-calendario.repartir');
 Route::get('detalle-calendario/ver/{calendario}', [DetalleCalendarioController::class, 'verDetalles'])->name('detalle-calendario.ver');
+Route::get('detalle-calendario/deshabilitar/{calendario}', [DetalleCalendarioController::class, 'showPageDetalleCalendarioDisable'])->name('detalle-calendario.deshabilitar.show');
+Route::delete('detalle-calendario/deshabilitar/{fecha}', [DetalleCalendarioController::class, 'detalleCalendarioDisable'])->name('detalle-calendario.deshabilitar');
 
 
 //Brenda Casos de uso
