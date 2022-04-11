@@ -22,7 +22,7 @@
                                         <h5>Orden Lab:
                                             <strong>{{ $detalleReserva->ordenLab->codigo }}</strong>
                                         </h5>
-                                        <h6>Codigo ticket: {{ $detalleReserva->id }}</h6>
+                                        <!--<h6>Codigo ticket: {{ $detalleReserva->id }}</h6>-->
                                         <h5> <strong>{{ $detalleReserva->nombre }}</strong>
                                         </h5>
                                         <h4>Fecha: <br>

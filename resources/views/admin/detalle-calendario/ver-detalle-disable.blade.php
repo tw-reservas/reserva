@@ -25,7 +25,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Fecha</th>
-
                                         <th>Stock </th>
                                         <th>Ocupado</th>
                                         <th>Opciones</th>
@@ -36,8 +35,8 @@
                                         <tr>
                                             <td>{{ $detalle->id }}</td>
                                             <td>{{ $detalle->fecha }}</td>
-                                            <td>{{ $detalle->cupoocupado }}</td>
                                             <td>{{ $detalle->cupomaximo }}</td>
+                                            <td>{{ $detalle->cupoocupado }}</td>
                                             <td>
                                                 <form
                                                     action="{{ route('detalle-calendario.deshabilitar', $detalle->fecha) }}"
