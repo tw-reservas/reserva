@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GrupoRequest;
 use App\Models\Cupo;
 use App\Models\Grupo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class GrupoController extends Controller
@@ -13,7 +14,7 @@ class GrupoController extends Controller
 
     public function index()
     {
-        $grupos = Grupo::all()->sortBy('id');
+        $grupos = Grupo::orderBy('horaInicio')->get();
         return view('admin.grupo.index')->with('grupos', $grupos);
     }
 
@@ -34,8 +35,51 @@ class GrupoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    private function porDefinir($horaInicio,$horaFin){
+        $grupos = Grupo::orderBy('horaInicio')->get();
+        //dd($grupos);
+        if(empty($grupos) ){
+            return true;
+        }
+        if($horaInicio > $horaFin){
+            return false;
+        }
+        if(count($grupos)==1){
+            $grupo= $grupos->first();
+            if($horaFin <= $grupo->horaInicio || $horaInicio >= $grupo->horaFin){
+                return true;
+            }
+            return false;
+        }
+        for ($index=0; $index < count($grupos); $index++) {
+            if($index == 0){
+                if($horaFin <= $grupos[$index]->horaInicio){
+                    return true;
+                }
+                $index++;
+            }
+
+            if($horaFin <= $grupos[$index]->horaInicio && $horaInicio >= $grupos[$index-1]->horaFin){
+                return true;
+            }
+            if($index == count($grupos) - 1){
+                if($horaInicio >= $grupos[$index]->horaFin){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public function store(GrupoRequest $request)
     {
+
+
+
+        $result =  $this->porDefinir($request->horaInicio,$request->horaFin);
+        if(!$this->porDefinir($request->horaInicio,$request->horaFin)){
+            return back()->with('error', "Horario no valido, verifique por favor ");
+        }
         $grupo = new Grupo();
         $grupo->nombre = strtolower("GRUPO ") . strtolower($request->nombre);
         $grupo->horaInicio = $request->horaInicio;
@@ -81,7 +125,8 @@ class GrupoController extends Controller
     {
         if (!$grupo->estado) {
             $grupo->delete();
-            return redirect()->back();
+            return redirect()->back()->with('success',"Grupo eliminado con éxito");
+
         }
         return back()->with("error", "No se puede ELIMINAR un grupo activo");
     }

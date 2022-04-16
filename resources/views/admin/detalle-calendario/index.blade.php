@@ -58,13 +58,14 @@
                                                                         <a href="{{ route('cupo.index') }}"
                                                                             class="btn btn-info btn-sm"> Activar Cupo</a>
                                                                     @endif
-                                                                    @if (count($grupos) > 0 && $cupo != null)
+                                                                    @if (count($grupos) > 0 && $cupo != null && $sumaCupo == $cupo->total)
                                                                         <a href="{{ route('detalle-calendario.repartir', [$calendario->id, $cupo->id]) }}"
                                                                             class="btn btn-warning btn-sm"> Repartir </a>
                                                                     @endif
                                                                     @if ($cupo != null && $sumaCupo != $cupo->total)
-                                                                        <a href="{{ route('grupo.conf-porcentaje') }}"
-                                                                            class="btn btn-warning btn-sm"> Configurar
+                                                                        <a href="{{ route('grupo.conf-porcentaje.get') }}"
+                                                                            class="btn btn-warning btn-sm"
+                                                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Necesita repartir los cupos en los grupos"> Configurar
                                                                             porcentaje </a>
                                                                     @endif
                                                                 </td>
@@ -122,6 +123,9 @@
 
 @section('js')
     <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
         @if ($cupo != null && $sumaCupo != $cupo->total)
             toastr.error("La suma del stock de los grupos: ".$sumaCupo.", no es igual al cupo total activo: ".$cupo->total);
         @endif

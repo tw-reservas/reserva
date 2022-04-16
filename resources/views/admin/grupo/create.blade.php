@@ -20,7 +20,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="" class="">Nombre:</label>
-                                    <input id="nombre" placeholder="Example: SA" name="nombre" autocomplete="off"
+                                    <input id="nombre" placeholder="Ejemplo: SA" name="nombre" autocomplete="off"
                                         type="text" class="form-control @error('nombre') is-invalid @enderror" tabindex="2">
                                     @error('nombre')
                                         <span class="invalid-feedback" role="alert">
@@ -73,6 +73,7 @@
 @stop
 
 @section('js')
+@include('global.script-toast')
     <script>
         window.onload = function() {
             document.getElementById('guardar').onclick = function() {
@@ -83,11 +84,11 @@
                 horaFin = document.getElementById('horaFin').value;
 
                 console.log(horaInicio, horaFin, regHora.test(horaInicio), regHora.test(horaFin));
-                console.log(nombre.length !== 2);
+                //console.log(nombre.length > 2);
                 if (nombre === '') {
                     toastr.error("El campo NOMBRE es requerido");
                 }
-                if (nombre.length !== 2) {
+                if (nombre.length > 2) {
                     toastr.error("El campo NOMBRE debe tener dos caracteres ejemplo: SA, SB ,AS ,KP");
                 }
 
@@ -105,10 +106,11 @@
                     toastr.error("El campo HORA FIN no tiene formato valido. !! HH:MM !!");
 
                 }
-                if (horaFin > horaInicio) {
+                if (horaInicio>horaFin) {
                     toastr.error("El campo HORA INICIO DEBE SER MENOR A HORA FIN");
                 }
-                if (regHora.test(horaInicio) && nombre.length == 2 && regHora.test(horaFin)) {
+
+                if (regHora.test(horaInicio) && nombre.length <= 2 && regHora.test(horaFin) && horaInicio<horaFin) {
                     toastr.success('CAMPOS CORRECTOS, !!GUARDANDO GRUPO!!');
                     document.getElementById('form-grupo').submit();
                 }
