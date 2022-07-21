@@ -8,6 +8,7 @@ use App\Models\Cupo;
 use App\Models\DetalleCalendario;
 use App\Models\DetalleReserva;
 use App\Models\Grupo;
+use App\Models\PushNotification;
 use App\Traits\RangeDate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,8 @@ class DetalleCalendarioController extends Controller
             return redirect()->back()->with('success', "Cupos Repartidos con éxitos");
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with('error', "Ocurrio un error al insertar a la base de datos, intente mas tarde");
+            dd($th);
+            return redirect()->back()->with('error', "Ocurrio un error al insertar a la base de datos, intente mas tarde".$th->getMessage());
         }
     }
 
@@ -90,6 +92,12 @@ class DetalleCalendarioController extends Controller
                 ->where("estado", true)
                 ->with('reserva')->get();
             foreach ($detalles as  $detalle) {
+                foreach ($detalle->reserva as $reserva) {
+                    $paciente = $reserva->paciente;
+                    if(!is_null($paciente->token) ){
+                        PushNotification::send("Reserva Cancelada", "Su reserva ha sido cancelada","https://reservas-cps.herokuapp.com/images/cps-logo1.png" );
+                    }
+                }
                 $detalle->reserva()->delete();
             }
             $detalles = DetalleCalendario::whereDate('fecha', $fecha)

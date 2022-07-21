@@ -23,7 +23,7 @@ class Paciente extends Persona
     ];
 
     protected $fillable = [
-        'matricula', 'nombre', 'apellidoPaterno', 'apellidoMaterno', 'telefono', 'correo', 'estado'
+        'matricula', 'nombre', 'apellidoPaterno', 'apellidoMaterno', 'telefono', 'correo', 'estado','token'
     ];
     protected $primaryKey = "id";
 

@@ -34,7 +34,8 @@ class AuthController extends Controller
             $this->ordenIsValid($orden);
 
             $token = $paciente->createToken($device)->plainTextToken;
-
+            $paciente->token = $device;
+            $paciente->update();
             $message = "Datos validos, session iniciada";
             if ($this->ordenHaveReserva($orden)) {
                 $message = "Datos validos, session iniciada, orden de lab. con reserva.";
